@@ -79,6 +79,4 @@ test:
 #
 production:
   <<: *default
-  database: tousbienintegres_production
-  username: tousbienintegres
-  password: <%= ENV["TOUSBIENINTEGRES_DATABASE_PASSWORD"] %>
+  url: <%= ENV["DATABASE_URL"] %>
