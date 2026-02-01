@@ -1,0 +1,37 @@
+<!-- app/views/surveys/thank_you.html.erb -->
+<% set_meta_tags title: 'Merci',
+                  description: 'Merci pour votre participation à notre enquête.' %>
+
+<section class="py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mx-auto text-center">
+
+        <div class="mb-4">
+          <div class="d-inline-flex align-items-center justify-content-center rounded-circle bg-success-light mb-4"
+               style="width: 80px; height: 80px;">
+            <i class="fas fa-check text-success" style="font-size: 2.5rem;" aria-hidden="true"></i>
+          </div>
+        </div>
+
+        <h1 class="mb-4">Merci pour votre participation !</h1>
+
+        <p class="lead mb-4">
+          Vos réponses ont bien été enregistrées et nous aideront à construire un programme
+          adapté aux besoins des Français du Benelux.
+        </p>
+
+        <p class="mb-5 text-muted">
+          Si vous avez choisi de recevoir nos actualités, vous recevrez prochainement
+          un email de confirmation.
+        </p>
+
+        <div class="d-flex gap-3 justify-content-center flex-wrap">
+          <%= link_to "Retour à l'accueil", root_path, class: "btn btn-primary btn-lg" %>
+          <%= link_to "En savoir plus sur notre programme", proposals_path, class: "btn btn-outline-primary btn-lg" %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>

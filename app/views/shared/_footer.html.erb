@@ -1,0 +1,44 @@
+<!-- app/views/shared/_footer.html.erb -->
+<footer class="bg-light py-4" role="contentinfo">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <h2 class="h5">Tous bien intégrés</h2>
+        <p class="small text-muted">
+          Listes du Mouvement démocrate<br>
+          Élections consulaires 2026<br>
+          Français du Benelux
+        </p>
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <h2 class="h5">Liens utiles</h2>
+        <ul class="list-unstyled small">
+          <li><%= link_to "Qui sommes-nous", about_path, class: "text-muted" %></li>
+          <li><%= link_to "Nos propositions", proposals_path, class: "text-muted" %></li>
+          <li><%= link_to "Notre enquête", survey_responses_path, class: "text-muted" %></li>
+          <li><%= link_to "Contact", new_contact_path, class: "text-muted" %></li>
+        </ul>
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <h2 class="h5">Informations légales</h2>
+        <ul class="list-unstyled small">
+          <li><%= link_to "Mentions légales", legal_path, class: "text-muted" %></li>
+          <li><%= link_to "Politique de confidentialité (RGPD)", privacy_path, class: "text-muted" %></li>
+          <li><%= link_to "Politique de cookies", cookies_path, class: "text-muted" %></li>
+          <li><%= link_to "Accessibilité : conformité RGAA", accessibility_path, class: "text-muted" %></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row mt-3 pt-3 border-top">
+      <div class="col-12 text-center small text-muted">
+        <p class="mb-0">
+          © <%= Time.current.year %> Tous bien intégrés - Plateforme du Mouvement démocrate
+          pour les élections des représentants des Français de l'étranger
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>

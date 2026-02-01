@@ -1,0 +1,82 @@
+<!-- app/views/pages/cookies.html.erb -->
+<% set_meta_tags title: 'Politique de cookies',
+                  description: 'Politique de cookies et gestion de vos préférences - Tous bien intégrés.' %>
+
+<section class="page-header-legal">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <h1>Politique de cookies</h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+
+        <p class="lead mb-5">
+          Ce site utilise des cookies pour améliorer votre expérience de navigation
+          et analyser l'utilisation du site.
+        </p>
+
+        <h2 class="h4 mb-3">Qu'est-ce qu'un cookie ?</h2>
+        <p class="mb-4">
+          Un cookie est un petit fichier texte déposé sur votre appareil (ordinateur, smartphone, tablette)
+          lors de votre visite sur un site web. Il permet de mémoriser des informations sur votre navigation.
+        </p>
+
+        <h2 class="h4 mb-3">Cookies utilisés sur ce site</h2>
+
+        <h3 class="h5 mb-3">Cookies strictement nécessaires</h3>
+        <p class="mb-4">
+          Ces cookies sont indispensables au fonctionnement du site. Ils ne peuvent pas être désactivés.
+        </p>
+        <ul class="mb-4">
+          <li><strong>Session utilisateur :</strong> maintient votre connexion pendant la navigation</li>
+          <li><strong>Préférences cookies :</strong> mémorise vos choix concernant les cookies</li>
+          <li><strong>Sécurité CSRF :</strong> protège contre les attaques de type cross-site request forgery</li>
+        </ul>
+
+        <h3 class="h5 mb-3">Cookies de mesure d'audience (optionnels)</h3>
+        <p class="mb-4">
+          Ces cookies nous permettent de comprendre comment vous utilisez le site afin de l'améliorer.
+          Ils sont anonymes et vous pouvez les refuser.
+        </p>
+
+        <h2 class="h4 mb-3">Durée de conservation</h2>
+        <p class="mb-4">
+          Les cookies de session sont supprimés dès que vous fermez votre navigateur.
+          Les cookies persistants sont conservés pendant 13 mois maximum.
+        </p>
+
+        <h2 class="h4 mb-3">Gérer vos préférences</h2>
+        <p class="mb-4">
+          Vous pouvez à tout moment modifier vos préférences concernant les cookies en cliquant sur
+          le lien "Gérer les cookies" en bas de page.
+        </p>
+
+        <h2 class="h4 mb-3">Désactiver les cookies via votre navigateur</h2>
+        <p class="mb-3">
+          Vous pouvez également désactiver les cookies directement depuis votre navigateur :
+        </p>
+        <ul class="mb-4">
+          <li><strong>Chrome :</strong> Paramètres > Confidentialité et sécurité > Cookies</li>
+          <li><strong>Firefox :</strong> Options > Vie privée et sécurité > Cookies</li>
+          <li><strong>Safari :</strong> Préférences > Confidentialité > Cookies</li>
+          <li><strong>Edge :</strong> Paramètres > Confidentialité et services > Cookies</li>
+        </ul>
+        <p class="mb-5">
+          <em>Attention :</em> la désactivation de certains cookies peut affecter le fonctionnement du site.
+        </p>
+
+        <p class="text-muted small mb-0">
+          Dernière mise à jour : <%= Date.today.strftime("%d/%m/%Y") %>
+        </p>
+
+      </div>
+    </div>
+  </div>
+</section>

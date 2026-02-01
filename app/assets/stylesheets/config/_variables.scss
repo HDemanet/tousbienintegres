@@ -1,0 +1,70 @@
+// app/assets/stylesheets/config/_variables.scss
+
+// === VARIABLES GLOBALES ===
+
+// Conteneur max-width
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1320px
+);
+
+// Grid breakpoints
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+);
+
+// Z-index
+$zindex-dropdown: 1000;
+$zindex-sticky: 1020;
+$zindex-fixed: 1030;
+$zindex-modal-backdrop: 1040;
+$zindex-modal: 1050;
+$zindex-popover: 1060;
+$zindex-tooltip: 1070;
+$zindex-cookie-banner: 9999;
+
+// Durées d'animation (accessibilité)
+$duration-instant: 0s;
+$duration-fast: 0.15s;
+$duration-normal: 0.3s;
+$duration-slow: 0.5s;
+
+// Respect prefers-reduced-motion
+:root {
+  --duration-fast: #{$duration-fast};
+  --duration-normal: #{$duration-normal};
+  --duration-slow: #{$duration-slow};
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 0s;
+    --duration-normal: 0s;
+    --duration-slow: 0s;
+  }
+}
+
+// Espacements généreux
+$section-padding-y: 5rem;
+$section-padding-y-mobile: 3rem;
+
+// Largeurs de contenu
+$content-width-narrow: 800px;
+$content-width-medium: 1000px;
+$content-width-wide: 1200px;
+
+// Éléments de séparation
+$divider-height: 1px;
+$divider-color: rgba($modem-orange, 0.2);
+
+// Overlay gradient pour images
+$overlay-gradient: linear-gradient(135deg, rgba($modem-black, 0.7) 0%, rgba($modem-orange, 0.4) 100%);
+$overlay-light: linear-gradient(180deg, rgba($white, 0.95) 0%, rgba($white, 0.98) 100%);

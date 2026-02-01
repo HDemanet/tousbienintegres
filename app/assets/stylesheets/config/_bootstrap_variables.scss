@@ -1,28 +1,100 @@
-// This is where you override default Bootstrap variables
-// 1. Find all Bootstrap variables that you can override at the end of each component's documentation under the `Sass variables` anchor
-// e.g. here are the ones you can override for the navbar https://getbootstrap.com/docs/5.3/components/navbar/#sass-variables
-// 2. These variables are defined with default value (see https://robots.thoughtbot.com/sass-default)
-// 3. You can override them below!
+// app/assets/stylesheets/config/_bootstrap_variables.scss
 
-// General style
-$font-family-sans-serif: $body-font;
-$headings-font-family:   $headers-font;
-$body-bg:                $light-gray;
-$font-size-base:         1rem;
+// === OVERRIDE BOOTSTRAP AVEC COULEURS MODEM ===
 
-// Colors
-$body-color: $gray;
-$primary:    $blue;
-$success:    $green;
-$info:       $yellow;
-$danger:     $red;
-$warning:    $orange;
+// Couleurs primaires
+$primary: $modem-orange;
+$secondary: $modem-blue;
+$success: $modem-green;
+$info: $modem-blue-light;
+$warning: $warning;
+$danger: $danger;
+$light: $gray-100;
+$dark: $modem-black;
 
-// Buttons & inputs' radius
-$border-radius-sm:            .0625rem;
-$border-radius:               .125rem;
-$border-radius-lg:            .25rem;
-$border-radius-xl:            .5rem;
-$border-radius-xxl:           1rem;
+// Typographie
+$font-family-base: $body-font;
+$headings-font-family: $headers-font;
+$headings-font-weight: $font-weight-bold;
+$headings-line-height: $line-height-headings;
+$headings-color: $modem-black;
 
-// Override other variables below!
+// Body
+$body-bg: $body-bg;
+$body-color: $body-color;
+$text-muted: $gray-600;
+
+// Liens
+$link-color: $link-color;
+$link-hover-color: $link-hover-color;
+$link-decoration: $link-decoration;
+$link-hover-decoration: $link-hover-decoration;
+
+// Espacements
+$spacer: 1rem;
+$spacers: (
+  0: 0,
+  1: $spacer * 0.25, // 4px
+  2: $spacer * 0.5,  // 8px
+  3: $spacer,        // 16px
+  4: $spacer * 1.5,  // 24px
+  5: $spacer * 3,    // 48px
+  6: $spacer * 4,    // 64px
+  7: $spacer * 5,    // 80px
+);
+
+// Bordures
+$border-width: 1px;
+$border-color: $border-color;
+$border-radius: $border-radius;
+$border-radius-sm: $border-radius-sm;
+$border-radius-lg: $border-radius-lg;
+
+// Ombres
+$box-shadow-sm: $box-shadow-sm;
+$box-shadow: $box-shadow;
+$box-shadow-lg: $box-shadow-lg;
+
+// Boutons
+$btn-padding-y: 0.625rem; // 10px
+$btn-padding-x: 1.5rem; // 24px
+$btn-font-size: $font-size-base;
+$btn-font-weight: $font-weight-semibold;
+$btn-border-radius: $border-radius;
+$btn-border-width: 2px;
+$btn-transition: all 0.2s ease-in-out;
+
+// Focus (accessibilité)
+$input-btn-focus-width: $focus-ring-width;
+$input-btn-focus-color: $focus-ring-color;
+$input-btn-focus-box-shadow: 0 0 0 $focus-ring-width $focus-ring-color;
+
+// Formulaires
+$input-padding-y: 0.625rem;
+$input-padding-x: 1rem;
+$input-font-size: $font-size-base;
+$input-border-color: $gray-400;
+$input-border-radius: $border-radius;
+$input-focus-border-color: $modem-blue;
+$input-focus-box-shadow: $input-btn-focus-box-shadow;
+
+// Cartes
+$card-spacer-y: 1.25rem;
+$card-spacer-x: 1.25rem;
+$card-border-width: $border-width;
+$card-border-radius: $border-radius-lg;
+$card-border-color: $border-color;
+$card-box-shadow: $box-shadow-sm;
+
+// Navigation
+$navbar-padding-y: 1rem;
+$navbar-padding-x: 0;
+$navbar-nav-link-padding-x: 1rem;
+$navbar-brand-font-size: 1.25rem;
+$navbar-toggler-padding-y: 0.25rem;
+$navbar-toggler-padding-x: 0.75rem;
+
+// Transitions (accessibilité - respect prefers-reduced-motion)
+$transition-base: all 0.2s ease-in-out;
+$transition-fade: opacity 0.15s linear;
+$transition-collapse: height 0.35s ease;

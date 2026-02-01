@@ -1,0 +1,100 @@
+<!-- app/views/articles/show.html.erb -->
+<% set_meta_tags title: @article.title,
+                  description: @article.excerpt || truncate(@article.content, length: 160) %>
+
+<% if @article.image.attached? %>
+  <!-- Hero avec image article -->
+  <section class="hero-photo">
+    <div class="hero-photo__image">
+      <%= image_tag @article.image, alt: @article.title, class: "w-100" %>
+    </div>
+    <div class="hero-photo__content">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8">
+            <h1><%= @article.title %></h1>
+            <% if @article.published_at %>
+              <p class="lead">
+                <time datetime="<%= @article.published_at.iso8601 %>">
+                  <%= l(@article.published_at, format: :long) %>
+                </time>
+              </p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<% else %>
+  <!-- Bannière simple sans image -->
+  <section class="page-header-simple">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <h1><%= @article.title %></h1>
+          <% if @article.published_at %>
+            <p class="lead mb-0">
+              <time datetime="<%= @article.published_at.iso8601 %>">
+                <%= l(@article.published_at, format: :long) %>
+              </time>
+            </p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </section>
+<% end %>
+
+<!-- Contenu article -->
+<article class="py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+
+        <% if @article.excerpt.present? %>
+          <p class="lead mb-5">
+            <%= @article.excerpt %>
+          </p>
+        <% end %>
+
+        <div class="article-content">
+          <%= simple_format(@article.content) %>
+        </div>
+
+        <!-- Métadonnées -->
+        <div class="mt-5 pt-4 border-top">
+          <p class="text-muted small mb-0">
+            Publié le <%= l(@article.published_at || @article.created_at, format: :long) %>
+            <% if @article.author.present? %>
+              par <%= @article.author %>
+            <% end %>
+          </p>
+        </div>
+
+        <!-- Navigation -->
+        <div class="mt-5">
+          <%= link_to "← Retour aux actualités", articles_path, class: "btn btn-outline-primary" %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</article>
+
+<!-- CTA pour participer -->
+<section class="section-cta">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mx-auto text-center">
+        <h2 class="mb-4">Participez à notre campagne</h2>
+        <p class="mb-4">
+          Votre avis compte ! Aidez-nous à construire un programme adapté à vos besoins.
+        </p>
+        <div class="d-flex gap-3 justify-content-center flex-wrap">
+          <%= link_to "Répondre à l'enquête", new_survey_response_path, class: "btn btn-light btn-lg" %>
+          <%= link_to "Nous contacter", new_contact_path, class: "btn btn-outline-light btn-lg" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

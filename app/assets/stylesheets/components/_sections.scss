@@ -1,0 +1,136 @@
+// app/assets/stylesheets/components/_sections.scss
+
+// === SECTION CTA ORANGE (style MoDem) ===
+
+.section-cta {
+  background: linear-gradient(135deg, $modem-orange 0%, $modem-orange-dark 100%);
+  padding: 4rem 0;
+  position: relative;
+  overflow: hidden;
+
+  // Pattern subtil MoDem
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba($white, 0.03) 10px,
+      rgba($white, 0.03) 20px
+    );
+    pointer-events: none;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  h2, h3, p {
+    color: $white;
+  }
+
+  h2 {
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: clamp(1rem, 1.5vw, 1.125rem);
+    line-height: 1.6;
+  }
+
+  .btn-light {
+    box-shadow: 0 4px 12px rgba($modem-black, 0.2);
+
+    &:hover {
+      box-shadow: 0 6px 16px rgba($modem-black, 0.3);
+      transform: translateY(-2px);
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 3rem 0;
+  }
+}
+
+// === TIMELINE (pour mandats) ===
+
+.timeline {
+  position: relative;
+  padding-left: 2rem;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: $gray-300;
+  }
+
+  @media (max-width: 768px) {
+    padding-left: 1.5rem;
+  }
+}
+
+.timeline-item {
+  position: relative;
+  padding-bottom: 2rem;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: -2.45rem;
+    top: 0.25rem;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: $modem-orange;
+    border: 2px solid $white;
+    box-shadow: 0 0 0 2px $modem-orange;
+
+    @media (max-width: 768px) {
+      left: -1.95rem;
+    }
+  }
+
+  &:last-child {
+    padding-bottom: 0;
+  }
+}
+
+.timeline-date {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semibold;
+  color: $modem-orange;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.timeline-content {
+  h3 {
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    color: $gray-700;
+    margin-bottom: 0;
+  }
+}
+
+// === RESPECT PREFERS-REDUCED-MOTION ===
+
+@media (prefers-reduced-motion: reduce) {
+  .section-cta .btn-light:hover {
+    transform: none;
+  }
+}

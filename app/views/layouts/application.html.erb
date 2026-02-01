@@ -1,18 +1,61 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
-    <title>Tousbienintegres</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <%= display_meta_tags(default_meta_tags) %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <!-- Preconnect pour performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+
+    <!-- Favicons -->
+    <%# <%= favicon_link_tag 'favicon.ico' %>
+
+    <!-- Skip to main content (accessibilité) -->
+    <style>
+      .skip-to-main {
+        position: absolute;
+        left: -9999px;
+        z-index: 999;
+        padding: 1em;
+        background-color: #000;
+        color: white;
+        text-decoration: none;
+      }
+      .skip-to-main:focus {
+        left: 50%;
+        transform: translateX(-50%);
+        top: 0;
+      }
+    </style>
   </head>
 
-  <body><%= render "shared/navbar" %>
-<%= render "shared/flashes" %>
+  <body>
+    <!-- Skip link pour accessibilité -->
+    <a href="#main-content" class="skip-to-main">Aller au contenu principal</a>
 
-    <%= yield %>
+    <!-- Banner cookies RGPD -->
+    <%= render 'shared/cookie_banner' %>
+
+    <!-- Navigation - SANS balise nav wrapper -->
+    <%= render "shared/navbar" %>
+
+    <!-- Messages flash accessibles -->
+    <%= render "shared/flashes" %>
+
+    <!-- Contenu principal -->
+    <main id="main-content" role="main">
+      <%= yield %>
+    </main>
+
+    <!-- Footer -->
+    <%= render "shared/footer" %>
   </body>
 </html>

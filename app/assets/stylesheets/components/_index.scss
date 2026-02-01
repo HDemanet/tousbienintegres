@@ -1,5 +1,14 @@
-// Import your components CSS files here.
+// app/assets/stylesheets/components/_index.scss
+
+// Import components
 @import "alert";
 @import "avatar";
 @import "form_legend_clear";
 @import "navbar";
+@import "buttons";
+@import "cards";
+@import "forms";
+@import "banner";
+@import "footer";
+@import "sections";
+@import "carousel";

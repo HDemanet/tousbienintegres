@@ -1,2 +1,276 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<!-- app/views/pages/home.html.erb -->
+<% set_meta_tags title: 'Accueil',
+                  description: 'Tous bien intégrés - Liste Mouvement démocrate pour les élections des représentants des Français de l\'étranger du 31 mai 2026 au Benelux.' %>
+
+<!-- Carrousel photos -->
+<div id="homeCarousel" class="carousel slide home-carousel">
+  <!-- Indicateurs -->
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Photo 1"></button>
+    <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="1" aria-label="Photo 2"></button>
+    <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="2" aria-label="Photo 3"></button>
+  </div>
+
+  <!-- Images -->
+  <div class="carousel-inner">
+    <!-- Slide 1 : À remplacer par photo équipe -->
+    <div class="carousel-item active">
+      <%= image_tag "carousel/slide-1.jpg",
+                    alt: "Équipe Tous bien intégrés",
+                    class: "d-block w-100" %>
+      <div class="carousel-caption">
+        <div class="carousel-badge">31 mai 2026</div>
+        <h1>Tous bien intégrés</h1>
+        <p class="carousel-subtitle">
+          Plateforme du Mouvement démocrate pour les élections des Français de l'étranger du 31 mai 2026<br>
+          Belgique • Pays-Bas • Luxembourg
+        </p>
+        <%= link_to new_survey_response_path,
+                    class: "btn btn-primary btn-lg",
+                    'aria-label': 'Participer à notre enquête' do %>
+          Participez à notre enquête
+        <% end %>
+      </div>
+    </div>
+
+    <!-- Slide 2 : À remplacer par photo Belgique -->
+    <div class="carousel-item">
+      <%= image_tag "carousel/slide-2.jpg",
+                    alt: "Belgique",
+                    class: "d-block w-100" %>
+      <div class="carousel-caption">
+        <h1>Français de Belgique</h1>
+        <p class="carousel-subtitle">
+          Une communauté dynamique et engagée
+        </p>
+      </div>
+    </div>
+
+    <!-- Slide 3 : À remplacer par photo Pays-Bas/Luxembourg -->
+    <div class="carousel-item">
+      <%= image_tag "carousel/slide-3.jpg",
+                    alt: "Benelux",
+                    class: "d-block w-100" %>
+      <div class="carousel-caption">
+        <h1>Une présence au cœur de l'Europe</h1>
+        <p class="carousel-subtitle">
+          Nos trois pays accueillent les institutions européennes
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contrôles -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#homeCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Précédent</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#homeCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Suivant</span>
+  </button>
+</div>
+
+<!-- Section Pourquoi "Tous bien intégrés" -->
+<section class="py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+        <div class="text-center mb-5">
+          <h2 class="mb-4">Pourquoi "Tous bien intégrés" ?</h2>
+          <p class="lead">
+            Français installés en Belgique, Pays-Bas et Luxembourg, que notre établissement soit récent ou ancien,
+            nous sommes bien intégrés et nous vous le souhaitons également.
+          </p>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-md-6">
+            <div class="accent-line">
+              <h3 class="h5 mb-3">Un parcours qui prend du temps</h3>
+              <p class="text-muted">
+                L'intégration dans un autre pays que le sien est toujours une démarche volontaire qui prend du temps.
+                Comprendre la langue, les us et coutumes ou se socialiser suppose un effort et de la persévérance.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="accent-line">
+              <h3 class="h5 mb-3">Éclaireurs et facilitateurs</h3>
+              <p class="text-muted">
+                L'entraide française peut être précieuse. Français déjà bien installés, nous pensons que nous avons
+                un rôle d'éclaireur pour les nouveaux arrivants et de facilitateur également.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Message de Pierre-Luc -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+        <div class="card-signature">
+          <div class="card-body">
+            <p class="message-intro">
+              Chères Françaises, Chers Français installés en Belgique, aux Pays-Bas et au Luxembourg,
+            </p>
+
+            <div class="message-content">
+              <p>
+                Bienvenue chez <strong>"Tous bien intégrés"</strong>, la plateforme de campagne du
+                <strong>Mouvement démocrate (MoDem)</strong> pour les élections des représentants des
+                Français de l'étranger du <strong>31 mai 2026</strong> au Benelux.
+              </p>
+
+              <p>
+                Le MoDem et les formations politiques françaises dont il est l'héritier ont toujours promu
+                la construction européenne et sa citoyenneté tout comme la décentralisation.
+              </p>
+
+              <p>
+                Nos trois pays accueillent sur leur sol des institutions et organisations européennes.
+                Notre présence ici revêt donc une signification toute particulière.
+              </p>
+
+              <p>
+                Par ailleurs, le conseil consulaire, par sa spécialité et son originalité, est la preuve que,
+                même à l'étranger, les Français peuvent être impliqués dans la prise des décisions qui les
+                concernent localement. Il existe donc aussi une décentralisation hors de France et nous y
+                sommes très attachés.
+              </p>
+
+              <div class="message-highlight">
+                <p>
+                  <strong><i class="fas fa-vote-yea me-2"></i>Élections du 31 mai 2026</strong><br>
+                  Les élections du 31 mai 2026 sont un rendez-vous essentiel pour notre communauté.
+                  Les Français établis hors de France éliront leurs représentants qui seront eux-mêmes
+                  électeurs pour les membres de l'Assemblée des Français de l'étranger et pour les
+                  12 sénateurs des Français de l'étranger.
+                </p>
+              </div>
+
+              <p>
+                La préparation du programme et la campagne au plus près de nos compatriotes sont des phases
+                d'échanges et de dialogue très importantes pour notre démocratie locale.
+              </p>
+
+              <p>
+                La campagne du Mouvement démocrate au Benelux sera une campagne ouverte,
+                fidèle aux valeurs de notre famille centriste d'inspiration démocrate-chrétienne,
+                pragmatique, honnête et réaliste. Nous ne vous promettrons pas l'impossible,
+                nous ferons de notre mieux pour relayer les attentes et faciliter la vie quotidienne des
+                Français au Benelux.
+              </p>
+
+              <p>
+                Sympathisants, curieux, n'hésitez pas à nous rejoindre et à remplir le questionnaire pour
+                que nous puissions mieux vous connaître.
+              </p>
+            </div>
+
+            <div class="message-conclusion">
+              <p class="conclusion-text">
+                Vous et vos idées, vous êtes les bienvenus !
+              </p>
+            </div>
+
+            <div class="signature">
+              <p class="mb-1"><strong>À très bientôt avec nous,</strong></p>
+              <p class="signature-name mt-3">Pierre-Luc Vervandier</p>
+              <p class="signature-role">
+                Vice-Président du Mouvement démocrate des Français de l'étranger<br>
+                pour les pays du Benelux
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 3 piliers -->
+<section class="py-5">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="mb-3">Notre mission</h2>
+      <p class="lead text-muted">
+        Représenter et défendre les intérêts des Français résidant au Benelux
+      </p>
+    </div>
+
+    <div class="row g-4 col-lg-10 mx-auto">
+      <div class="col-md-4">
+        <div class="card-pillar">
+          <div class="pillar-icon">
+            <i class="fas fa-users" aria-hidden="true"></i>
+          </div>
+          <h3 class="h5">Écoute</h3>
+          <p>
+            Nous sommes à votre écoute pour comprendre vos besoins et préoccupations.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card-pillar">
+          <div class="pillar-icon">
+            <i class="fas fa-handshake" aria-hidden="true"></i>
+          </div>
+          <h3 class="h5">Action</h3>
+          <p>
+            Des propositions concrètes pour améliorer votre quotidien d'expatrié.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card-pillar">
+          <div class="pillar-icon">
+            <i class="fas fa-heart" aria-hidden="true"></i>
+          </div>
+          <h3 class="h5">Engagement</h3>
+          <p>
+            Un engagement démocratique au service de la communauté française.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Call to action enquête -->
+<section class="section-cta">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mx-auto text-center">
+        <h2 class="mb-4">Votre avis compte !</h2>
+        <p class="mb-4">
+          Nous souhaitons <strong>mieux vous connaître</strong> et formuler des propositions qui
+          correspondent au mieux à vos besoins. Pourriez-vous prendre <strong>5 minutes</strong>
+          en répondant à ce court questionnaire ?
+        </p>
+
+        <%= link_to survey_responses_path,
+                    class: "btn btn-light btn-lg",
+                    'aria-label': 'Répondre à notre enquête en ligne' do %>
+          <i class="fas fa-clipboard-list me-2" aria-hidden="true"></i>
+          Répondre à l'enquête
+        <% end %>
+
+        <p class="mt-4 mb-0" style="opacity: 0.9;">
+          <small>
+            <i class="fas fa-lock me-1"></i>
+            Vos données sont protégées et ne seront jamais transmises à des tiers.
+          </small>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

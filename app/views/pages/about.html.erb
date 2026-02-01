@@ -1,0 +1,144 @@
+<!-- app/views/pages/about.html.erb -->
+<% set_meta_tags title: 'Qui sommes-nous',
+                  description: 'Nous sommes des hommes et des femmes adhérents et sympathisants du Mouvement démocrate installés dans les trois pays du Benelux.' %>
+
+<section class="hero-photo" style="padding: 0rem; !important;">
+  <div class="hero-photo__image">
+    <%= image_tag "about/team.jpg",
+                  alt: "Équipe Tous bien intégrés au Benelux",
+                  class: "w-100" %>
+  </div>
+  <div class="hero-photo__content">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8">
+          <h1>Qui sommes-nous ?</h1>
+          <p class="lead">
+            Une équipe engagée au service des Français du Benelux
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <p class="mb-4">
+          Chez <strong>"Tous bien intégrés"</strong>, nous sommes des hommes et des femmes adhérents
+          et sympathisants du <strong>Mouvement démocrate</strong>. Nous sommes installés dans les
+          trois pays du Benelux : <strong>Belgique, Pays-Bas et Luxembourg</strong>.
+        </p>
+
+        <p class="mb-4">
+          Parfois depuis plusieurs décennies, parfois depuis bien moins longtemps. Nous nous sentons bien
+          dans nos pays de résidence et avons plutôt l'intention d'y rester. Car nous avons fondé une famille
+          sur place, car nous sommes binationaux, car nos emplois nous ont amenés ici, etc.
+        </p>
+
+        <p class="mb-5">
+          Nous ne nous réfugions pas dans un petit communautarisme de Français hors de France,
+          nous nous mélangeons, nous nous sentons très bien en Belgique, aux Pays-Bas, au Luxembourg
+          et nous nous sentons tout autant membres de la grande communauté nationale.
+        </p>
+
+        <h2 class="h3 mb-4">Nos valeurs</h2>
+
+        <p class="mb-4">
+          Nous avons en points communs d'être attachés à des valeurs humanistes, démocrates,
+          à la recherche du compromis et des solutions programmatiques et efficaces
+          aux problèmes du quotidien.
+        </p>
+
+        <p class="mb-4">
+          Nous sommes fiers d'être des citoyens européens et nous exploitons pleinement
+          cette grande avancée démocratique que nous apporte le droit de l'Union européenne.
+        </p>
+
+        <p class="mb-5">
+          Les candidats que nous présentons aux élections des représentants des Français de
+          l'étranger du 31 mai 2026 sont animés par la volonté de servir avant tout.
+        </p>
+
+        <h2 class="h3 mb-4">Servir la communauté française hors de France</h2>
+        <p class="mb-4">Cela signifie pour nous :</p>
+
+        <p class="mb-3">
+          <strong>Porter vos requêtes</strong><br>
+          Porter auprès des élus et décideurs au niveau national vos requêtes et demandes
+          d'amélioration : sécurité sociale, retraite, assurance chômage, fiscalité, etc.
+        </p>
+
+        <p class="mb-3">
+          <strong>Relations binationales</strong><br>
+          Travailler avec les élus belges, néerlandais, luxembourgeois que nous connaissons
+          dans nos pays de résidence pour pousser à l'amélioration des relations binationales.
+        </p>
+
+        <p class="mb-3">
+          <strong>Francophonie</strong><br>
+          Renforcer l'offre culturelle et éducative pour faire vivre la francophonie hors de France.
+        </p>
+
+        <p class="mb-5">
+          <strong>Accompagnement administratif</strong><br>
+          Aider dans les méandres administratifs propres à notre vie à cheval sur deux systèmes ou plus.
+        </p>
+
+        <h2 class="h3 mb-4">Ce qui fait notre spécificité</h2>
+
+        <p class="mb-4">
+          Le <strong>Mouvement démocrate</strong> est membre fondateur du
+          <strong>Parti démocrate européen (PDE)</strong>.
+        </p>
+
+        <p class="mb-4">
+          Au Parlement européen comme au Comité européen des régions,
+          les partis du PDE siègent dans le groupe Renew Europe.
+        </p>
+
+        <p class="mb-4">
+          <strong>Belgique :</strong> Les Engagés (PDE), Anders et MR (Renew Europe)<br>
+          <strong>Pays-Bas :</strong> 50Plus (PDE), D66 et VVD (Renew Europe)<br>
+          <strong>Luxembourg :</strong> DP (Renew Europe)
+        </p>
+
+        <p class="mb-4">
+          Les contacts établis et entretenus au sein de la grande famille démocrate nous donnent une
+          très bonne visibilité sur la situation politique dans les trois pays.
+        </p>
+
+        <p class="mb-5">
+          Nous participons régulièrement à des événements et à des cercles de réflexion organisés par
+          nos partis partenaires. Tous très attachés à la construction européenne, nous sommes convaincus
+          qu'avec les échanges d'expériences et de bonnes pratiques que nous faisons, nous pouvons apporter
+          beaucoup à nos formations politiques respectives.
+        </p>
+
+        <h2 class="h3 mb-4">Rejoignez nos listes !</h2>
+
+        <p class="mb-3">
+          Car il y a trois circonscriptions consulaires — une pour la Belgique, une pour les Pays-Bas
+          et une pour le Luxembourg — nous sommes en train de constituer trois listes.
+        </p>
+
+        <p class="mb-4">
+          <strong>Vous êtes animés par des convictions centristes et démocrates ?</strong>
+          Nous sommes encore à la recherche d'hommes et de femmes, de nationalité française obligatoirement,
+          qui vivent dans les trois pays pour compléter nos listes.
+        </p>
+
+        <div class="d-flex gap-3 flex-wrap mb-5">
+          <%= link_to new_contact_path, class: "btn btn-primary" do %>
+            Nous contacter
+          <% end %>
+          <%= link_to new_survey_response_path, class: "btn btn-outline-primary" do %>
+            Participer à l'enquête
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

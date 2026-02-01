@@ -1,0 +1,303 @@
+<!-- app/views/survey_responses/new.html.erb -->
+<% set_meta_tags title: 'Enquête',
+                  description: 'Participez à notre enquête pour nous aider à mieux vous connaître et construire notre programme.' %>
+
+<section class="page-header-simple">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mx-auto text-center">
+        <h1>Votre avis compte !</h1>
+        <p class="lead mb-0">
+          Aidez-nous à construire un programme adapté à vos besoins
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+
+        <div class="mb-5">
+          <p class="lead">
+            Nous souhaitons mieux vous connaître et formuler des propositions qui correspondent
+            au mieux à vos besoins. Pourriez-vous prendre <strong>10 minutes</strong> pour répondre
+            à ce questionnaire ?
+          </p>
+          <p class="text-muted">
+            Vos réponses sont confidentielles et ne seront utilisées que pour élaborer notre programme
+            pour les élections consulaires du 31 mai 2026.
+          </p>
+        </div>
+
+        <%= form_with model: @survey_response, url: survey_responses_path, local: true, html: { class: "needs-validation survey-form", novalidate: true } do |f| %>
+
+          <!-- INFORMATIONS PERSONNELLES -->
+          <div class="mb-5">
+            <h2 class="h4 mb-4">Informations personnelles</h2>
+
+            <div class="row g-3">
+              <div class="col-md-6">
+                <%= f.label :last_name, "Nom *", class: "form-label" %>
+                <%= f.text_field :last_name, class: "form-control", required: true,
+                                 'aria-required': 'true',
+                                 placeholder: "Dupont" %>
+              </div>
+
+              <div class="col-md-6">
+                <%= f.label :first_name, "Prénom *", class: "form-label" %>
+                <%= f.text_field :first_name, class: "form-control", required: true,
+                                 'aria-required': 'true',
+                                 placeholder: "Marie" %>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <%= f.label :gender, "Genre", class: "form-label" %>
+              <div class="d-flex gap-4">
+                <div class="form-check">
+                  <%= f.radio_button :gender, "F", class: "form-check-input", id: "gender_f" %>
+                  <%= label_tag "gender_f", "Femme", class: "form-check-label" %>
+                </div>
+                <div class="form-check">
+                  <%= f.radio_button :gender, "H", class: "form-check-input", id: "gender_h" %>
+                  <%= label_tag "gender_h", "Homme", class: "form-check-label" %>
+                </div>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <%= f.label :email, "Email *", class: "form-label" %>
+              <%= f.email_field :email, class: "form-control", required: true,
+                                'aria-required': 'true',
+                                placeholder: "votre.email@exemple.com" %>
+              <div class="form-text">Nous ne transmettrons jamais votre email à des tiers</div>
+            </div>
+
+            <div class="mb-3">
+              <%= f.label :country, "Pays de résidence *", class: "form-label" %>
+              <%= f.select :country,
+                          options_for_select(SurveyResponse::COUNTRIES),
+                          { include_blank: 'Sélectionnez votre pays' },
+                          { class: "form-select", required: true, 'aria-required': 'true' } %>
+            </div>
+
+            <div class="row g-3">
+              <div class="col-md-4">
+                <%= f.label :postal_code, "Code postal *", class: "form-label" %>
+                <%= f.text_field :postal_code, class: "form-control", required: true,
+                                 'aria-required': 'true',
+                                 maxlength: 4,
+                                 pattern: "[0-9]{4}",
+                                 placeholder: "1000" %>
+                <div class="form-text">4 chiffres</div>
+              </div>
+
+              <div class="col-md-8">
+                <%= f.label :city, "Commune de résidence *", class: "form-label" %>
+                <%= f.text_field :city, class: "form-control", required: true,
+                                 'aria-required': 'true',
+                                 placeholder: "Bruxelles" %>
+                <div class="form-text">Sera générée automatiquement</div>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <%= f.label :age_range, "Tranche d'âge *", class: "form-label" %>
+              <%= f.select :age_range,
+                          options_for_select(SurveyResponse::AGE_RANGES),
+                          { include_blank: 'Sélectionnez votre tranche d\'âge' },
+                          { class: "form-select", required: true, 'aria-required': 'true' } %>
+            </div>
+          </div>
+
+          <!-- SITUATION ET ANCRAGE -->
+          <div class="mb-5">
+            <h2 class="h4 mb-4">Situation et ancrage</h2>
+
+            <div class="mb-3">
+              <%= f.label :years_in_belgium, "Depuis combien de temps habitez-vous dans ce pays ? *", class: "form-label" %>
+              <%= f.select :years_in_belgium,
+                          options_for_select(SurveyResponse::YEARS_IN_BELGIUM),
+                          { include_blank: 'Sélectionnez' },
+                          { class: "form-select", required: true, 'aria-required': 'true' } %>
+            </div>
+
+            <div class="mb-3">
+              <%= f.label :professional_status, "Situation professionnelle", class: "form-label" %>
+              <%= f.select :professional_status,
+                          options_for_select(SurveyResponse::PROFESSIONAL_STATUS),
+                          { include_blank: 'Sélectionnez' },
+                          { class: "form-select", id: "professional_status" } %>
+            </div>
+
+            <div class="mb-3" id="employer_type_wrapper" style="display: none;">
+              <%= f.label :employer_type, "Si actif, type d'employeur", class: "form-label" %>
+              <%= f.select :employer_type,
+                          options_for_select(SurveyResponse::EMPLOYER_TYPES),
+                          { include_blank: 'Sélectionnez' },
+                          { class: "form-select" } %>
+            </div>
+
+            <div class="mb-3">
+              <%= f.label :children_schooling, "Avez-vous des enfants scolarisés ?", class: "form-label" %>
+              <%= f.select :children_schooling,
+                          options_for_select(SurveyResponse::CHILDREN_SCHOOLING),
+                          { include_blank: 'Sélectionnez' },
+                          { class: "form-select" } %>
+            </div>
+          </div>
+
+          <!-- RELATIONS ADMINISTRATIVES -->
+          <div class="mb-5">
+            <h2 class="h4 mb-4">Relations administratives</h2>
+
+            <div class="mb-4">
+              <%= f.label :french_admin_rating, "Comment évaluez-vous votre relation avec l'administration française ? *", class: "form-label" %>
+              <%= f.select :french_admin_rating,
+                          options_for_select(SurveyResponse::ADMIN_RATINGS),
+                          { include_blank: 'Sélectionnez' },
+                          { class: "form-select", required: true, 'aria-required': 'true' } %>
+            </div>
+
+            <div class="mb-4">
+              <%= f.label :belgian_admin_rating, "Comment évaluez-vous votre relation avec l'administration belge ? *", class: "form-label" %>
+              <%= f.select :belgian_admin_rating,
+                          options_for_select(SurveyResponse::ADMIN_RATINGS),
+                          { include_blank: 'Sélectionnez' },
+                          { class: "form-select", required: true, 'aria-required': 'true' } %>
+            </div>
+
+            <div class="mb-4">
+              <label class="form-label">Dans quels domaines rencontrez-vous des difficultés administratives ? <small class="text-muted">(plusieurs choix possibles)</small></label>
+
+              <% SurveyResponse::ADMINISTRATIVE_DIFFICULTIES_OPTIONS.each_with_index do |option, index| %>
+                <div class="form-check">
+                  <%= check_box_tag "survey_response[administrative_difficulties][]", option, false,
+                                   class: "form-check-input",
+                                   id: "admin_diff_#{index}" %>
+                  <%= label_tag "admin_diff_#{index}", option, class: "form-check-label" %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+
+          <!-- ENGAGEMENT CONSULAIRE -->
+          <div class="mb-5">
+            <h2 class="h4 mb-4">Engagement consulaire</h2>
+
+            <div class="mb-3">
+              <%= f.label :electoral_registration, "Êtes-vous inscrit sur la liste électorale consulaire ? *", class: "form-label" %>
+              <%= f.select :electoral_registration,
+                          options_for_select(SurveyResponse::ELECTORAL_REGISTRATION_OPTIONS),
+                          { include_blank: 'Sélectionnez' },
+                          { class: "form-select", required: true, 'aria-required': 'true' } %>
+            </div>
+
+            <div class="mb-3">
+              <%= f.label :contacted_elected, "Avez-vous déjà fait appel à un élu consulaire ?", class: "form-label" %>
+              <div class="d-flex gap-4">
+                <div class="form-check">
+                  <%= f.radio_button :contacted_elected, true, class: "form-check-input", id: "contacted_yes" %>
+                  <%= label_tag "contacted_yes", "Oui", class: "form-check-label" %>
+                </div>
+                <div class="form-check">
+                  <%= f.radio_button :contacted_elected, false, class: "form-check-input", id: "contacted_no" %>
+                  <%= label_tag "contacted_no", "Non", class: "form-check-label" %>
+                </div>
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <label class="form-label">Seriez-vous intéressé(e) par : <small class="text-muted">(plusieurs choix possibles)</small></label>
+
+              <% SurveyResponse::INTERESTS_OPTIONS.each_with_index do |option, index| %>
+                <div class="form-check">
+                  <%= check_box_tag "survey_response[interests][]", option, false,
+                                   class: "form-check-input",
+                                   id: "interest_#{index}" %>
+                  <%= label_tag "interest_#{index}", option, class: "form-check-label" %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+
+          <!-- ESPACE LIBRE -->
+          <div class="mb-5">
+            <h2 class="h4 mb-4">Espace libre</h2>
+
+            <div class="mb-3">
+              <%= f.label :comments, "Commentaires ou besoins spécifiques", class: "form-label" %>
+              <%= f.text_area :comments,
+                              rows: 6,
+                              class: "form-control",
+                              placeholder: "N'hésitez pas à nous faire part de vos commentaires, suggestions ou besoins spécifiques..." %>
+              <div class="form-text">Champ optionnel</div>
+            </div>
+          </div>
+
+          <!-- CONSENTEMENT RGPD -->
+          <div class="mb-5">
+            <h2 class="h4 mb-4">Consentement</h2>
+
+            <div class="form-check">
+              <%= f.check_box :consent, class: "form-check-input", required: true,
+                              'aria-required': 'true', id: "survey_consent" %>
+              <%= f.label :consent, class: "form-check-label", for: "survey_consent" do %>
+                J'accepte que « La liste MoDem » utilise mes données dans le cadre de sa campagne électorale.
+                Mes données ne seront pas transmises à des tiers et je peux demander leur suppression à tout moment
+                en contactant <%= mail_to "contact@tous-bien-integres.be", "contact@tous-bien-integres.be" %>.
+                J'ai lu et j'accepte la <%= link_to "politique de confidentialité", privacy_path, target: "_blank" %>. *
+              <% end %>
+            </div>
+          </div>
+
+          <!-- SUBMIT -->
+          <div class="d-flex gap-3 flex-wrap">
+            <%= f.submit "Envoyer mes réponses", class: "btn btn-primary btn-lg" %>
+            <%= link_to "Annuler", root_path, class: "btn btn-outline-secondary btn-lg" %>
+          </div>
+
+          <p class="mt-4 text-muted small">
+            * Champs obligatoires
+          </p>
+
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JavaScript pour affichage conditionnel -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Afficher/masquer type d'employeur
+  const professionalStatus = document.getElementById('professional_status');
+  const employerTypeWrapper = document.getElementById('employer_type_wrapper');
+
+  if (professionalStatus) {
+    professionalStatus.addEventListener('change', function() {
+      employerTypeWrapper.style.display = this.value === 'Actif' ? 'block' : 'none';
+    });
+  }
+
+  // Auto-complétion code postal -> commune
+  const postalCodeField = document.querySelector('[name="survey_response[postal_code]"]');
+  const cityField = document.querySelector('[name="survey_response[city]"]');
+
+  if (postalCodeField && cityField) {
+    postalCodeField.addEventListener('blur', function() {
+      const postalCode = this.value;
+      if (postalCode.length === 4) {
+        // Appel API pour récupérer la commune
+        // fetch(`/api/postal_codes/${postalCode}`)
+        //   .then(response => response.json())
+        //   .then(data => cityField.value = data.city);
+      }
+    });
+  }
+});
+</script>

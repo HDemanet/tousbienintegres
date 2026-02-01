@@ -3,3 +3,8 @@ import "@hotwired/turbo-rails"
 import "controllers"
 import "@popperjs/core"
 import "bootstrap"
+
+// Rails Admin (seulement pour les pages admin)
+if (window.location.pathname.startsWith('/admin')) {
+  import("rails_admin")
+}

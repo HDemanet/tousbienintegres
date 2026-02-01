@@ -1,0 +1,84 @@
+<!-- app/views/articles/index.html.erb -->
+<% set_meta_tags title: 'Actualités',
+                  description: 'Suivez l\'actualité de notre campagne et les publications de Pierre-Luc Vervandier.' %>
+
+<section class="page-header-simple">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mx-auto text-center">
+        <h1>Nos actualités</h1>
+        <p class="lead mb-0">
+          Suivez notre campagne et les réflexions de Pierre-Luc
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+
+        <% if @articles.any? %>
+          <div class="row g-4">
+            <% @articles.each do |article| %>
+              <div class="col-md-6 col-lg-4">
+                <article class="card h-100 border-0 shadow-sm">
+                  <% if article.image.attached? %>
+                    <%= link_to article_path(article) do %>
+                      <%= image_tag article.image, alt: article.title, class: "card-img-top", style: "height: 200px; object-fit: cover;" %>
+                    <% end %>
+                  <% end %>
+
+                  <div class="card-body">
+                    <% if article.published_at %>
+                      <p class="text-muted small mb-2">
+                        <time datetime="<%= article.published_at.iso8601 %>">
+                          <%= l(article.published_at, format: :long) %>
+                        </time>
+                      </p>
+                    <% end %>
+
+                    <h2 class="h5 card-title">
+                      <%= link_to article.title, article_path(article), class: "text-decoration-none text-dark" %>
+                    </h2>
+
+                    <% if article.excerpt.present? %>
+                      <p class="card-text text-muted">
+                        <%= truncate(article.excerpt, length: 150) %>
+                      </p>
+                    <% end %>
+                  </div>
+
+                  <div class="card-footer bg-white border-0">
+                    <%= link_to "Lire la suite", article_path(article), class: "btn btn-sm btn-outline-primary" %>
+                  </div>
+                </article>
+              </div>
+            <% end %>
+          </div>
+
+          <!-- Pagination si nécessaire -->
+          <% if @articles.respond_to?(:total_pages) && @articles.total_pages > 1 %>
+            <nav class="mt-5" aria-label="Navigation articles">
+              <%= paginate @articles, theme: 'twitter-bootstrap-5' %>
+            </nav>
+          <% end %>
+
+        <% else %>
+          <div class="text-center py-5">
+            <p class="lead text-muted">
+              Aucun article publié pour le moment.
+            </p>
+            <p class="text-muted">
+              Revenez prochainement pour suivre notre actualité !
+            </p>
+            <%= link_to "Retour à l'accueil", root_path, class: "btn btn-primary mt-3" %>
+          </div>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</section>

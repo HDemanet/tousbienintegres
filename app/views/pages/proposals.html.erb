@@ -1,0 +1,114 @@
+<!-- app/views/pages/proposals.html.erb -->
+<% set_meta_tags title: 'Nos propositions',
+                  description: 'Découvrez nos propositions pour mieux représenter les Français du Benelux.' %>
+
+<section class="hero-photo" style="padding: 0rem; !important;">
+  <div class="hero-photo__image">
+    <%= image_tag "about/team.jpg",
+                  alt: "Équipe Tous bien intégrés au Benelux",
+                  class: "w-100" %>
+  </div>
+  <div class="hero-photo__content">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8">
+          <h1>Nos propositions</h1>
+          <p class="lead">
+            Des engagements concrets pour les Français du Benelux
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <p class="mb-2">
+          <strong>Bien intégré ne signifie pas oublier nos pays d'origine, notre langue et notre culture.</strong>
+        </p>
+        <p class="mb-4">
+          Bien intégré ne signifie pas non plus ne pas s'intéresser à la vie politique nationale.
+          Bien au contraire !
+        </p>
+
+        <div class="message-highlight">
+                <p>
+                  <strong>Nos propositions vous seront dévoilées prochainement.</strong><br>
+                  Elles seront adaptées aux spécificités des élus des Français de l'étranger.
+                </p>
+        </div>
+
+        <%# <div class="alert alert-info mb-5" role="status">
+          <p class="mb-0">
+            <strong>Nos propositions vous seront dévoilées prochainement.</strong><br>
+            Elles seront adaptées aux spécificités des élus des Français de l'étranger.
+          </p>
+        </div> %>
+
+        <h2 class="h3 mb-5">Les mandats au service des Français de l'étranger</h2>
+
+        <div class="mb-4">
+          <h3 class="h5 mb-2">Conseiller consulaire</h3>
+          <p class="text-muted mb-0">
+            Élu au niveau local, il assiste les Français dans leurs démarches administratives
+            et représente la communauté française auprès des autorités consulaires.
+          </p>
+        </div>
+
+        <div class="mb-4">
+          <h3 class="h5 mb-2">Délégué consulaire</h3>
+          <p class="text-muted mb-0">
+            Représentant dans les zones où il n'y a pas de poste consulaire,
+            il facilite les démarches administratives des Français.
+          </p>
+        </div>
+
+        <div class="mb-4">
+          <h3 class="h5 mb-2">Membre de l'Assemblée des Français de l'étranger</h3>
+          <p class="text-muted mb-0">
+            Instance consultative qui émet des avis sur les questions concernant
+            les Français établis hors de France et leur représentation.
+          </p>
+        </div>
+
+        <div class="mb-4">
+          <h3 class="h5 mb-2">Sénateur des Français de l'étranger</h3>
+          <p class="text-muted mb-0">
+            Représente les Français établis hors de France au Sénat.
+            12 sénateurs siègent pour l'ensemble des Français de l'étranger.
+          </p>
+        </div>
+
+        <div class="mb-5">
+          <h3 class="h5 mb-2">Député des Français de l'étranger</h3>
+          <p class="text-muted mb-0">
+            Représente les Français établis hors de France à l'Assemblée nationale.
+            11 députés élus dans 11 circonscriptions à travers le monde.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section-cta">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mx-auto text-center">
+        <h2 class="mb-4">Aidez-nous à construire notre programme</h2>
+        <p class="mb-4">
+          Vos préoccupations et suggestions nous permettront d'élaborer des propositions
+          concrètes et adaptées à vos besoins.
+        </p>
+
+        <%= link_to new_survey_response_path, class: "btn btn-light btn-lg" do %>
+          Participer à notre enquête
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>

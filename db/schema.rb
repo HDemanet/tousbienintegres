@@ -10,9 +10,49 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2026_01_29_204942) do
+ActiveRecord::Schema[7.1].define(version: 2026_02_01_133534) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "articles", force: :cascade do |t|
+    t.string "title"
+    t.string "slug"
+    t.text "content"
+    t.boolean "published"
+    t.datetime "published_at"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_articles_on_user_id"
+  end
+
+  create_table "survey_responses", force: :cascade do |t|
+    t.string "first_name", null: false
+    t.string "last_name", null: false
+    t.string "email", null: false
+    t.string "gender"
+    t.string "postal_code", null: false
+    t.string "city", null: false
+    t.string "age_range", null: false
+    t.string "years_in_belgium", null: false
+    t.string "professional_status"
+    t.string "employer_type"
+    t.string "children_schooling"
+    t.string "french_admin_rating", null: false
+    t.string "belgian_admin_rating", null: false
+    t.text "administrative_difficulties"
+    t.string "electoral_registration", null: false
+    t.boolean "contacted_elected", default: false
+    t.text "interests"
+    t.text "comments"
+    t.boolean "consent", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "country"
+    t.index ["created_at"], name: "index_survey_responses_on_created_at"
+    t.index ["email"], name: "index_survey_responses_on_email"
+    t.index ["postal_code"], name: "index_survey_responses_on_postal_code"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -22,8 +62,12 @@ ActiveRecord::Schema[7.1].define(version: 2026_01_29_204942) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.boolean "admin", default: false, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "articles", "users"
 end

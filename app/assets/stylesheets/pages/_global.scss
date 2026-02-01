@@ -1,0 +1,300 @@
+// app/assets/stylesheets/pages/_global.scss
+
+// === STYLES GLOBAUX - STYLE MODEM/SOPHIE WILMES ===
+
+body {
+  font-family: $body-font;
+  color: $body-color;
+  line-height: $line-height-base;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: $white;
+}
+
+// === TYPOGRAPHIE SOBRE ===
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $headers-font;
+  font-weight: $font-weight-bold;
+  color: $modem-black;
+  line-height: $line-height-headings;
+  margin-bottom: 1.5rem;
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: $font-weight-extrabold;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: $font-weight-bold;
+}
+
+h3 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+h4 {
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+}
+
+h5 {
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
+}
+
+// Lead text professionnel
+.lead {
+  font-size: 1.25rem;
+  font-weight: $font-weight-normal;
+  line-height: 1.7;
+  color: $gray-700;
+}
+
+// === SECTIONS ===
+
+section {
+  padding: $section-padding-y 0;
+
+  @media (max-width: 768px) {
+    padding: $section-padding-y-mobile 0;
+  }
+}
+
+// === HERO AVEC PHOTO (style MoDem "Qui sommes-nous" / Sophie Wilmes) ===
+
+.hero-photo {
+  position: relative;
+  height: 400px;
+  overflow: hidden;
+
+  @media (max-width: 768px) {
+    height: 300px;
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba($modem-black, 0.8) 0%, transparent 100%);
+    padding: 3rem 0 2rem;
+
+    h1, p {
+      color: $white;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 0.5rem;
+    }
+
+    .lead {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: $white;
+      margin-bottom: 0;
+    }
+  }
+}
+
+// === BANDEAU SIMPLE ORANGE (style MoDem pages internes) ===
+
+.page-header-simple {
+  background: linear-gradient(135deg, $modem-orange 0%, $modem-orange-dark 100%);
+  padding: 4rem 0 3rem;
+  position: relative;
+  overflow: hidden;
+
+  // Pattern diagonal subtil (harmonisé avec section-cta)
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba($white, 0.03) 10px,
+      rgba($white, 0.03) 20px
+    );
+    pointer-events: none;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  h1, .lead {
+    color: $white;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    margin-bottom: 1rem;
+  }
+
+  .lead {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: $white;
+  }
+
+  @media (max-width: 768px) {
+    padding: 3rem 0 2rem;
+  }
+}
+
+// === BANDEAU BLEU DISCRET (pages légales) ===
+
+.page-header-legal {
+  background: linear-gradient(135deg, $modem-blue 0%, $modem-blue-dark 100%);
+  padding: 3rem 0 2rem;
+  position: relative;
+  overflow: hidden;
+
+  // Pattern diagonal subtil (harmonisé)
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba($white, 0.03) 10px,
+      rgba($white, 0.03) 20px
+    );
+    pointer-events: none;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  h1 {
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    color: $white;
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 768px) {
+    padding: 2.5rem 0 1.5rem;
+  }
+}
+
+// === CONTAINERS ===
+
+.container-narrow {
+  max-width: $content-width-narrow;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.container-medium {
+  max-width: $content-width-medium;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+// === CONTENU ARTICLE ===
+
+.article-content {
+  p {
+    margin-bottom: 1.25rem;
+    line-height: 1.7;
+  }
+
+  h2, h3, h4 {
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  ul, ol {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+
+    li {
+      margin-bottom: 0.5rem;
+      line-height: 1.6;
+    }
+  }
+
+  blockquote {
+    border-left: 4px solid $modem-orange;
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+    font-style: italic;
+    color: $gray-700;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: $border-radius;
+    margin: 2rem 0;
+  }
+}
+
+// === RESPECT ACCESSIBILITÉ ===
+
+// Liens accessibles
+a {
+  color: $link-color;
+  text-decoration: $link-decoration;
+  transition: $transition-base;
+
+  &:hover {
+    color: $link-hover-color;
+    text-decoration: $link-hover-decoration;
+  }
+
+  &:focus {
+    outline: $focus-ring-width solid $focus-ring-color;
+    outline-offset: 2px;
+  }
+}
+
+// Skip to main content (accessibilité clavier)
+.skip-to-main {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: $modem-orange;
+  color: $white;
+  padding: 0.5rem 1rem;
+  z-index: 10000;
+  text-decoration: none;
+  font-weight: $font-weight-bold;
+
+  &:focus {
+    top: 0;
+  }
+}
+
+// Respect prefers-reduced-motion
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

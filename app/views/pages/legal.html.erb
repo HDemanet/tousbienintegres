@@ -1,0 +1,80 @@
+<!-- app/views/pages/legal.html.erb -->
+<% set_meta_tags title: 'Mentions légales',
+                  description: 'Mentions légales du site Tous bien intégrés - Liste MoDem pour les élections consulaires 2026.' %>
+
+<!-- Bandeau bleu discret (style pages légales MoDem) -->
+<section class="page-header-legal">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <h1>Mentions légales</h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+
+        <h2 class="h4 mb-3">Éditeur du site</h2>
+        <p class="mb-4">
+          <strong>Tous bien intégrés</strong><br>
+          Liste Mouvement démocrate pour les élections consulaires 2026<br>
+          Belgique, Pays-Bas, Luxembourg
+        </p>
+
+        <h2 class="h4 mb-3">Responsable de la publication</h2>
+        <p class="mb-4">
+          Pierre-Luc Vervandier<br>
+          Vice-Président du Mouvement démocrate des Français de l'étranger pour les pays du Benelux
+        </p>
+
+        <h2 class="h4 mb-3">Hébergement</h2>
+        <p class="mb-4">
+          Ce site est hébergé par :<br>
+          <strong>Heroku</strong><br>
+          Salesforce, Inc.<br>
+          50 Fremont Street, Suite 300<br>
+          San Francisco, CA 94105<br>
+          États-Unis
+        </p>
+
+        <h2 class="h4 mb-3">Propriété intellectuelle</h2>
+        <p class="mb-4">
+          L'ensemble du contenu de ce site (textes, images, vidéos, logos) est la propriété de
+          "Tous bien intégrés" ou du Mouvement démocrate, sauf mention contraire.
+        </p>
+        <p class="mb-4">
+          Toute reproduction, représentation, modification, publication ou adaptation de tout ou partie
+          des éléments du site, quel que soit le moyen ou le procédé utilisé, est interdite sans
+          l'autorisation écrite préalable de l'éditeur.
+        </p>
+
+        <h2 class="h4 mb-3">Données personnelles</h2>
+        <p class="mb-4">
+          Pour toute information concernant la collecte et le traitement de vos données personnelles,
+          veuillez consulter notre <%= link_to "politique de confidentialité", privacy_path %>.
+        </p>
+
+        <h2 class="h4 mb-3">Cookies</h2>
+        <p class="mb-4">
+          Pour toute information concernant l'utilisation des cookies sur ce site,
+          veuillez consulter notre <%= link_to "politique de cookies", cookies_path %>.
+        </p>
+
+        <h2 class="h4 mb-3">Contact</h2>
+        <p class="mb-5">
+          Pour toute question ou demande concernant ce site, vous pouvez nous contacter via notre
+          <%= link_to "formulaire de contact", new_contact_path %>.
+        </p>
+
+        <p class="text-muted small mb-0">
+          Dernière mise à jour : <%= Date.today.strftime("%d/%m/%Y") %>
+        </p>
+
+      </div>
+    </div>
+  </div>
+</section>

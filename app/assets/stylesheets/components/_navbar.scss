@@ -1,12 +1,138 @@
+// app/assets/stylesheets/components/_navbar.scss
+
 .navbar-lewagon {
-  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 1030;
   background: white;
+  box-shadow: 0 2px 8px rgba($modem-black, 0.1);
+  transition: all 0.3s ease-in-out;
+  border: none;
+
+  // Navbar sticky avec effet
+  &.navbar-scrolled {
+    box-shadow: 0 4px 12px rgba($modem-black, 0.15);
+  }
+
+  .container-fluid {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+
+  .navbar-brand {
+    font-size: 1.5rem;
+    font-weight: $font-weight-bold;
+    color: $modem-orange;
+    transition: $transition-base;
+
+    &:hover {
+      color: $modem-orange-dark;
+      transform: scale(1.05);
+    }
+
+    // Focus accessible
+    &:focus-visible {
+      outline: $focus-ring-width solid $focus-ring-color;
+      outline-offset: 4px;
+    }
+  }
+
+  .navbar-collapse {
+    flex-grow: 1;
+  }
+
+  .navbar-nav {
+    .nav-link {
+      color: $modem-black;
+      font-weight: $font-weight-medium;
+      padding: 0.5rem 1rem;
+      transition: $transition-base;
+      position: relative;
+
+      // Underline animé
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 1rem;
+        right: 1rem;
+        height: 2px;
+        background-color: $modem-orange;
+        transform: scaleX(0);
+        transition: transform 0.3s ease-in-out;
+      }
+
+      &:hover,
+      &.active {
+        color: $modem-orange;
+
+        &::after {
+          transform: scaleX(1);
+        }
+      }
+
+      // Focus accessible
+      &:focus-visible {
+        outline: $focus-ring-width solid $focus-ring-color;
+        outline-offset: 2px;
+        border-radius: $border-radius-sm;
+      }
+    }
+  }
+
+  // Toggler mobile
+  .navbar-toggler {
+    border: 2px solid $modem-orange;
+    padding: 0.5rem 0.75rem;
+
+    &:focus {
+      box-shadow: 0 0 0 $focus-ring-width rgba($modem-orange, 0.5);
+      outline: none;
+    }
+
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23EF5327' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+  }
 }
 
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
+// Respect prefers-reduced-motion
+@media (prefers-reduced-motion: reduce) {
+  .navbar-lewagon {
+    transition: none;
+
+    .navbar-brand,
+    .nav-link {
+      transition: none;
+
+      &:hover {
+        transform: none;
+      }
+    }
+
+    .nav-link::after {
+      transition: none;
+    }
+  }
 }
 
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
+// Mobile
+@media (max-width: 992px) {
+  .navbar-lewagon {
+    .navbar-collapse {
+      margin-top: 1rem;
+      padding: 1rem 0;
+      border-top: 1px solid $border-color;
+    }
+
+    .navbar-nav {
+      .nav-link {
+        padding: 0.75rem 1rem;
+
+        &::after {
+          display: none;
+        }
+      }
+    }
+  }
 }

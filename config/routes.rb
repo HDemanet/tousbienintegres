@@ -1,12 +1,42 @@
+# config/routes.rb
 Rails.application.routes.draw do
+  # Admin
   devise_for :users
-  root to: "pages#home"
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  namespace :admin do
+    root to: 'dashboard#index'
+  end
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
-  get "up" => "rails/health#show", as: :rails_health_check
+  # Front-office
+  root to: 'pages#home'
 
-  # Defines the root path route ("/")
-  # root "posts#index"
+  # Pages statiques
+  get 'qui-sommes-nous', to: 'pages#about', as: :about
+  get 'nos-propositions', to: 'pages#proposals', as: :proposals
+
+  # Enquête
+  resources :survey_responses, only: [:new, :create] do
+    collection do
+      get :thank_you
+    end
+  end
+
+  # Articles (publications de Pierre-Luc)
+  resources :articles, only: [:index, :show]
+
+  # Contact
+  resources :contacts, only: [:new, :create] do
+    collection do
+      get :thank_you
+    end
+  end
+
+  # Pages légales
+  get 'mentions-legales', to: 'pages#legal', as: :legal
+  get 'politique-de-confidentialite', to: 'pages#privacy', as: :privacy
+  get 'politique-de-cookies', to: 'pages#cookies', as: :cookies
+  get 'declaration-accessibilite', to: 'pages#accessibility', as: :accessibility
+
+  # Révèle les routes en dev
+  # Uncomment to see all routes: rails routes
 end

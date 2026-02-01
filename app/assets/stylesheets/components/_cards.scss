@@ -1,0 +1,294 @@
+// app/assets/stylesheets/components/_cards.scss
+
+// === CARTES MODEM ===
+
+.card {
+  border: 1px solid $border-color;
+  border-radius: $border-radius-lg;
+  transition: $transition-base;
+
+  // Hover doux
+  &.card-hover {
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: $box-shadow-lg;
+      border-color: $modem-orange;
+    }
+  }
+
+  // Focus accessible pour cartes cliquables
+  &:focus-within {
+    outline: $focus-ring-width solid $focus-ring-color;
+    outline-offset: 2px;
+  }
+}
+
+// Carte avec bordure colorée
+.card-border-orange {
+  border-top: 4px solid $modem-orange;
+}
+
+.card-border-blue {
+  border-top: 4px solid $modem-blue;
+}
+
+.card-border-green {
+  border-top: 4px solid $modem-green;
+}
+
+// Carte icône (comme page d'accueil)
+.card-icon {
+  text-align: center;
+  padding: 2rem;
+  height: 100%;
+
+  .icon-wrapper {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: $gray-100;
+    margin-bottom: 1.5rem;
+    transition: $transition-base;
+
+    i, svg {
+      font-size: 2rem;
+    }
+  }
+
+  &:hover .icon-wrapper {
+    transform: scale(1.1);
+    background-color: $modem-orange-lighter;
+  }
+}
+
+// Carte statistique (dashboard)
+.card-stat {
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+
+    .stat-number {
+      font-size: 3rem;
+      font-weight: $font-weight-bold;
+      color: $modem-orange;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      color: $gray-600;
+      font-size: $font-size-sm;
+      text-align: center;
+    }
+  }
+}
+
+// Carte pilier (style sobre MoDem)
+.card-pillar {
+  background: $white;
+  border: 1px solid $border-color;
+  border-radius: $border-radius-lg;
+  padding: 2.5rem;
+  text-align: center;
+  height: 100%;
+  transition: $transition-base;
+
+  &:hover {
+    border-color: $modem-orange;
+    box-shadow: $box-shadow-lg;
+    transform: translateY(-8px);
+  }
+
+  .pillar-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    border-radius: 50%;
+    background: linear-gradient(135deg, $modem-orange-lighter, $modem-orange-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    i, svg {
+      font-size: 2rem;
+      color: $modem-orange-dark;
+    }
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    color: $gray-700;
+    line-height: 1.6;
+  }
+}
+
+// Carte engagement (style sobre)
+.card-engagement {
+  background: $white;
+  border: 2px solid $border-color;
+  border-radius: $border-radius-lg;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: $transition-base;
+
+  &:hover {
+    border-color: $modem-orange;
+    box-shadow: $box-shadow;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, $modem-orange, $modem-blue);
+  }
+
+  .engagement-icon {
+    width: 60px;
+    height: 60px;
+    background: $gray-100;
+    border-radius: $border-radius;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+
+    i {
+      font-size: 1.75rem;
+      color: $modem-orange;
+    }
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    color: $gray-700;
+    line-height: 1.6;
+  }
+}
+
+// Carte message signature (style sobre MoDem)
+.card-signature {
+  background: $white;
+  border: none;
+  border-radius: $border-radius-lg;
+  box-shadow: $box-shadow;
+  position: relative;
+  overflow: hidden;
+
+  // Accent top orange discret
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, $modem-orange, $modem-blue);
+  }
+
+  .card-body {
+    padding: 3rem;
+
+    @media (max-width: 768px) {
+      padding: 2rem;
+    }
+  }
+
+  .message-intro {
+    font-size: 1.125rem;
+    font-weight: $font-weight-semibold;
+    color: $modem-black;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+
+  .message-content {
+    p {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: $gray-700;
+      margin-bottom: 1.25rem;
+    }
+  }
+
+  .message-highlight {
+    background: $gray-100;
+    border-left: 3px solid $modem-orange;
+    padding: 1.25rem 1.5rem;
+    margin: 2rem 0;
+    border-radius: $border-radius-sm;
+
+    p {
+      margin-bottom: 0;
+      font-weight: $font-weight-medium;
+      color: $modem-black;
+    }
+  }
+
+  .message-conclusion {
+    text-align: center;
+    padding: 2rem 0 1.5rem;
+
+    .conclusion-text {
+      font-size: 1.25rem;
+      font-weight: $font-weight-bold;
+      color: $modem-orange;
+      margin-bottom: 0;
+    }
+  }
+
+  .signature {
+    text-align: right;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid $gray-200;
+
+    .signature-name {
+      font-size: 1.125rem;
+      font-weight: $font-weight-bold;
+      color: $modem-black;
+      margin-bottom: 0.25rem;
+    }
+
+    .signature-role {
+      font-size: $font-size-sm;
+      color: $gray-600;
+      line-height: 1.5;
+    }
+  }
+}
+
+// Respect prefers-reduced-motion
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
+
+    &.card-hover:hover,
+    &.card-pillar:hover,
+    &.card-engagement:hover {
+      transform: none;
+    }
+  }
+
+  .card-icon:hover .icon-wrapper {
+    transform: none;
+  }
+}

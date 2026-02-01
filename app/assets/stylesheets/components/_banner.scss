@@ -1,0 +1,207 @@
+// app/assets/stylesheets/components/_banner.scss
+
+// === BANNIÈRE HERO POLITIQUE ===
+
+.banner {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+
+  // Overlay sophistiqué
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: $overlay-gradient;
+    z-index: 1;
+  }
+
+  // Pattern optionnel (style MoDem)
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+      repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba($white, 0.03) 10px,
+        rgba($white, 0.03) 20px
+      );
+    z-index: 1;
+  }
+
+  // Contenu
+  .container {
+    position: relative;
+    z-index: 2;
+  }
+
+  .banner-content {
+    max-width: 800px;
+  }
+
+  h1 {
+    color: $white;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: $font-weight-extrabold;
+    text-shadow: 0 4px 12px rgba($modem-black, 0.5);
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+    animation: fadeInUp 0.8s ease-out;
+  }
+
+  .banner-subtitle {
+    color: $white;
+    font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+    font-weight: $font-weight-medium;
+    text-shadow: 0 2px 8px rgba($modem-black, 0.4);
+    margin-bottom: 2.5rem;
+    animation: fadeInUp 1s ease-out 0.2s both;
+  }
+
+  .banner-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    animation: fadeInUp 1.2s ease-out 0.4s both;
+
+    .btn {
+      box-shadow: 0 8px 24px rgba($modem-black, 0.3);
+
+      &:hover {
+        box-shadow: 0 12px 32px rgba($modem-black, 0.4);
+        transform: translateY(-2px);
+      }
+    }
+  }
+
+  .banner-badge {
+    display: inline-block;
+    background: rgba($white, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba($white, 0.3);
+    color: $white;
+    padding: 0.5rem 1.25rem;
+    border-radius: 100px;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    margin-bottom: 1.5rem;
+    animation: fadeInUp 0.6s ease-out;
+  }
+
+  // === VARIANTE : BANNIÈRE PAGES INTERNES (sobre, gradient orange) ===
+  &.banner-page {
+    min-height: auto;
+    background: linear-gradient(135deg, $modem-orange 0%, $modem-orange-dark 100%);
+    background-image: none; // Pas de photo de fond
+    padding: 4rem 0 3rem;
+
+    &::before {
+      display: none; // Pas d'overlay sur gradient
+    }
+
+    h1 {
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      font-weight: $font-weight-bold;
+      margin-bottom: 0.75rem;
+      animation: none; // Sobre = pas d'animation
+    }
+
+    .banner-subtitle {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      font-weight: $font-weight-normal;
+      margin-bottom: 0;
+      animation: none;
+      opacity: 0.95;
+    }
+  }
+
+  // === VARIANTE : BANNIÈRE PETITE (pages légales) ===
+  &.banner-small {
+    min-height: auto;
+    background: linear-gradient(135deg, $modem-blue 0%, $modem-blue-dark 100%);
+    background-image: none;
+    padding: 3rem 0 2rem;
+
+    &::before,
+    &::after {
+      display: none;
+    }
+
+    h1 {
+      font-size: clamp(1.75rem, 3vw, 2.25rem);
+      font-weight: $font-weight-bold;
+      animation: none;
+    }
+
+    .banner-subtitle {
+      font-size: clamp(0.9rem, 1.5vw, 1.125rem);
+      animation: none;
+    }
+  }
+}
+
+// Animation fadeInUp
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Respect prefers-reduced-motion
+@media (prefers-reduced-motion: reduce) {
+  .banner {
+    h1, .banner-subtitle, .banner-actions, .banner-badge {
+      animation: none !important;
+    }
+  }
+
+  @keyframes fadeInUp {
+    from, to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .banner {
+    min-height: 500px;
+    padding: 3rem 1rem;
+
+    .banner-actions {
+      flex-direction: column;
+
+      .btn {
+        width: 100%;
+      }
+    }
+
+    &.banner-page {
+      padding: 3rem 1rem 2rem;
+    }
+
+    &.banner-small {
+      padding: 2.5rem 1rem 1.5rem;
+    }
+  }
+}

@@ -1,0 +1,85 @@
+// app/assets/stylesheets/components/_footer.scss
+
+// === FOOTER ===
+
+footer[role="contentinfo"] {
+  background-color: $gray-100;
+  border-top: 3px solid $modem-orange;
+  margin-top: auto; // Sticky footer
+
+  h2, h3 {
+    color: $modem-black;
+    font-size: $h5-font-size;
+    font-weight: $font-weight-bold;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    color: $gray-600;
+    font-size: $font-size-sm;
+    line-height: 1.6;
+  }
+
+  a {
+    color: $gray-700;
+    text-decoration: none;
+    transition: $transition-base;
+    font-size: $font-size-sm;
+
+    &:hover,
+    &:focus {
+      color: $modem-orange;
+      text-decoration: underline;
+    }
+
+    // Focus accessible
+    &:focus-visible {
+      outline: $focus-ring-width solid $focus-ring-color;
+      outline-offset: 2px;
+    }
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      margin-bottom: 0.5rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  // Copyright
+  .text-center.small {
+    color: $gray-600;
+  }
+}
+
+// Sticky footer
+html, body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+main[role="main"] {
+  flex: 1 0 auto;
+}
+
+footer[role="contentinfo"] {
+  flex-shrink: 0;
+}
+
+// Respect prefers-reduced-motion
+@media (prefers-reduced-motion: reduce) {
+  footer a {
+    transition: none;
+  }
+}
