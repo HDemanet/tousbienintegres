@@ -36,59 +36,6 @@
   border-top: 4px solid $modem-green;
 }
 
-// Carte icône (comme page d'accueil)
-.card-icon {
-  text-align: center;
-  padding: 2rem;
-  height: 100%;
-
-  .icon-wrapper {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background-color: $gray-100;
-    margin-bottom: 1.5rem;
-    transition: $transition-base;
-
-    i, svg {
-      font-size: 2rem;
-    }
-  }
-
-  &:hover .icon-wrapper {
-    transform: scale(1.1);
-    background-color: $modem-orange-lighter;
-  }
-}
-
-// Carte statistique (dashboard)
-.card-stat {
-  .card-body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-
-    .stat-number {
-      font-size: 3rem;
-      font-weight: $font-weight-bold;
-      color: $modem-orange;
-      line-height: 1;
-      margin-bottom: 0.5rem;
-    }
-
-    .stat-label {
-      color: $gray-600;
-      font-size: $font-size-sm;
-      text-align: center;
-    }
-  }
-}
-
 // Carte pilier (style sobre MoDem)
 .card-pillar {
   background: $white;
@@ -123,58 +70,6 @@
 
   h3 {
     font-size: 1.5rem;
-    margin-bottom: 1rem;
-  }
-
-  p {
-    color: $gray-700;
-    line-height: 1.6;
-  }
-}
-
-// Carte engagement (style sobre)
-.card-engagement {
-  background: $white;
-  border: 2px solid $border-color;
-  border-radius: $border-radius-lg;
-  padding: 2rem;
-  position: relative;
-  overflow: hidden;
-  transition: $transition-base;
-
-  &:hover {
-    border-color: $modem-orange;
-    box-shadow: $box-shadow;
-  }
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, $modem-orange, $modem-blue);
-  }
-
-  .engagement-icon {
-    width: 60px;
-    height: 60px;
-    background: $gray-100;
-    border-radius: $border-radius;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1.5rem;
-
-    i {
-      font-size: 1.75rem;
-      color: $modem-orange;
-    }
-  }
-
-  h3 {
-    font-size: 1.25rem;
     margin-bottom: 1rem;
   }
 
@@ -255,6 +150,63 @@
     }
   }
 
+  // Signature avec photo Pierre-Luc (à gauche du texte) - STYLE HUMBLE
+  .signature-with-photo {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid $gray-200;
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1.5rem;
+    }
+
+    .signature-photo {
+      flex-shrink: 0;
+      width: 120px; // ✅ PETIT ET HUMBLE (120px au lieu de 180px)
+
+      @media (max-width: 768px) {
+        width: 100px; // ✅ Encore plus petit sur mobile
+      }
+
+      img {
+        width: 100%;
+        height: auto;
+        border-radius: $border-radius;
+        box-shadow: 0 2px 8px rgba($modem-black, 0.08); // ✅ Ombre discrète
+        opacity: 0.95; // ✅ Légère transparence (humble)
+      }
+    }
+
+    .signature-text {
+      flex: 1;
+      text-align: right;
+
+      @media (max-width: 768px) {
+        text-align: center;
+      }
+
+      .signature-name {
+        font-size: 1.125rem;
+        font-weight: $font-weight-bold;
+        color: $modem-black;
+        margin-bottom: 0.25rem;
+      }
+
+      .signature-role {
+        font-size: $font-size-sm;
+        color: $gray-600;
+        line-height: 1.5;
+      }
+    }
+  }
+
+  // Ancienne signature (sans photo) - garder pour compatibilité
   .signature {
     text-align: right;
     margin-top: 2rem;
@@ -282,13 +234,8 @@
     transition: none;
 
     &.card-hover:hover,
-    &.card-pillar:hover,
-    &.card-engagement:hover {
+    &.card-pillar:hover {
       transform: none;
     }
-  }
-
-  .card-icon:hover .icon-wrapper {
-    transform: none;
   }
 }
