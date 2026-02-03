@@ -3,7 +3,7 @@
                   description: 'Nous sommes des hommes et des femmes adhérents et sympathisants du Mouvement démocrate installés dans les trois pays du Benelux.' %>
 
 <!-- Hero avec photo -->
-<section class="hero-photo" style="padding: 0rem; !important;">
+<section class="hero-photo">
   <div class="hero-photo__image">
     <%= image_tag "about/team.jpg",
                   alt: "Équipe Tous bien intégrés au Benelux",
@@ -24,13 +24,14 @@
 </section>
 
 <!-- Section Qui sommes-nous -->
-<section class="py-5">
+<section class="py-5" id="qui-sommes-nous">
   <div class="container">
     <div class="row">
       <div class="col-lg-10 mx-auto">
         <p class="mb-4">
           Chez <strong>"Tous bien intégrés !"</strong>, nous sommes des hommes et des femmes adhérents
-          et sympathisants du Mouvement démocrate mais aussi des personnes de la société civile.
+          et sympathisants du <%= link_to "Mouvement démocrate", "https://www.mouvementdemocrate.fr/qui-sommes-nous-7915", target: "_blank", rel: "noopener" %>
+          mais aussi des personnes de la société civile.
           Nous sommes installés dans les trois pays du Benelux.
         </p>
 
@@ -62,7 +63,7 @@
         </p>
 
         <div class="text-center mb-0">
-          <p class="">
+          <p>
             Les candidats que nous présentons aux élections des représentants des Français de l'étranger
             du <strong>31 mai 2026</strong> sont animés par la volonté de <strong>servir avant tout</strong>.
           </p>
@@ -73,7 +74,7 @@
 </section>
 
 <!-- Section Servir la communauté -->
-<section class="py-5 bg-light">
+<section class="py-5 bg-light" id="servir">
   <div class="container">
     <div class="row">
       <div class="col-lg-10 mx-auto">
@@ -163,21 +164,28 @@
 </section>
 
 <!-- Section Spécificité + Photo conférence -->
-<section class="py-5">
+<section class="py-5" id="specificite">
   <div class="container">
     <div class="row">
       <div class="col-lg-10 mx-auto">
         <h2 class="text-center mb-5">Ce qui fait notre spécificité</h2>
 
         <p class="mb-4">
-          Le <strong>Mouvement démocrate</strong> est membre fondateur du <strong>Parti démocrate européen (PDE)</strong>.
-          En Belgique, <strong>Les Engagés</strong>, aux Pays-Bas <strong>50 plus</strong> sont également membres du PDE.
+          Le <%= link_to "Mouvement démocrate", "https://www.mouvementdemocrate.fr/qui-sommes-nous-7915", target: "_blank", rel: "noopener" %>
+          est membre fondateur du <%= link_to "Parti démocrate européen (PDE)", "https://democrats.eu/fr/", target: "_blank", rel: "noopener" %>.
+          En Belgique, <%= link_to "Les Engagés", "https://www.lesengages.be/", target: "_blank", rel: "noopener" %>,
+          aux Pays-Bas <%= link_to "50 plus", "https://www.50pluspartij.nl/", target: "_blank", rel: "noopener" %>
+          sont également membres du PDE.
         </p>
 
         <p class="mb-4">
           Au Parlement européen comme au Comité européen des régions, les partis du PDE siègent dans le groupe
-          <strong>Renew Europe</strong> où l'on retrouve le Parti démocratique luxembourgeois, aux Pays-Bas Democraten 66,
-          Volkspartij voor Vrijheid en Democratie, en Belgique Anders et le Mouvement réformateur.
+          <%= link_to "Renew Europe", "https://www.reneweuropegroup.eu/fr", target: "_blank", rel: "noopener" %>
+          où l'on retrouve le <%= link_to "Parti démocratique luxembourgeois", "https://www.dp.lu/partei/?lang=fr", target: "_blank", rel: "noopener" %>,
+          aux Pays-Bas <%= link_to "Democraten 66", "https://d66.nl/", target: "_blank", rel: "noopener" %>,
+          <%= link_to "Volkspartij voor Vrijheid en Democratie", "https://www.vvd.nl/", target: "_blank", rel: "noopener" %>,
+          en Belgique <%= link_to "Anders", "https://www.anders.be/", target: "_blank", rel: "noopener" %>
+          et le <%= link_to "Mouvement réformateur", "https://www.mr.be/", target: "_blank", rel: "noopener" %>.
         </p>
 
         <p class="mb-4">
@@ -198,7 +206,7 @@
                         class: "img-fluid rounded shadow",
                         style: "width: 100%; max-height: 450px; object-fit: cover;" %>
           <p class="text-muted small text-center mt-3">
-            Conférence MoDem avec le Ministre Belge Yves Coppieters - Événement MoDem
+            Conférence MoDem avec le Ministre Belge Yves Coppieters
           </p>
         </div>
 
@@ -211,127 +219,118 @@
   </div>
 </section>
 
-<!-- Section Premiers visages -->
-<section class="py-5 bg-light">
+<!-- Section Candidats DYNAMIQUE avec filtres -->
+<section class="py-5 bg-light" id="candidats" data-controller="candidates-filter">
   <div class="container">
     <div class="row">
-      <div class="col-lg-10 mx-auto">
-        <h2 class="text-center mb-5">Premiers visages de la campagne</h2>
+      <div class="col-lg-12">
+        <h2 class="text-center mb-4">Nos candidats</h2>
 
-        <!-- Pierre-Luc -->
-        <div class="card mb-5 shadow-sm border-0">
-          <div class="card-body p-4 p-md-5">
-            <div class="row align-items-start">
-              <div class="col-md-3 text-center mb-4 mb-md-0">
-                <%= image_tag "team/pierre-luc-vervandier.jpg",
-                              alt: "Pierre-Luc Vervandier",
-                              class: "img-fluid rounded shadow-sm",
-                              style: "max-width: 200px;" %>
-              </div>
-              <div class="col-md-9">
-                <h3 class="h4 mb-3">
-                  Pierre-Luc Vervandier
-                  <span class="ms-2" style="font-size: 1.5rem;">🇧🇪</span>
-                </h3>
-
-                <p class="mb-3">
-                  En Belgique depuis 15 ans, j'habite et travaille dans le quartier européen de Bruxelles pour une
-                  organisation française. Mon épouse est belge et supporte ma "francitude" : je crois avoir plutôt
-                  bien réussi mon intégration !
-                </p>
-
-                <p class="mb-3">
-                  Depuis 10 ans, je contribue à l'animation de la vie locale en prenant diverses responsabilités
-                  au sein de mon Comité de quartier. Sur ce petit périmètre, nous avons toutes les nationalités
-                  du continent européen et même au-delà.
-                </p>
-
-                <p class="mb-3">
-                  Dans ma rue qui parle toutes les langues, j'ai concrètement fait l'expérience qu'il était possible
-                  pour des personnes aux nationalités et origines différentes d'avoir un vrai vivre ensemble avec la
-                  population belge même si celui-ci nécessite des efforts de part et d'autre.
-                </p>
-
-                <p class="mb-3">
-                  Avec notre revue annuelle de quartier distribuée dans toutes les boîtes aux lettres, nos brocantes,
-                  nos petites fêtes de rue, nos mobilisations efficaces sur des projets urbanistiques d'ampleur
-                  (projets de tours de la rue de la Loi notamment), nous avons su, depuis plusieurs décennies déjà,
-                  montrer aux pouvoirs publics locaux qu'étranger n'était en aucun cas synonyme d'indifférence à
-                  l'environnement local.
-                </p>
-
-                <p class="mb-3">
-                  Engagé au Mouvement démocrate de longue date, je suis responsable de la section pays du Benelux
-                  et coanimateur du groupe de réflexion et de propositions Europe, International & Défense de notre
-                  formation politique. J'étais candidat aux élections consulaires de 2021, aux élections européennes
-                  de 2024 sur la liste Besoin d'Europe et aussi aux législatives de 2024 dans le Nord de la France
-                  pour porter la spécificité transfrontalière et valoriser l'intégration européenne dans un territoire
-                  en repli vers l'extrême droite.
-                </p>
-
-                <p class="mb-0">
-                  <strong>Conseiller des Français de l'étranger, j'aurais à cœur d'être à votre écoute, de relayer
-                  vos attentes au plus haut et de militer pour la bonne intégration de chacun d'entre nous.</strong>
-                </p>
-              </div>
-            </div>
+        <!-- Filtres pays -->
+        <div class="candidates-filters mb-5">
+          <div class="d-flex justify-content-center flex-wrap gap-2">
+            <button class="btn btn-outline-primary active"
+                    data-candidates-filter-target="filterBtn"
+                    data-action="click->candidates-filter#filterAll">
+              Tous
+            </button>
+            <button class="btn btn-outline-primary"
+                    data-candidates-filter-target="filterBtn"
+                    data-action="click->candidates-filter#filter"
+                    data-country="belgique">
+              Belgique 🇧🇪
+            </button>
+            <button class="btn btn-outline-primary"
+                    data-candidates-filter-target="filterBtn"
+                    data-action="click->candidates-filter#filter"
+                    data-country="pays_bas">
+              Pays-Bas 🇳🇱
+            </button>
+            <button class="btn btn-outline-primary"
+                    data-candidates-filter-target="filterBtn"
+                    data-action="click->candidates-filter#filter"
+                    data-country="luxembourg">
+              Luxembourg 🇱🇺
+            </button>
           </div>
         </div>
 
-        <!-- Lionel -->
-        <div class="card mb-5 shadow-sm border-0">
-          <div class="card-body p-4 p-md-5">
-            <div class="row align-items-start">
-              <div class="col-md-3 text-center mb-4 mb-md-0">
-                <%= image_tag "team/lionel-autret.jpg",
-                              alt: "Lionel Autret",
-                              class: "img-fluid rounded shadow-sm",
-                              style: "max-width: 200px;" %>
-              </div>
-              <div class="col-md-9">
-                <h3 class="h4 mb-3">
-                  Lionel Autret
-                  <span class="ms-2" style="font-size: 1.5rem;">🇳🇱</span>
-                </h3>
+        <!-- Grille candidats DYNAMIQUE -->
+        <div class="row g-4" data-candidates-filter-target="grid">
+          <% @candidates.each do |candidate| %>
+            <div class="col-12 col-md-6 col-lg-4 candidate-card"
+                 data-candidates-filter-target="card"
+                 data-country="<%= candidate.country %>">
+              <div class="card h-100 shadow-sm border-0">
+                <div class="card-body p-4 text-center">
+                  <!-- Photo -->
+                  <% if candidate.photo.attached? %>
+                    <%= image_tag candidate.photo,
+                                  alt: candidate.name,
+                                  class: "candidate-photo mb-3" %>
+                  <% else %>
+                    <div class="candidate-photo-placeholder mb-3">
+                      <i class="fas fa-user fa-3x text-muted"></i>
+                    </div>
+                  <% end %>
 
-                <p class="mb-3">
-                  De nationalité franco-américaine, je suis marié et père de famille. Nous habitons à Leiden depuis
-                  4 ans et je travaille dans le secteur bancaire.
-                </p>
+                  <!-- Nom + Flag -->
+                  <h3 class="h5 mb-2">
+                    <%= candidate.name %>
+                    <span class="ms-1"><%= candidate.country_flag %></span>
+                  </h3>
 
-                <p class="mb-3">
-                  Je ne suis pas encore tout à fait "Bien intégré" mais c'est bien mon objectif et c'est pourquoi
-                  je souhaite m'investir dans cette élection et espérer devenir prochainement Conseiller des Français
-                  de l'étranger aux Pays-Bas. Il y a encore tant à faire ici ! Dynamisation du réseau associatif,
-                  donner un coup de boost à la coopération culturelle et à l'offre d'apprentissage du français.
-                </p>
+                  <!-- Ville -->
+                  <% if candidate.city.present? %>
+                    <p class="text-muted small mb-3"><%= candidate.city %></p>
+                  <% end %>
 
-                <p class="mb-0">
-                  <strong>De mes années aux États-Unis, je retiens que la démocratie est un trésor fragile. Nous devons
-                  tout faire pour préserver et défendre l'idéal qui l'accompagne. C'est bien aussi cela le sens de mon
-                  engagement chez les Français de l'étranger du Mouvement démocrate.</strong>
-                </p>
+                  <!-- Bio avec "Lire la suite" -->
+                  <% if candidate.bio.present? %>
+                    <div class="candidate-bio text-start">
+                      <% if candidate.bio.length > 300 %>
+                        <div class="bio-short">
+                          <%= raw candidate.bio[0..300] %>...
+                          <button type="button" class="btn btn-link p-0 text-primary" data-action="click->candidates-filter#toggleBio">
+                            Lire la suite
+                          </button>
+                        </div>
+                        <div class="bio-full d-none">
+                          <%= raw candidate.bio %>
+                          <button type="button" class="btn btn-link p-0 text-primary" data-action="click->candidates-filter#toggleBio">
+                            Réduire
+                          </button>
+                        </div>
+                      <% else %>
+                        <%= raw candidate.bio %>
+                      <% end %>
+                    </div>
+                  <% end %>
+                </div>
               </div>
             </div>
-          </div>
+          <% end %>
         </div>
 
+        <!-- Message si pas de résultats -->
+        <div class="text-center mt-5 d-none" data-candidates-filter-target="noResults">
+          <p class="text-muted">Aucun candidat pour ce pays actuellement.</p>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- Call to action -->
-<section class="section-cta">
+<section class="section-cta" id="rejoindre">
   <div class="container">
     <div class="row">
       <div class="col-lg-8 mx-auto text-center">
         <h2 class="mb-4">Rejoignez-nous !</h2>
         <p class="mb-4">
           Vous êtes animés par des convictions centristes et démocrates ? Nous sommes encore à la recherche
-            d'hommes et de femmes, de nationalité française obligatoirement, qui vivent dans les trois pays
-            pour compléter nos listes.
-            Intéressés à mieux nous connaître, contactez-nous !
+          d'hommes et de femmes, de nationalité française obligatoirement, qui vivent dans les trois pays
+          pour compléter nos listes. Intéressés à mieux nous connaître, contactez-nous !
         </p>
 
         <div class="d-flex gap-3 justify-content-center flex-wrap">

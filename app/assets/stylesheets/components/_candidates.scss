@@ -1,0 +1,102 @@
+// app/assets/stylesheets/components/_candidates.scss
+
+// Filtres style MoDem
+.candidates-filters {
+  .btn {
+    font-size: 0.95rem;
+    padding: 0.5rem 1.5rem;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+
+    &.active {
+      background-color: $modem-blue;
+      color: white;
+      border-color: $modem-blue;
+    }
+
+    &:hover:not(.active) {
+      background-color: rgba($modem-blue, 0.1);
+      border-color: $modem-blue;
+    }
+  }
+}
+
+// Cards candidats
+.candidate-card {
+  transition: opacity 0.3s ease;
+
+  &.d-none {
+    display: none !important;
+  }
+
+  .card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba($modem-black, 0.12) !important;
+    }
+  }
+}
+
+// Photo candidat
+.candidate-photo {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba($modem-black, 0.15);
+  margin: 0 auto;
+  display: block;
+}
+
+.candidate-photo-placeholder {
+  width: 200px;
+  height: 200px;
+  background-color: #F5F5F5;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+// Bio
+.candidate-bio {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: $modem-gray-dark;
+
+  p {
+    margin-bottom: 0.75rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  strong {
+    color: $modem-black;
+    font-weight: 600;
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .candidate-photo,
+  .candidate-photo-placeholder {
+    width: 150px;
+    height: 150px;
+  }
+
+  .candidate-bio {
+    font-size: 0.9rem;
+  }
+
+  .candidates-filters {
+    .btn {
+      font-size: 0.85rem;
+      padding: 0.4rem 1rem;
+    }
+  }
+}

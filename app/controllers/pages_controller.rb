@@ -9,6 +9,7 @@ class PagesController < ApplicationController
 
   def about
     # Qui sommes-nous
+    @candidates = Candidate.ordered.includes(photo_attachment: :blob)
   end
 
   def proposals
