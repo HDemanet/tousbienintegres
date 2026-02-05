@@ -137,3 +137,136 @@
     transform: none;
   }
 }
+
+// === MESSAGE HIGHLIGHT (encadré propositions) ===
+
+.message-highlight {
+  background: linear-gradient(135deg, rgba($modem-blue, 0.05) 0%, rgba($modem-orange, 0.05) 100%);
+  border-left: 4px solid $modem-orange;
+  padding: 1.5rem 2rem;
+  border-radius: $border-radius-lg;
+  margin-bottom: 3rem;
+
+  p {
+    margin-bottom: 0;
+    font-size: 1.125rem;
+    line-height: 1.6;
+
+    strong {
+      color: $modem-orange;
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 1rem 1.25rem;
+
+    p {
+      font-size: 1rem;
+    }
+  }
+}
+
+// === THÉMATIQUES (grille 6 thèmes) ===
+
+.thematiques-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0 3rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+.thematique-item {
+  display: flex;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  background: $white;
+  border: 2px solid $gray-200;
+  border-radius: $border-radius;
+  transition: $transition-base;
+
+  &:hover {
+    border-color: $modem-orange;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba($modem-orange, 0.1);
+  }
+
+  .icon {
+    font-size: 1.75rem;
+    margin-right: 1rem;
+    flex-shrink: 0;
+  }
+
+  .text {
+    font-size: 0.95rem;
+    font-weight: $font-weight-semibold;
+    color: $modem-black;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    padding: 0.875rem 1rem;
+
+    .icon {
+      font-size: 1.5rem;
+      margin-right: 0.75rem;
+    }
+
+    .text {
+      font-size: 0.9rem;
+    }
+  }
+}
+
+// === PROPOSITION PHOTO (section avec image) ===
+
+.proposition-photo {
+  margin: 3rem 0;
+
+  img {
+    border-radius: $border-radius-lg;
+    box-shadow: 0 4px 16px rgba($modem-black, 0.1);
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .caption {
+    margin-top: 0.75rem;
+    font-size: $font-size-sm;
+    color: $gray-600;
+    font-style: italic;
+    text-align: center;
+  }
+}
+
+// === MANDATS SECTION ===
+
+.mandat-item {
+  margin-bottom: 2.5rem;
+
+  h3 {
+    color: $modem-orange;
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    font-weight: $font-weight-bold;
+  }
+
+  p {
+    color: $gray-700;
+    line-height: 1.6;
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 768px) {
+    margin-bottom: 2rem;
+
+    h3 {
+      font-size: 1.125rem;
+    }
+  }
+}

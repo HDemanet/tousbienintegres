@@ -62,8 +62,6 @@ section {
   }
 }
 
-// === HERO AVEC PHOTO (style MoDem "Qui sommes-nous" / Sophie Wilmes) ===
-
 .hero-photo {
   position: relative;
   height: 400px;
@@ -109,15 +107,12 @@ section {
   }
 }
 
-// === BANDEAU SIMPLE ORANGE (style MoDem pages internes) ===
-
 .page-header-simple {
   background: linear-gradient(135deg, $modem-orange 0%, $modem-orange-dark 100%);
   padding: 4rem 0 3rem;
   position: relative;
   overflow: hidden;
 
-  // Pattern diagonal subtil (harmonisé avec section-cta)
   &::after {
     content: '';
     position: absolute;
@@ -159,15 +154,12 @@ section {
   }
 }
 
-// === BANDEAU BLEU DISCRET (pages légales) ===
-
 .page-header-legal {
   background: linear-gradient(135deg, $modem-blue 0%, $modem-blue-dark 100%);
   padding: 3rem 0 2rem;
   position: relative;
   overflow: hidden;
 
-  // Pattern diagonal subtil (harmonisé)
   &::after {
     content: '';
     position: absolute;
@@ -201,8 +193,6 @@ section {
   }
 }
 
-// === CONTAINERS ===
-
 .container-narrow {
   max-width: $content-width-narrow;
   margin: 0 auto;
@@ -214,8 +204,6 @@ section {
   margin: 0 auto;
   padding: 0 1rem;
 }
-
-// === CONTENU ARTICLE ===
 
 .article-content {
   p {
