@@ -2,14 +2,22 @@
 <% set_meta_tags title: 'Enquête',
                   description: 'Participez à notre enquête pour nous aider à mieux vous connaître et construire notre programme.' %>
 
-<section class="page-header-simple">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 mx-auto text-center">
-        <h1>Votre avis compte !</h1>
-        <p class="lead mb-0">
-          Aidez-nous à construire un programme adapté à vos besoins
-        </p>
+<!-- Hero avec photo -->
+<section class="hero-photo" style="padding: 0rem;">
+  <div class="hero-photo__image">
+    <%= image_tag "about/tulipe.jpg",
+                  alt: "Avenue à Leiden aux Pays-Bas avec des tulipes",
+                  class: "w-100" %>
+  </div>
+  <div class="hero-photo__content">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8">
+          <h1>Votre avis compte !</h1>
+          <p class="lead">
+            Aidez-nous à construire un programme adapté à vos besoins
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -59,11 +67,11 @@
               <div class="d-flex gap-4">
                 <div class="form-check">
                   <%= f.radio_button :gender, "F", class: "form-check-input", id: "gender_f" %>
-                  <%= label_tag "gender_f", "Femme", class: "form-check-label" %>
+                  <label class="form-check-label" for="gender_f">Femme</label>
                 </div>
                 <div class="form-check">
                   <%= f.radio_button :gender, "H", class: "form-check-input", id: "gender_h" %>
-                  <%= label_tag "gender_h", "Homme", class: "form-check-label" %>
+                  <label class="form-check-label" for="gender_h">Homme</label>
                 </div>
               </div>
             </div>
@@ -87,20 +95,22 @@
             <div class="row g-3">
               <div class="col-md-4">
                 <%= f.label :postal_code, "Code postal *", class: "form-label" %>
-                <%= f.text_field :postal_code, class: "form-control", required: true,
-                                 'aria-required': 'true',
-                                 maxlength: 4,
-                                 pattern: "[0-9]{4}",
-                                 placeholder: "1000" %>
-                <div class="form-text">4 chiffres</div>
+                <%= f.text_field :postal_code,
+                                class: "form-control",
+                                required: true,
+                                'aria-required': 'true',
+                                placeholder: "1000",
+                                maxlength: 10 %>
+                <div class="form-text">Lettres et chiffres acceptés</div>
               </div>
 
               <div class="col-md-8">
                 <%= f.label :city, "Commune de résidence *", class: "form-label" %>
-                <%= f.text_field :city, class: "form-control", required: true,
-                                 'aria-required': 'true',
-                                 placeholder: "Bruxelles" %>
-                <div class="form-text">Sera générée automatiquement</div>
+                <%= f.text_field :city,
+                                class: "form-control",
+                                required: true,
+                                'aria-required': 'true',
+                                placeholder: "Bruxelles" %>
               </div>
             </div>
 
@@ -175,10 +185,14 @@
 
               <% SurveyResponse::ADMINISTRATIVE_DIFFICULTIES_OPTIONS.each_with_index do |option, index| %>
                 <div class="form-check">
-                  <%= check_box_tag "survey_response[administrative_difficulties][]", option, false,
+                  <%= check_box_tag "survey_response[administrative_difficulties][]",
+                                   option,
+                                   false,
                                    class: "form-check-input",
                                    id: "admin_diff_#{index}" %>
-                  <%= label_tag "admin_diff_#{index}", option, class: "form-check-label" %>
+                  <label class="form-check-label" for="admin_diff_<%= index %>">
+                    <%= option %>
+                  </label>
                 </div>
               <% end %>
             </div>
@@ -200,12 +214,12 @@
               <%= f.label :contacted_elected, "Avez-vous déjà fait appel à un élu consulaire ?", class: "form-label" %>
               <div class="d-flex gap-4">
                 <div class="form-check">
-                  <%= f.radio_button :contacted_elected, true, class: "form-check-input", id: "contacted_yes" %>
-                  <%= label_tag "contacted_yes", "Oui", class: "form-check-label" %>
+                  <%= f.radio_button :contacted_elected, true, class: "form-check-input", id: "contacted_yes", checked: false %>
+                  <label class="form-check-label" for="contacted_yes">Oui</label>
                 </div>
                 <div class="form-check">
-                  <%= f.radio_button :contacted_elected, false, class: "form-check-input", id: "contacted_no" %>
-                  <%= label_tag "contacted_no", "Non", class: "form-check-label" %>
+                  <%= f.radio_button :contacted_elected, false, class: "form-check-input", id: "contacted_no", checked: false %>
+                  <label class="form-check-label" for="contacted_no">Non</label>
                 </div>
               </div>
             </div>
@@ -215,10 +229,14 @@
 
               <% SurveyResponse::INTERESTS_OPTIONS.each_with_index do |option, index| %>
                 <div class="form-check">
-                  <%= check_box_tag "survey_response[interests][]", option, false,
+                  <%= check_box_tag "survey_response[interests][]",
+                                   option,
+                                   false,
                                    class: "form-check-input",
                                    id: "interest_#{index}" %>
-                  <%= label_tag "interest_#{index}", option, class: "form-check-label" %>
+                  <label class="form-check-label" for="interest_<%= index %>">
+                    <%= option %>
+                  </label>
                 </div>
               <% end %>
             </div>
@@ -281,22 +299,6 @@ document.addEventListener('DOMContentLoaded', function() {
   if (professionalStatus) {
     professionalStatus.addEventListener('change', function() {
       employerTypeWrapper.style.display = this.value === 'Actif' ? 'block' : 'none';
-    });
-  }
-
-  // Auto-complétion code postal -> commune
-  const postalCodeField = document.querySelector('[name="survey_response[postal_code]"]');
-  const cityField = document.querySelector('[name="survey_response[city]"]');
-
-  if (postalCodeField && cityField) {
-    postalCodeField.addEventListener('blur', function() {
-      const postalCode = this.value;
-      if (postalCode.length === 4) {
-        // Appel API pour récupérer la commune
-        // fetch(`/api/postal_codes/${postalCode}`)
-        //   .then(response => response.json())
-        //   .then(data => cityField.value = data.city);
-      }
     });
   }
 });

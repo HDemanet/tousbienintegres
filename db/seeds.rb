@@ -52,11 +52,15 @@ lionel = Candidate.create!(
   position: 1,
   featured: true,
   bio: <<~HTML
-    De nationalité franco-américaine, je suis marié et père de famille. Nous habitons à Leiden depuis 4 ans et je travaille dans le secteur bancaire.
+    Breton pur beurre, farouche citoyen Français mais également  Américain par les hasards de la vie, je suis marié et père de trois enfants. Installée à Leiden depuis quatre ans, notre famille binationale vit les enjeux d’intégration, de bilinguisme et la nécessité de préserver un lien fort avec la langue et la culture française.
 
-    Je ne suis pas encore tout à fait "Bien intégré" mais c'est bien mon objectif et c'est pourquoi je souhaite m'investir dans cette élection et espérer devenir prochainement Conseiller des Français de l'étranger aux Pays-Bas. Il y a encore tant à faire ici ! Dynamisation du réseau associatif, donner un coup de boost à la coopération culturelle et à l'offre d'apprentissage du français.
+    Mon parcours d’expatriation — de Singapour aux États-Unis, puis aux Pays‑Bas — m’a apporté une solide expérience des démarches administratives, juridiques et fiscales entre la France et l’étranger. Travaillant depuis de nombreuses années dans des entreprises néerlandaises, je connais bien la culture locale, le système éducatif et les défis auxquels les Français sont confrontés : recherche d’emploi, reconnaissance des diplômes, entrepreneuriat, gestion de plusieurs systèmes de retraite et de fiscalité.
 
-    De mes années aux États-Unis, je retiens que la démocratie est un trésor fragile. Nous devons tout faire pour préserver et défendre l'idéal qui l'accompagne. C'est bien aussi cela le sens de mon engagement chez les Français de l'étranger du Mouvement démocrate.
+    C’est dans cet esprit que je souhaite m’investir dans l’élection des prochains Conseillers des Français de l’étranger aux Pays‑Bas. Beaucoup d’initiatives existent déjà, et le consulat et les associations existantes jouent un rôle précieux, mais nous pouvons aller plus loin : dynamiser notre réseau associatif, renforcer la coopération culturelle, développer l’apprentissage du français au‑delà du système AFE et offrir davantage de ressources pour maintenir un lien vivant avec la France et faciliter l’intégration des Français dans le tissu hollandais.
+
+    Au-delà des questions du quotidien, mon engagement politique vient aussi de mes années aux États‑Unis, qui m’ont appris que la démocratie est un système fragile, susceptible d’évoluer très vite si l’on ne participe pas activement. Même sans militer, voter est essentiel : si nous ne faisons pas entendre notre voix, d’autres décideront à notre place, et il sera alors trop tard pour agir.
+
+    C’est pour cela que j’ai choisi le Mouvement Démocrate, une formation qui travaille sans démagogie et cherche sincèrement à faire avancer les choses pour chacun. Cette appartenance permet d’échanger avec d’autres conseillers et avec les élus — députés comme ministres — afin de faire remonter les besoins de terrain et de défendre des valeurs de tolérance, d’unité et d’équité.
   HTML
 )
 
@@ -73,5 +77,19 @@ else
   puts "⚠️  Photo not found: #{lionel_photo_path}"
   puts "✅ Created: #{lionel.name} (without photo)"
 end
+
+# Alice
+alice = Candidate.create!(
+  name: "Alice",
+  country: :belgique,
+  city: "Bruxelles",
+  position: 2,
+  featured: true,
+  bio: <<~HTML
+    xxx
+  HTML
+)
+
+# Attacher la photo
 
 puts "\n✨ Seed completed! Created #{Candidate.count} candidates."

@@ -17,6 +17,7 @@
     &:hover:not(.active) {
       background-color: rgba($modem-blue, 0.1);
       border-color: $modem-blue;
+      color: $modem-orange;
     }
   }
 }

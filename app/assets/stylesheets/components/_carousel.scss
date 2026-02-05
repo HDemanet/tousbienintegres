@@ -30,7 +30,7 @@
       filter: brightness(0.8);
     }
 
-    // Overlay élégant
+    // Overlay
     &::before {
       content: '';
       position: absolute;
@@ -109,7 +109,7 @@
       }
     }
 
-    // Bouton enquête - ultra-visible et responsive
+    // Bouton enquête
     .btn {
       font-size: clamp(0.875rem, 2vw, 1.125rem) !important;
       padding: clamp(0.75rem, 2vw, 1rem) clamp(1.5rem, 3vw, 2.5rem) !important;
@@ -128,18 +128,18 @@
       }
 
       @media (max-width: 576px) {
-        font-size: 0.8rem !important; // ✅ Encore plus petit
+        font-size: 0.8rem !important;
         padding: 0.625rem 1rem !important;
-        border-width: 2px !important; // ✅ Bordure plus fine
+        border-width: 2px !important;
 
         i {
-          display: none; // Cache l'icône sur très petit écran
+          display: none;
         }
       }
     }
   }
 
-  // Contrôles discrets (style MoDem)
+  // Contrôles discrets
   .carousel-control-prev,
   .carousel-control-next {
     width: 60px;
@@ -158,12 +158,21 @@
       height: 40px;
       background-size: 50%;
     }
+
+    // Masquer sur tablette et mobile
+    @media (max-width: 992px) {
+      display: none !important;
+    }
   }
 
   &:hover {
     .carousel-control-prev,
     .carousel-control-next {
       opacity: 0.7;
+
+      @media (max-width: 992px) {
+        opacity: 0; // Forcer l'invisible sur mobile même au hover
+      }
     }
   }
 

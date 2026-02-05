@@ -6,7 +6,7 @@ class SurveyResponse < ApplicationRecord
             :belgian_admin_rating, :electoral_registration, presence: true
 
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
-  validates :postal_code, length: { is: 4 }, numericality: { only_integer: true }
+  validates :postal_code, presence: true, length: { maximum: 10 }
   validates :consent, acceptance: true
 
   # Sérialization pour les arrays (choix multiples)

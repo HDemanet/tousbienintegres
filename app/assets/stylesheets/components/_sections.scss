@@ -51,6 +51,9 @@
     &:hover {
       box-shadow: 0 6px 16px rgba($modem-black, 0.3);
       transform: translateY(-2px);
+      background-color: $modem-blue;
+      border-color: $modem-blue;
+      color: white;
     }
   }
 
