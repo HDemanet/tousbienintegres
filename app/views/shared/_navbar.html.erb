@@ -18,6 +18,9 @@
           <%= link_to "Nos propositions", proposals_path, class: "nav-link #{'active' if current_page?(proposals_path)}" %>
         </li>
         <li class="nav-item">
+          <%= link_to "Comment voter", how_to_vote_path, class: "nav-link #{'active' if current_page?(how_to_vote_path)}" %>
+        </li>
+        <li class="nav-item">
           <%= link_to "Notre enquête", new_survey_response_path, class: "nav-link #{'active' if current_page?(new_survey_response_path)}" %>
         </li>
         <li class="nav-item">

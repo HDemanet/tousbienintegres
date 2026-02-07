@@ -1,6 +1,15 @@
 # app/controllers/pages_controller.rb
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:home, :about, :proposals]
+  skip_before_action :authenticate_user!, only: [
+    :home,
+    :about,
+    :proposals,
+    :how_to_vote,
+    :legal,
+    :privacy,
+    :cookies,
+    :accessibility
+  ]
 
   def home
     # Page d'accueil
@@ -14,6 +23,10 @@ class PagesController < ApplicationController
 
   def proposals
     # Nos propositions
+  end
+
+  def how_to_vote
+    # Comment voter
   end
 
   def legal

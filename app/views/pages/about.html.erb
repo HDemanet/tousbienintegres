@@ -2,7 +2,6 @@
 <% set_meta_tags title: 'Qui sommes-nous',
                   description: 'Nous sommes des hommes et des femmes adhérents et sympathisants du Mouvement démocrate installés dans les trois pays du Benelux.' %>
 
-<!-- Hero avec photo -->
 <section class="hero-photo" style="padding: 0rem;">
   <div class="hero-photo__image">
     <%= image_tag "about/team.jpg",
@@ -352,7 +351,7 @@
             <i class="fas fa-envelope me-2" aria-hidden="true"></i>
             Nous contacter
           <% end %>
-          <%= link_to new_survey_response_path, class: "btn btn-outline-light btn-lg" do %>
+          <%= link_to new_survey_response_path, class: "btn btn-light btn-lg" do %>
             <i class="fas fa-clipboard-list me-2" aria-hidden="true"></i>
             Participer à l'enquête
           <% end %>

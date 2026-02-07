@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   # Pages statiques
   get 'qui-sommes-nous', to: 'pages#about', as: :about
   get 'nos-propositions', to: 'pages#proposals', as: :proposals
+  get 'comment-voter', to: 'pages#how_to_vote', as: :how_to_vote
 
   # Enquête
   resources :survey_responses, only: [:new, :create] do

@@ -1,0 +1,157 @@
+<!-- app/views/pages/how_to_vote.html.erb -->
+<% set_meta_tags title: 'Comment voter',
+                  description: 'Comment voter aux élections des représentants des Français de l\'étranger du 31 mai 2026 ?' %>
+
+<section class="hero-photo" style="padding: 0rem;">
+  <div class="hero-photo__image">
+    <%= image_tag "about/team.jpg",
+                  alt: "Équipe Tous bien intégrés au Benelux",
+                  class: "w-100" %>
+  </div>
+  <div class="hero-photo__content">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8">
+          <h1>Comment voter ?</h1>
+          <p class="lead">
+          Guide pour participer aux élections des représentants<br>
+          des Français de l'étranger du 31 mai 2026
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Étapes du vote -->
+<section class="py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+
+        <!-- Étape 1 : Inscription -->
+        <div class="voting-step mb-5">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h2 class="h4 mb-3">Être inscrit à la liste électorale consulaire</h2>
+            <p class="mb-3">
+              Je ne connais pas cette liste, je suis perdu, je me rends <%= link_to "ici", "https://www.service-public.fr/particuliers/vosdroits/F34778", target: "_blank", rel: "noopener" %>.
+            </p>
+            <p class="mb-0">
+              Je consulte ces pages : voter depuis la
+              <%= link_to "Belgique", "https://be.ambafrance.org/Elections-des-conseillers-des-Francais-de-l-etranger-et-des-delegues", target: "_blank", rel: "noopener" %>,
+              les <%= link_to "Pays-Bas", "https://nl.ambafrance.org/Conseillers-des-Francais-de-l-etranger", target: "_blank", rel: "noopener" %>,
+              le <%= link_to "Luxembourg", "https://lu.ambafrance.org/Elections-des-conseillers-des-Francais-de-l-etranger-et-des-delegues", target: "_blank", rel: "noopener"%>.
+            </p>
+          </div>
+        </div>
+
+        <!-- Étape 2 : Vote en ligne -->
+        <div class="voting-step mb-5">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h2 class="h4 mb-3">Vote en ligne anticipé</h2>
+            <p class="mb-3">
+              Je pourrai voter en ligne de manière anticipée du <strong>22 mai 2026 à 12h00</strong> (heure de Paris)
+              au <strong>27 mai 2026 à 12h00</strong> (heure de Paris).
+            </p>
+            <div class="message-highlight" style="margin-bottom: 0rem;">
+              <p style="font-size: medium;">
+                <strong><i class="fas fa-info-circle me-2"></i></strong>
+                Votre consulat vous communiquera les modalités de vote en ligne.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Étape 3 : Vote à l'urne -->
+        <div class="voting-step mb-5">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h2 class="h4 mb-3">Vote à l'urne</h2>
+            <p class="mb-3">
+              Si je n'ai pas pu voter en ligne ou si je préfère le vote à l'urne,
+              je pourrai me rendre en personne dans les bureaux de vote le <strong>dimanche 31 mai 2026</strong>.
+            </p>
+
+            <div class="message-highlight" style="margin-bottom: 0rem;">
+              <p style="font-size: medium;">
+                <strong><i class="fas fa-map-marker-alt me-2"></i></strong>
+                Nous ne connaissons pas encore les emplacements des bureaux de vote dans les trois pays.
+                Nous les indiquerons ci-dessous dès que l'information sera publique.
+              </p>
+            </div>
+
+            <!-- Bureaux de vote (à remplir plus tard) -->
+            <div class="mt-4">
+              <h3 class="h5 mb-3">Bureaux de vote</h3>
+
+              <div class="accordion" id="votingLocations">
+                <!-- Belgique -->
+                <div class="accordion-item">
+                  <h4 class="accordion-header" id="headingBelgique">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBelgique" aria-expanded="false" aria-controls="collapseBelgique">
+                      🇧🇪 Belgique
+                    </button>
+                  </h4>
+                  <div id="collapseBelgique" class="accordion-collapse collapse" aria-labelledby="headingBelgique" data-bs-parent="#votingLocations">
+                    <div class="accordion-body text-muted">
+                      <em>Informations à venir...</em>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Pays-Bas -->
+                <div class="accordion-item">
+                  <h4 class="accordion-header" id="headingPaysBas">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePaysBas" aria-expanded="false" aria-controls="collapsePaysBas">
+                      🇳🇱 Pays-Bas
+                    </button>
+                  </h4>
+                  <div id="collapsePaysBas" class="accordion-collapse collapse" aria-labelledby="headingPaysBas" data-bs-parent="#votingLocations">
+                    <div class="accordion-body text-muted">
+                      <em>Informations à venir...</em>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Luxembourg -->
+                <div class="accordion-item">
+                  <h4 class="accordion-header" id="headingLuxembourg">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseLuxembourg" aria-expanded="false" aria-controls="collapseLuxembourg">
+                      🇱🇺 Luxembourg
+                    </button>
+                  </h4>
+                  <div id="collapseLuxembourg" class="accordion-collapse collapse" aria-labelledby="headingLuxembourg" data-bs-parent="#votingLocations">
+                    <div class="accordion-body text-muted">
+                      <em>Informations à venir...</em>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Contact -->
+<section class="section-cta">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mx-auto text-center">
+        <h2 class="mb-4">Des questions sur le vote ?</h2>
+        <p class="mb-4">
+          Notre équipe est là pour vous accompagner dans vos démarches électorales.
+        </p>
+        <%= link_to new_contact_path, class: "btn btn-light btn-lg" do %>
+          <i class="fas fa-envelope me-2" aria-hidden="true"></i>
+          Nous contacter
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>
