@@ -1,0 +1,49 @@
+<!-- app/views/admin/articles/_form.html.erb -->
+<%= form_with model: [:admin, @article], local: true do |f| %>
+  <% if @article.errors.any? %>
+    <div class="alert alert-danger">
+      <h4><%= pluralize(@article.errors.count, "erreur") %> :</h4>
+      <ul>
+        <% @article.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-4">
+    <%= f.label :title, "Titre", class: "form-label" %>
+    <%= f.text_field :title, class: "form-control form-control-lg", placeholder: "Titre de l'article" %>
+  </div>
+
+  <div class="mb-4">
+    <%= f.label :content, "Contenu", class: "form-label" %>
+    <%= f.text_area :content, class: "form-control", rows: 20,
+                     placeholder: "Rédigez votre article ici..." %>
+    <small class="form-text text-muted">
+      Vous pouvez utiliser du Markdown pour formater le texte.
+    </small>
+  </div>
+
+  <div class="mb-4">
+    <div class="form-check form-switch">
+      <%= f.check_box :published, class: "form-check-input", role: "switch" %>
+      <%= f.label :published, "Publier l'article", class: "form-check-label" %>
+    </div>
+    <small class="form-text text-muted">
+      Si coché, l'article sera visible sur le site immédiatement.
+    </small>
+  </div>
+
+  <div class="d-flex gap-2">
+    <%= f.submit @article.new_record? ? "Créer l'article" : "Enregistrer", class: "btn btn-primary" %>
+    <%= link_to "Annuler", admin_root_path, class: "btn btn-outline-secondary" %>
+
+    <% unless @article.new_record? %>
+      <%= button_to "Supprimer", admin_article_path(@article),
+                    method: :delete,
+                    class: "btn btn-outline-danger ms-auto",
+                    data: { confirm: "Êtes-vous sûr de vouloir supprimer cet article ?" } %>
+    <% end %>
+  </div>
+<% end %>

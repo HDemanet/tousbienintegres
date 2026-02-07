@@ -2,10 +2,24 @@
 Rails.application.routes.draw do
   # Admin
   devise_for :users
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+
+  # Dashboard admin personnalisé
   namespace :admin do
     root to: 'dashboard#index'
+
+    # Export CSV
+    resources :survey_responses, only: [:destroy] do
+      collection do
+        get :export
+      end
+    end
+
+    # Gestion articles
+    resources :articles, only: [:new, :create, :edit, :update, :destroy]
   end
+
+  # Rails Admin (interface de gestion avancée - optionnel)
+  mount RailsAdmin::Engine => '/admin/rails', as: 'rails_admin'
 
   # Front-office
   root to: 'pages#home'
@@ -22,7 +36,7 @@ Rails.application.routes.draw do
     end
   end
 
-  # Articles (publications de Pierre-Luc)
+  # Articles (page publique "Actualités")
   resources :articles, only: [:index, :show]
 
   # Contact
@@ -37,7 +51,4 @@ Rails.application.routes.draw do
   get 'politique-de-confidentialite', to: 'pages#privacy', as: :privacy
   get 'politique-de-cookies', to: 'pages#cookies', as: :cookies
   get 'declaration-accessibilite', to: 'pages#accessibility', as: :accessibility
-
-  # Révèle les routes en dev
-  # Uncomment to see all routes: rails routes
 end

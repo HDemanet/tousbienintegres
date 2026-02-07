@@ -1,29 +1,29 @@
 # app/controllers/admin/dashboard_controller.rb
-class Admin::DashboardController < ApplicationController
-  before_action :authenticate_user!
-  before_action :check_admin
+module Admin
+  class DashboardController < ApplicationController
+    before_action :authenticate_user!
+    before_action :authorize_admin!
 
-  def index
-    @total_responses = SurveyResponse.count
-    @recent_responses = SurveyResponse.recent.limit(10)
-    @stats_by_city = SurveyResponse.stats_by_city
-    @stats_by_age = SurveyResponse.stats_by_age
-    @stats_by_years = SurveyResponse.stats_by_years_in_belgium
+    def index
+      # Statistiques rapides
+      @total_responses = SurveyResponse.count
+      @electoral_registered = SurveyResponse.where(electoral_registration: 'Oui').count
+      @volunteers_count = SurveyResponse.where("interests LIKE ?", "%Recevoir notre newsletter%").count
 
-    # Statistiques engagement
-    @volunteers_count = SurveyResponse.where("interests LIKE ?", "%newsletter%").count
-    @electoral_registered = SurveyResponse.where(electoral_registration: 'Oui').count
+      # Toutes les réponses avec pagination (30 par page)
+      @all_responses = SurveyResponse.order(created_at: :desc).page(params[:page]).per(30)
 
-    # Articles
-    @published_articles = Article.published.limit(5)
-    @draft_articles = Article.drafts.limit(5)
-  end
+      # Articles
+      @published_articles = Article.published
+      @draft_articles = Article.drafts
+    end
 
-  private
+    private
 
-  def check_admin
-    unless current_user.admin?
-      redirect_to root_path, alert: "Accès non autorisé"
+    def authorize_admin!
+      unless current_user.admin?
+        redirect_to root_path, alert: "Accès refusé"
+      end
     end
   end
 end

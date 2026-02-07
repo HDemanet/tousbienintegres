@@ -181,6 +181,9 @@ GEM
     kaminari-activerecord (1.2.2)
       activerecord
       kaminari-core (= 1.2.2)
+    kaminari-bootstrap (3.0.1)
+      kaminari (>= 0.13.0)
+      rails
     kaminari-core (1.2.2)
     logger (1.7.0)
     loofah (2.25.0)
@@ -375,6 +378,7 @@ DEPENDENCIES
   font-awesome-sass (~> 6.1)
   importmap-rails
   jbuilder
+  kaminari-bootstrap (~> 3.0)
   meta-tags
   pg (~> 1.1)
   puma (>= 5.0)

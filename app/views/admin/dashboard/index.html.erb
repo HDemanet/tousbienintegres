@@ -1,299 +1,458 @@
 <!-- app/views/admin/dashboard/index.html.erb -->
-<% set_meta_tags title: 'Dashboard Admin' %>
+<% set_meta_tags title: 'Administration' %>
 
-<div class="container-fluid py-4">
-  <div class="row mb-4">
-    <div class="col">
-      <h1 class="h3">
-        <i class="fas fa-tachometer-alt me-2" aria-hidden="true"></i>
-        Tableau de bord
-      </h1>
-      <p class="text-muted">Bienvenue <%= current_user.first_name %></p>
-    </div>
-    <div class="col-auto">
-      <%= link_to rails_admin_path, class: 'btn btn-primary' do %>
-        <i class="fas fa-cog me-2" aria-hidden="true"></i>
-        Rails Admin
-      <% end %>
-    </div>
-  </div>
+<div class="admin-simple">
+  <div class="container-fluid py-4">
 
-  <!-- Statistiques principales -->
-  <div class="row g-4 mb-5">
-    <div class="col-md-3">
-      <div class="card border-0 shadow-sm h-100">
-        <div class="card-body text-center">
-          <i class="fas fa-clipboard-list fa-3x mb-3" style="color: #EF5327;" aria-hidden="true"></i>
-          <h2 class="h2 mb-0"><%= @total_responses %></h2>
-          <p class="text-muted mb-0">Réponses totales</p>
+    <!-- Header -->
+    <div class="row mb-4">
+      <div class="col">
+        <h1 class="h3 mb-2">
+          <i class="fas fa-clipboard-list me-2" aria-hidden="true"></i>
+          Administration
+        </h1>
+        <p class="text-muted">Bienvenue <%= current_user.full_name %></p>
+      </div>
+      <div class="col-auto">
+        <%= link_to root_path, class: 'btn btn-outline-secondary' do %>
+          <i class="fas fa-home me-2" aria-hidden="true"></i>
+          Retour au site
+        <% end %>
+        <%= link_to destroy_user_session_path, method: :delete, class: 'btn btn-outline-danger ms-2' do %>
+          <i class="fas fa-sign-out-alt me-2" aria-hidden="true"></i>
+          Déconnexion
+        <% end %>
+      </div>
+    </div>
+
+    <!-- Statistiques rapides -->
+    <div class="row g-3 mb-4">
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body text-center">
+            <h2 class="display-4 mb-0 text-primary"><%= @total_responses %></h2>
+            <p class="text-muted mb-0">Réponses totales</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body text-center">
+            <h2 class="display-4 mb-0 text-success"><%= @electoral_registered %></h2>
+            <p class="text-muted mb-0">Inscrits liste électorale</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body text-center">
+            <h2 class="display-4 mb-0 text-info"><%= @volunteers_count %></h2>
+            <p class="text-muted mb-0">Intéressés newsletter</p>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="col-md-3">
-      <div class="card border-0 shadow-sm h-100">
-        <div class="card-body text-center">
-          <i class="fas fa-user-check fa-3x mb-3" style="color: #018837;" aria-hidden="true"></i>
-          <h2 class="h2 mb-0"><%= @electoral_registered %></h2>
-          <p class="text-muted mb-0">Inscrits liste électorale</p>
-        </div>
-      </div>
-    </div>
+    <!-- Navigation onglets -->
+    <ul class="nav nav-tabs mb-4" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="responses-tab" data-bs-toggle="tab" data-bs-target="#responses" type="button" role="tab">
+          <i class="fas fa-inbox me-2" aria-hidden="true"></i>
+          Réponses (<%= @total_responses %>)
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="articles-tab" data-bs-toggle="tab" data-bs-target="#articles" type="button" role="tab">
+          <i class="fas fa-newspaper me-2" aria-hidden="true"></i>
+          Articles
+        </button>
+      </li>
+    </ul>
 
-    <div class="col-md-3">
-      <div class="card border-0 shadow-sm h-100">
-        <div class="card-body text-center">
-          <i class="fas fa-hands-helping fa-3x mb-3" style="color: #5F8CC7;" aria-hidden="true"></i>
-          <h2 class="h2 mb-0"><%= @volunteers_count %></h2>
-          <p class="text-muted mb-0">Intéressés newsletter</p>
-        </div>
-      </div>
-    </div>
+    <!-- Contenu onglets -->
+    <div class="tab-content">
 
-    <div class="col-md-3">
-      <div class="card border-0 shadow-sm h-100">
-        <div class="card-body text-center">
-          <i class="fas fa-newspaper fa-3x mb-3" style="color: #292929;" aria-hidden="true"></i>
-          <h2 class="h2 mb-0"><%= @published_articles.count %></h2>
-          <p class="text-muted mb-0">Articles publiés</p>
-        </div>
-      </div>
-    </div>
-  </div>
+      <!-- ONGLET RÉPONSES -->
+      <div class="tab-pane fade show active" id="responses" role="tabpanel">
 
-  <!-- Réponses récentes -->
-  <div class="row mb-5">
-    <div class="col-12">
-      <div class="card border-0 shadow-sm">
-        <div class="card-header bg-white d-flex justify-content-between align-items-center">
-          <h2 class="h5 mb-0">
-            <i class="fas fa-clock me-2" aria-hidden="true"></i>
-            Réponses récentes
-          </h2>
-          <%= link_to "Voir toutes", rails_admin.index_path(model_name: 'survey_response'), class: "btn btn-sm btn-outline-primary" %>
-        </div>
-        <div class="card-body p-0">
-          <div class="table-responsive">
-            <table class="table table-hover mb-0">
-              <thead class="table-light">
-                <tr>
-                  <th>Date</th>
-                  <th>Nom</th>
-                  <th>Email</th>
-                  <th>Ville</th>
-                  <th>Âge</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                <% @recent_responses.each do |response| %>
-                  <tr>
-                    <td><%= l(response.created_at, format: :short) %></td>
-                    <td><%= response.first_name %> <%= response.last_name %></td>
-                    <td><%= response.email %></td>
-                    <td><%= response.city %></td>
-                    <td><span class="badge bg-secondary"><%= response.age_range %></span></td>
-                    <td>
-                      <%= link_to rails_admin.show_path(model_name: 'survey_response', id: response.id), class: "btn btn-sm btn-outline-primary" do %>
-                        <i class="fas fa-eye" aria-hidden="true"></i>
-                        Voir
-                      <% end %>
-                    </td>
-                  </tr>
+        <!-- Actions -->
+        <div class="card border-0 shadow-sm mb-3">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <strong><i class="fas fa-filter me-2" aria-hidden="true"></i>Actions</strong>
+              </div>
+              <div>
+                <%= link_to export_admin_survey_responses_path(format: :csv), class: 'btn btn-success' do %>
+                  <i class="fas fa-file-csv me-2" aria-hidden="true"></i>
+                  Exporter en CSV
                 <% end %>
-              </tbody>
-            </table>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- Graphiques statistiques -->
-  <div class="row">
-    <div class="col-md-6 mb-4">
-      <div class="card border-0 shadow-sm">
-        <div class="card-header bg-white">
-          <h2 class="h5 mb-0">
-            <i class="fas fa-map-marker-alt me-2" aria-hidden="true"></i>
-            Répartition par ville (Top 10)
-          </h2>
-        </div>
-        <div class="card-body">
-          <canvas id="cityChart" aria-label="Graphique de répartition par ville" role="img"></canvas>
-        </div>
-      </div>
-    </div>
+        <!-- Tableau réponses -->
+        <div class="card border-0 shadow-sm">
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table class="table table-hover mb-0">
+                <thead class="table-light sticky-top">
+                  <tr>
+                    <th style="width: 50px;">#</th>
+                    <th>Date</th>
+                    <th>Nom</th>
+                    <th>Email</th>
+                    <th>Pays</th>
+                    <th>Ville</th>
+                    <th>Code postal</th>
+                    <th>Âge</th>
+                    <th>Années en Belgique</th>
+                    <th>Inscrit liste électorale</th>
+                    <th>Admin FR</th>
+                    <th>Admin locale</th>
+                    <th>Difficultés</th>
+                    <th>Intérêts</th>
+                    <th>Commentaires</th>
+                    <th style="width: 100px;">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if @all_responses.any? %>
+                    <% @all_responses.each_with_index do |response, index| %>
+                      <tr>
+                        <td class="text-muted"><%= @all_responses.total_count - (@all_responses.current_page - 1) * @all_responses.limit_value - index %></td>
+                        <td class="text-nowrap small">
+                          <%= l(response.created_at, format: :short) %>
+                        </td>
+                        <td class="text-nowrap">
+                          <strong><%= response.first_name %> <%= response.last_name %></strong>
+                          <% if response.gender.present? %>
+                            <br><small class="text-muted"><%= response.gender %></small>
+                          <% end %>
+                        </td>
+                        <td class="small"><%= response.email %></td>
+                        <td>
+                          <% case response.country %>
+                          <% when 'Belgique' %>
+                            <span class="badge bg-dark">🇧🇪 BE</span>
+                          <% when 'Pays-Bas' %>
+                            <span class="badge bg-warning text-dark">🇳🇱 NL</span>
+                          <% when 'Luxembourg' %>
+                            <span class="badge bg-info">🇱🇺 LU</span>
+                          <% end %>
+                        </td>
+                        <td><%= response.city %></td>
+                        <td><%= response.postal_code %></td>
+                        <td><span class="badge bg-secondary"><%= response.age_range %></span></td>
+                        <td class="small"><%= response.years_in_belgium %></td>
+                        <td>
+                          <% if response.electoral_registration == 'Oui' %>
+                            <span class="badge bg-success">✓ Oui</span>
+                          <% elsif response.electoral_registration == 'Non' %>
+                            <span class="badge bg-danger">✗ Non</span>
+                          <% else %>
+                            <span class="badge bg-warning text-dark"><%= response.electoral_registration %></span>
+                          <% end %>
+                        </td>
+                        <td>
+                          <small class="text-nowrap"><%= response.french_admin_rating %></small>
+                        </td>
+                        <td>
+                          <small class="text-nowrap"><%= response.belgian_admin_rating %></small>
+                        </td>
+                        <td>
+                          <% if response.administrative_difficulties.present? %>
+                            <% difficulties = JSON.parse(response.administrative_difficulties) rescue [] %>
+                            <% if difficulties.any? %>
+                              <small><%= difficulties.join(', ') %></small>
+                            <% else %>
+                              <span class="text-muted">-</span>
+                            <% end %>
+                          <% else %>
+                            <span class="text-muted">-</span>
+                          <% end %>
+                        </td>
+                        <td>
+                          <% if response.interests.present? %>
+                            <% interests = JSON.parse(response.interests) rescue [] %>
+                            <% if interests.any? %>
+                              <small><%= interests.join(', ') %></small>
+                            <% else %>
+                              <span class="text-muted">-</span>
+                            <% end %>
+                          <% else %>
+                            <span class="text-muted">-</span>
+                          <% end %>
+                        </td>
+                        <td>
+                          <% if response.comments.present? %>
+                            <button type="button" class="btn btn-sm btn-outline-secondary"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#commentModal<%= response.id %>">
+                              <i class="fas fa-comment" aria-hidden="true"></i>
+                            </button>
 
-    <div class="col-md-6 mb-4">
-      <div class="card border-0 shadow-sm">
-        <div class="card-header bg-white">
-          <h2 class="h5 mb-0">
-            <i class="fas fa-birthday-cake me-2" aria-hidden="true"></i>
-            Répartition par âge
-          </h2>
-        </div>
-        <div class="card-body">
-          <canvas id="ageChart" aria-label="Graphique de répartition par tranche d'âge" role="img"></canvas>
-        </div>
-      </div>
-    </div>
-  </div>
+                            <!-- Modal commentaire -->
+                            <div class="modal fade" id="commentModal<%= response.id %>" tabindex="-1">
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title">Commentaire</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                  </div>
+                                  <div class="modal-body">
+                                    <p><strong><%= response.first_name %> <%= response.last_name %></strong></p>
+                                    <p><%= simple_format(response.comments) %></p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          <% else %>
+                            <span class="text-muted">-</span>
+                          <% end %>
+                        </td>
+                        <td>
+                          <%= link_to '#', class: 'btn btn-sm btn-outline-primary me-1',
+                                      title: 'Détails',
+                                      data: {
+                                        bs_toggle: 'modal',
+                                        bs_target: "#detailModal#{response.id}"
+                                      } do %>
+                            <i class="fas fa-eye" aria-hidden="true"></i>
+                          <% end %>
 
-  <div class="row">
-    <div class="col-md-6 mb-4">
-      <div class="card border-0 shadow-sm">
-        <div class="card-header bg-white">
-          <h2 class="h5 mb-0">
-            <i class="fas fa-calendar-alt me-2" aria-hidden="true"></i>
-            Années de résidence en Belgique
-          </h2>
-        </div>
-        <div class="card-body">
-          <canvas id="yearsChart" aria-label="Graphique des années de résidence" role="img"></canvas>
-        </div>
-      </div>
-    </div>
+                          <%= button_to admin_survey_response_path(response),
+                                        method: :delete,
+                                        class: 'btn btn-sm btn-outline-danger',
+                                        title: 'Supprimer',
+                                        data: {
+                                          turbo_method: :delete,
+                                          turbo_confirm: "Êtes-vous sûr de vouloir supprimer cette réponse ?\n\n#{response.first_name} #{response.last_name}\n#{response.email}"
+                                        },
+                                        form: { style: 'display: inline-block;' } do %>
+                            <i class="fas fa-trash" aria-hidden="true"></i>
+                          <% end %>
 
-    <div class="col-md-6 mb-4">
-      <div class="card border-0 shadow-sm">
-        <div class="card-header bg-white">
-          <h2 class="h5 mb-0">
-            <i class="fas fa-file-alt me-2" aria-hidden="true"></i>
-            Articles récents
-          </h2>
-        </div>
-        <div class="card-body">
-          <% if @published_articles.any? %>
-            <ul class="list-unstyled mb-0">
-              <% @published_articles.each do |article| %>
-                <li class="mb-2">
-                  <i class="fas fa-check-circle text-success me-2" aria-hidden="true"></i>
-                  <%= link_to article.title, rails_admin.show_path(model_name: 'article', id: article.id) %>
-                  <small class="text-muted d-block ms-4">
-                    <%= l(article.published_at, format: :short) %>
-                  </small>
-                </li>
-              <% end %>
-            </ul>
-          <% else %>
-            <p class="text-muted mb-0">Aucun article publié</p>
-          <% end %>
+                          <!-- Modal détails complet -->
+                          <div class="modal fade" id="detailModal<%= response.id %>" tabindex="-1">
+                            <div class="modal-dialog modal-lg">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title">Réponse complète</h5>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                <div class="modal-body">
+                                  <dl class="row">
+                                    <dt class="col-sm-4">Date</dt>
+                                    <dd class="col-sm-8"><%= l(response.created_at, format: :long) %></dd>
 
-          <% if @draft_articles.any? %>
-            <hr>
-            <p class="text-muted small mb-2">Brouillons :</p>
-            <ul class="list-unstyled mb-0">
-              <% @draft_articles.each do |article| %>
-                <li class="mb-2">
-                  <i class="fas fa-edit text-warning me-2" aria-hidden="true"></i>
-                  <%= link_to article.title, rails_admin.edit_path(model_name: 'article', id: article.id) %>
-                </li>
-              <% end %>
-            </ul>
-          <% end %>
+                                    <dt class="col-sm-4">Nom complet</dt>
+                                    <dd class="col-sm-8"><%= response.first_name %> <%= response.last_name %></dd>
 
-          <div class="mt-3">
-            <%= link_to rails_admin.new_path(model_name: 'article'), class: "btn btn-sm btn-primary w-100" do %>
-              <i class="fas fa-plus me-2" aria-hidden="true"></i>
-              Nouvel article
-            <% end %>
+                                    <dt class="col-sm-4">Email</dt>
+                                    <dd class="col-sm-8"><%= response.email %></dd>
+
+                                    <dt class="col-sm-4">Genre</dt>
+                                    <dd class="col-sm-8"><%= response.gender.present? ? response.gender : '-' %></dd>
+
+                                    <dt class="col-sm-4">Pays</dt>
+                                    <dd class="col-sm-8"><%= response.country %></dd>
+
+                                    <dt class="col-sm-4">Ville</dt>
+                                    <dd class="col-sm-8"><%= response.city %></dd>
+
+                                    <dt class="col-sm-4">Code postal</dt>
+                                    <dd class="col-sm-8"><%= response.postal_code %></dd>
+
+                                    <dt class="col-sm-4">Tranche d'âge</dt>
+                                    <dd class="col-sm-8"><%= response.age_range %></dd>
+
+                                    <dt class="col-sm-4">Années en Belgique</dt>
+                                    <dd class="col-sm-8"><%= response.years_in_belgium %></dd>
+
+                                    <dt class="col-sm-4">Statut professionnel</dt>
+                                    <dd class="col-sm-8"><%= response.professional_status.present? ? response.professional_status : '-' %></dd>
+
+                                    <dt class="col-sm-4">Type d'employeur</dt>
+                                    <dd class="col-sm-8"><%= response.employer_type.present? ? response.employer_type : '-' %></dd>
+
+                                    <dt class="col-sm-4">Scolarité enfants</dt>
+                                    <dd class="col-sm-8"><%= response.children_schooling.present? ? response.children_schooling : '-' %></dd>
+
+                                    <dt class="col-sm-4">Admin française</dt>
+                                    <dd class="col-sm-8"><%= response.french_admin_rating %></dd>
+
+                                    <dt class="col-sm-4">Admin locale</dt>
+                                    <dd class="col-sm-8"><%= response.belgian_admin_rating %></dd>
+
+                                    <dt class="col-sm-4">Difficultés admin</dt>
+                                    <dd class="col-sm-8">
+                                      <% difficulties = JSON.parse(response.administrative_difficulties) rescue [] %>
+                                      <%= difficulties.any? ? difficulties.join(', ') : '-' %>
+                                    </dd>
+
+                                    <dt class="col-sm-4">Inscrit liste électorale</dt>
+                                    <dd class="col-sm-8"><%= response.electoral_registration %></dd>
+
+                                    <dt class="col-sm-4">A contacté un élu</dt>
+                                    <dd class="col-sm-8"><%= response.contacted_elected ? 'Oui' : 'Non' %></dd>
+
+                                    <dt class="col-sm-4">Intérêts</dt>
+                                    <dd class="col-sm-8">
+                                      <% interests = JSON.parse(response.interests) rescue [] %>
+                                      <%= interests.any? ? interests.join(', ') : '-' %>
+                                    </dd>
+
+                                    <dt class="col-sm-4">Commentaires</dt>
+                                    <dd class="col-sm-8"><%= response.comments.present? ? simple_format(response.comments) : '-' %></dd>
+                                  </dl>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    <% end %>
+                  <% else %>
+                    <tr>
+                      <td colspan="16" class="text-center text-muted py-5">
+                        <i class="fas fa-inbox fa-3x mb-3 d-block" aria-hidden="true"></i>
+                        Aucune réponse pour le moment
+                      </td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
           </div>
+
+          <!-- Pagination -->
+          <% if @all_responses.any? %>
+            <div class="card-footer bg-white">
+              <%= paginate @all_responses %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <!-- ONGLET ARTICLES -->
+      <div class="tab-pane fade" id="articles" role="tabpanel">
+
+        <!-- Bouton nouvel article -->
+        <div class="mb-4">
+          <%= link_to new_admin_article_path, class: 'btn btn-primary btn-lg' do %>
+            <i class="fas fa-plus me-2" aria-hidden="true"></i>
+            Nouvel article
+          <% end %>
+        </div>
+
+        <!-- Liste articles -->
+        <div class="row">
+          <div class="col-lg-6 mb-4">
+            <div class="card border-0 shadow-sm">
+              <div class="card-header bg-success text-white">
+                <h3 class="h5 mb-0">
+                  <i class="fas fa-check-circle me-2" aria-hidden="true"></i>
+                  Articles publiés (<%= @published_articles.count %>)
+                </h3>
+              </div>
+              <div class="card-body">
+                <% if @published_articles.any? %>
+                  <div class="list-group list-group-flush">
+                    <% @published_articles.each do |article| %>
+                      <div class="list-group-item d-flex justify-content-between align-items-start">
+                        <div class="flex-grow-1">
+                          <h4 class="h6 mb-1"><%= article.title %></h4>
+                          <small class="text-muted">
+                            <i class="fas fa-calendar me-1" aria-hidden="true"></i>
+                            <%= l(article.published_at, format: :short) %>
+                          </small>
+                        </div>
+                        <div>
+                          <%= link_to article_path(article), class: 'btn btn-sm btn-outline-primary me-2', target: '_blank' do %>
+                            <i class="fas fa-eye" aria-hidden="true"></i>
+                          <% end %>
+                          <%= link_to edit_admin_article_path(article), class: 'btn btn-sm btn-outline-secondary' do %>
+                            <i class="fas fa-edit" aria-hidden="true"></i>
+                          <% end %>
+                        </div>
+                      </div>
+                    <% end %>
+                  </div>
+                <% else %>
+                  <p class="text-muted text-center py-4">Aucun article publié</p>
+                <% end %>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6 mb-4">
+            <div class="card border-0 shadow-sm">
+              <div class="card-header bg-warning">
+                <h3 class="h5 mb-0">
+                  <i class="fas fa-edit me-2" aria-hidden="true"></i>
+                  Brouillons (<%= @draft_articles.count %>)
+                </h3>
+              </div>
+              <div class="card-body">
+                <% if @draft_articles.any? %>
+                  <div class="list-group list-group-flush">
+                    <% @draft_articles.each do |article| %>
+                      <div class="list-group-item d-flex justify-content-between align-items-start">
+                        <div class="flex-grow-1">
+                          <h4 class="h6 mb-1"><%= article.title %></h4>
+                          <small class="text-muted">
+                            <i class="fas fa-clock me-1" aria-hidden="true"></i>
+                            Modifié <%= l(article.updated_at, format: :short) %>
+                          </small>
+                        </div>
+                        <div>
+                          <%= link_to edit_admin_article_path(article), class: 'btn btn-sm btn-outline-secondary' do %>
+                            <i class="fas fa-edit" aria-hidden="true"></i>
+                          <% end %>
+                        </div>
+                      </div>
+                    <% end %>
+                  </div>
+                <% else %>
+                  <p class="text-muted text-center py-4">Aucun brouillon</p>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Info articles -->
+        <div class="alert alert-info">
+          <i class="fas fa-info-circle me-2" aria-hidden="true"></i>
+          <strong>Les articles publiés apparaissent sur la page "Actualités" du site.</strong>
+          <br>
+          <small>Vous pouvez créer des brouillons et les publier plus tard.</small>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Chart.js -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-<script>
-  // Couleurs de la charte MoDem
-  const modemColors = {
-    orange: '#EF5327',
-    blue: '#5F8CC7',
-    green: '#018837',
-    black: '#292929',
-    gray: '#6C757D'
-  };
+<style>
+  .admin-simple .table {
+    font-size: 0.9rem;
+  }
 
-  // Graphique villes
-  const cityData = <%= raw @stats_by_city.to_json %>;
-  new Chart(document.getElementById('cityChart'), {
-    type: 'bar',
-    data: {
-      labels: Object.keys(cityData),
-      datasets: [{
-        label: 'Réponses',
-        data: Object.values(cityData),
-        backgroundColor: modemColors.orange,
-        borderColor: modemColors.orange,
-        borderWidth: 1
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: true,
-      plugins: {
-        legend: {
-          display: false
-        }
-      },
-      scales: {
-        y: {
-          beginAtZero: true,
-          ticks: {
-            stepSize: 1
-          }
-        }
-      }
-    }
-  });
+  .admin-simple .table th {
+    background: #f8f9fa;
+    font-weight: 600;
+    white-space: nowrap;
+  }
 
-  // Graphique âge
-  const ageData = <%= raw @stats_by_age.to_json %>;
-  new Chart(document.getElementById('ageChart'), {
-    type: 'pie',
-    data: {
-      labels: Object.keys(ageData),
-      datasets: [{
-        data: Object.values(ageData),
-        backgroundColor: [
-          modemColors.orange,
-          modemColors.blue,
-          modemColors.green,
-          modemColors.black,
-          modemColors.gray,
-          '#FFA500'
-        ]
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: true
-    }
-  });
+  .admin-simple .table td {
+    vertical-align: middle;
+  }
 
-  // Graphique années
-  const yearsData = <%= raw @stats_by_years.to_json %>;
-  new Chart(document.getElementById('yearsChart'), {
-    type: 'doughnut',
-    data: {
-      labels: Object.keys(yearsData),
-      datasets: [{
-        data: Object.values(yearsData),
-        backgroundColor: [
-          modemColors.orange,
-          modemColors.blue,
-          modemColors.green,
-          modemColors.black,
-          modemColors.gray
-        ]
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: true
-    }
-  });
-</script>
+  .sticky-top {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+</style>

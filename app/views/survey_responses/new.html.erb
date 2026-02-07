@@ -40,7 +40,23 @@
           </p>
         </div>
 
-        <%= form_with model: @survey_response, url: survey_responses_path, local: true, html: { class: "needs-validation survey-form", novalidate: true } do |f| %>
+        <!-- Messages d'erreur -->
+        <% if @survey_response.errors.any? %>
+          <div class="alert alert-danger" role="alert" id="error-summary" tabindex="-1">
+            <h2 class="h5 alert-heading">
+              <i class="fas fa-exclamation-triangle me-2" aria-hidden="true"></i>
+              <%= pluralize(@survey_response.errors.count, "erreur") %> à corriger
+            </h2>
+            <ul class="mb-0">
+              <% @survey_response.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <%= form_with model: @survey_response, url: survey_responses_path, local: true,
+                      html: { class: "needs-validation survey-form", novalidate: false, id: "survey-form" } do |f| %>
 
           <!-- INFORMATIONS PERSONNELLES -->
           <div class="mb-5">
@@ -48,21 +64,41 @@
 
             <div class="row g-3">
               <div class="col-md-6">
-                <%= f.label :last_name, "Nom *", class: "form-label" %>
-                <%= f.text_field :last_name, class: "form-control", required: true,
+                <%= f.label :last_name, class: "form-label" do %>
+                  Nom <abbr title="Champ requis" class="text-danger">*</abbr>
+                <% end %>
+                <%= f.text_field :last_name,
+                                 class: "form-control #{@survey_response.errors[:last_name].any? ? 'is-invalid' : ''}",
+                                 required: true,
                                  'aria-required': 'true',
+                                 'aria-describedby': @survey_response.errors[:last_name].any? ? 'last_name_error' : nil,
                                  placeholder: "Dupont" %>
+                <% if @survey_response.errors[:last_name].any? %>
+                  <div class="invalid-feedback" id="last_name_error">
+                    <%= @survey_response.errors[:last_name].first %>
+                  </div>
+                <% end %>
               </div>
 
               <div class="col-md-6">
-                <%= f.label :first_name, "Prénom *", class: "form-label" %>
-                <%= f.text_field :first_name, class: "form-control", required: true,
+                <%= f.label :first_name, class: "form-label" do %>
+                  Prénom <abbr title="Champ requis" class="text-danger">*</abbr>
+                <% end %>
+                <%= f.text_field :first_name,
+                                 class: "form-control #{@survey_response.errors[:first_name].any? ? 'is-invalid' : ''}",
+                                 required: true,
                                  'aria-required': 'true',
+                                 'aria-describedby': @survey_response.errors[:first_name].any? ? 'first_name_error' : nil,
                                  placeholder: "Marie" %>
+                <% if @survey_response.errors[:first_name].any? %>
+                  <div class="invalid-feedback" id="first_name_error">
+                    <%= @survey_response.errors[:first_name].first %>
+                  </div>
+                <% end %>
               </div>
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3" style="margin-top: 1rem;">
               <%= f.label :gender, "Genre", class: "form-label" %>
               <div class="d-flex gap-4">
                 <div class="form-check">
@@ -77,49 +113,95 @@
             </div>
 
             <div class="mb-3">
-              <%= f.label :email, "Email *", class: "form-label" %>
-              <%= f.email_field :email, class: "form-control", required: true,
+              <%= f.label :email, class: "form-label" do %>
+                Email <abbr title="Champ requis" class="text-danger">*</abbr>
+              <% end %>
+              <%= f.email_field :email,
+                                class: "form-control #{@survey_response.errors[:email].any? ? 'is-invalid' : ''}",
+                                required: true,
                                 'aria-required': 'true',
+                                'aria-describedby': @survey_response.errors[:email].any? ? 'email_error email_help' : 'email_help',
                                 placeholder: "votre.email@exemple.com" %>
-              <div class="form-text">Nous ne transmettrons jamais votre email à des tiers</div>
+              <div class="form-text" id="email_help">Nous ne transmettrons jamais votre email à des tiers</div>
+              <% if @survey_response.errors[:email].any? %>
+                <div class="invalid-feedback" id="email_error">
+                  <%= @survey_response.errors[:email].first %>
+                </div>
+              <% end %>
             </div>
 
             <div class="mb-3">
-              <%= f.label :country, "Pays de résidence *", class: "form-label" %>
+              <%= f.label :country, class: "form-label" do %>
+                Pays de résidence <abbr title="Champ requis" class="text-danger">*</abbr>
+              <% end %>
               <%= f.select :country,
-                          options_for_select(SurveyResponse::COUNTRIES),
+                          options_for_select(SurveyResponse::COUNTRIES, @survey_response.country),
                           { include_blank: 'Sélectionnez votre pays' },
-                          { class: "form-select", required: true, 'aria-required': 'true' } %>
+                          { class: "form-select #{@survey_response.errors[:country].any? ? 'is-invalid' : ''}",
+                            required: true,
+                            'aria-required': 'true',
+                            'aria-describedby': @survey_response.errors[:country].any? ? 'country_error' : nil } %>
+              <% if @survey_response.errors[:country].any? %>
+                <div class="invalid-feedback" id="country_error">
+                  <%= @survey_response.errors[:country].first %>
+                </div>
+              <% end %>
             </div>
 
             <div class="row g-3">
               <div class="col-md-4">
-                <%= f.label :postal_code, "Code postal *", class: "form-label" %>
+                <%= f.label :postal_code, class: "form-label" do %>
+                  Code postal <abbr title="Champ requis" class="text-danger">*</abbr>
+                <% end %>
                 <%= f.text_field :postal_code,
-                                class: "form-control",
+                                class: "form-control #{@survey_response.errors[:postal_code].any? ? 'is-invalid' : ''}",
                                 required: true,
                                 'aria-required': 'true',
+                                'aria-describedby': @survey_response.errors[:postal_code].any? ? 'postal_code_error postal_code_help' : 'postal_code_help',
                                 placeholder: "1000",
                                 maxlength: 10 %>
-                <div class="form-text">Lettres et chiffres acceptés</div>
+                <div class="form-text" id="postal_code_help">Lettres et chiffres acceptés</div>
+                <% if @survey_response.errors[:postal_code].any? %>
+                  <div class="invalid-feedback" id="postal_code_error">
+                    <%= @survey_response.errors[:postal_code].first %>
+                  </div>
+                <% end %>
               </div>
 
               <div class="col-md-8">
-                <%= f.label :city, "Commune de résidence *", class: "form-label" %>
+                <%= f.label :city, class: "form-label" do %>
+                  Commune de résidence <abbr title="Champ requis" class="text-danger">*</abbr>
+                <% end %>
                 <%= f.text_field :city,
-                                class: "form-control",
+                                class: "form-control #{@survey_response.errors[:city].any? ? 'is-invalid' : ''}",
                                 required: true,
                                 'aria-required': 'true',
+                                'aria-describedby': @survey_response.errors[:city].any? ? 'city_error' : nil,
                                 placeholder: "Bruxelles" %>
+                <% if @survey_response.errors[:city].any? %>
+                  <div class="invalid-feedback" id="city_error">
+                    <%= @survey_response.errors[:city].first %>
+                  </div>
+                <% end %>
               </div>
             </div>
 
-            <div class="mb-3">
-              <%= f.label :age_range, "Tranche d'âge *", class: "form-label" %>
+            <div class="mb-3" style="margin-top: 1rem;">
+              <%= f.label :age_range, class: "form-label" do %>
+                Tranche d'âge <abbr title="Champ requis" class="text-danger">*</abbr>
+              <% end %>
               <%= f.select :age_range,
-                          options_for_select(SurveyResponse::AGE_RANGES),
+                          options_for_select(SurveyResponse::AGE_RANGES, @survey_response.age_range),
                           { include_blank: 'Sélectionnez votre tranche d\'âge' },
-                          { class: "form-select", required: true, 'aria-required': 'true' } %>
+                          { class: "form-select #{@survey_response.errors[:age_range].any? ? 'is-invalid' : ''}",
+                            required: true,
+                            'aria-required': 'true',
+                            'aria-describedby': @survey_response.errors[:age_range].any? ? 'age_range_error' : nil } %>
+              <% if @survey_response.errors[:age_range].any? %>
+                <div class="invalid-feedback" id="age_range_error">
+                  <%= @survey_response.errors[:age_range].first %>
+                </div>
+              <% end %>
             </div>
           </div>
 
@@ -128,25 +210,35 @@
             <h2 class="h4 mb-4">Situation et ancrage</h2>
 
             <div class="mb-3">
-              <%= f.label :years_in_belgium, "Depuis combien de temps habitez-vous dans ce pays ? *", class: "form-label" %>
+              <%= f.label :years_in_belgium, class: "form-label" do %>
+                Depuis combien de temps habitez-vous dans ce pays ? <abbr title="Champ requis" class="text-danger">*</abbr>
+              <% end %>
               <%= f.select :years_in_belgium,
-                          options_for_select(SurveyResponse::YEARS_IN_BELGIUM),
+                          options_for_select(SurveyResponse::YEARS_IN_BELGIUM, @survey_response.years_in_belgium),
                           { include_blank: 'Sélectionnez' },
-                          { class: "form-select", required: true, 'aria-required': 'true' } %>
+                          { class: "form-select #{@survey_response.errors[:years_in_belgium].any? ? 'is-invalid' : ''}",
+                            required: true,
+                            'aria-required': 'true',
+                            'aria-describedby': @survey_response.errors[:years_in_belgium].any? ? 'years_in_belgium_error' : nil } %>
+              <% if @survey_response.errors[:years_in_belgium].any? %>
+                <div class="invalid-feedback" id="years_in_belgium_error">
+                  <%= @survey_response.errors[:years_in_belgium].first %>
+                </div>
+              <% end %>
             </div>
 
             <div class="mb-3">
               <%= f.label :professional_status, "Situation professionnelle", class: "form-label" %>
               <%= f.select :professional_status,
-                          options_for_select(SurveyResponse::PROFESSIONAL_STATUS),
+                          options_for_select(SurveyResponse::PROFESSIONAL_STATUS, @survey_response.professional_status),
                           { include_blank: 'Sélectionnez' },
                           { class: "form-select", id: "professional_status" } %>
             </div>
 
-            <div class="mb-3" id="employer_type_wrapper" style="display: none;">
+            <div class="mb-3" id="employer_type_wrapper" style="display: <%= @survey_response.professional_status == 'Actif' ? 'block' : 'none' %>;">
               <%= f.label :employer_type, "Si actif, type d'employeur", class: "form-label" %>
               <%= f.select :employer_type,
-                          options_for_select(SurveyResponse::EMPLOYER_TYPES),
+                          options_for_select(SurveyResponse::EMPLOYER_TYPES, @survey_response.employer_type),
                           { include_blank: 'Sélectionnez' },
                           { class: "form-select" } %>
             </div>
@@ -154,7 +246,7 @@
             <div class="mb-3">
               <%= f.label :children_schooling, "Avez-vous des enfants scolarisés ?", class: "form-label" %>
               <%= f.select :children_schooling,
-                          options_for_select(SurveyResponse::CHILDREN_SCHOOLING),
+                          options_for_select(SurveyResponse::CHILDREN_SCHOOLING, @survey_response.children_schooling),
                           { include_blank: 'Sélectionnez' },
                           { class: "form-select" } %>
             </div>
@@ -165,19 +257,39 @@
             <h2 class="h4 mb-4">Relations administratives</h2>
 
             <div class="mb-4">
-              <%= f.label :french_admin_rating, "Comment évaluez-vous votre relation avec l'administration française ? *", class: "form-label" %>
+              <%= f.label :french_admin_rating, class: "form-label" do %>
+                Comment évaluez-vous votre relation avec l'administration française ? <abbr title="Champ requis" class="text-danger">*</abbr>
+              <% end %>
               <%= f.select :french_admin_rating,
-                          options_for_select(SurveyResponse::ADMIN_RATINGS),
+                          options_for_select(SurveyResponse::ADMIN_RATINGS, @survey_response.french_admin_rating),
                           { include_blank: 'Sélectionnez' },
-                          { class: "form-select", required: true, 'aria-required': 'true' } %>
+                          { class: "form-select #{@survey_response.errors[:french_admin_rating].any? ? 'is-invalid' : ''}",
+                            required: true,
+                            'aria-required': 'true',
+                            'aria-describedby': @survey_response.errors[:french_admin_rating].any? ? 'french_admin_rating_error' : nil } %>
+              <% if @survey_response.errors[:french_admin_rating].any? %>
+                <div class="invalid-feedback" id="french_admin_rating_error">
+                  <%= @survey_response.errors[:french_admin_rating].first %>
+                </div>
+              <% end %>
             </div>
 
             <div class="mb-4">
-              <%= f.label :belgian_admin_rating, "Comment évaluez-vous votre relation avec l'administration belge ? *", class: "form-label" %>
+              <%= f.label :belgian_admin_rating, class: "form-label" do %>
+                Comment évaluez-vous votre relation avec l'administration locale ? <abbr title="Champ requis" class="text-danger">*</abbr>
+              <% end %>
               <%= f.select :belgian_admin_rating,
-                          options_for_select(SurveyResponse::ADMIN_RATINGS),
+                          options_for_select(SurveyResponse::ADMIN_RATINGS, @survey_response.belgian_admin_rating),
                           { include_blank: 'Sélectionnez' },
-                          { class: "form-select", required: true, 'aria-required': 'true' } %>
+                          { class: "form-select #{@survey_response.errors[:belgian_admin_rating].any? ? 'is-invalid' : ''}",
+                            required: true,
+                            'aria-required': 'true',
+                            'aria-describedby': @survey_response.errors[:belgian_admin_rating].any? ? 'belgian_admin_rating_error' : nil } %>
+              <% if @survey_response.errors[:belgian_admin_rating].any? %>
+                <div class="invalid-feedback" id="belgian_admin_rating_error">
+                  <%= @survey_response.errors[:belgian_admin_rating].first %>
+                </div>
+              <% end %>
             </div>
 
             <div class="mb-4">
@@ -187,7 +299,7 @@
                 <div class="form-check">
                   <%= check_box_tag "survey_response[administrative_difficulties][]",
                                    option,
-                                   false,
+                                   @survey_response.administrative_difficulties&.include?(option),
                                    class: "form-check-input",
                                    id: "admin_diff_#{index}" %>
                   <label class="form-check-label" for="admin_diff_<%= index %>">
@@ -203,22 +315,32 @@
             <h2 class="h4 mb-4">Engagement consulaire</h2>
 
             <div class="mb-3">
-              <%= f.label :electoral_registration, "Êtes-vous inscrit sur la liste électorale consulaire ? *", class: "form-label" %>
+              <%= f.label :electoral_registration, class: "form-label" do %>
+                Êtes-vous inscrit sur la liste électorale consulaire ? <abbr title="Champ requis" class="text-danger">*</abbr>
+              <% end %>
               <%= f.select :electoral_registration,
-                          options_for_select(SurveyResponse::ELECTORAL_REGISTRATION_OPTIONS),
+                          options_for_select(SurveyResponse::ELECTORAL_REGISTRATION_OPTIONS, @survey_response.electoral_registration),
                           { include_blank: 'Sélectionnez' },
-                          { class: "form-select", required: true, 'aria-required': 'true' } %>
+                          { class: "form-select #{@survey_response.errors[:electoral_registration].any? ? 'is-invalid' : ''}",
+                            required: true,
+                            'aria-required': 'true',
+                            'aria-describedby': @survey_response.errors[:electoral_registration].any? ? 'electoral_registration_error' : nil } %>
+              <% if @survey_response.errors[:electoral_registration].any? %>
+                <div class="invalid-feedback" id="electoral_registration_error">
+                  <%= @survey_response.errors[:electoral_registration].first %>
+                </div>
+              <% end %>
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3" style="margin-top: 1rem;">
               <%= f.label :contacted_elected, "Avez-vous déjà fait appel à un élu consulaire ?", class: "form-label" %>
               <div class="d-flex gap-4">
                 <div class="form-check">
-                  <%= f.radio_button :contacted_elected, true, class: "form-check-input", id: "contacted_yes", checked: false %>
+                  <%= f.radio_button :contacted_elected, true, class: "form-check-input", id: "contacted_yes", checked: @survey_response.contacted_elected == true %>
                   <label class="form-check-label" for="contacted_yes">Oui</label>
                 </div>
                 <div class="form-check">
-                  <%= f.radio_button :contacted_elected, false, class: "form-check-input", id: "contacted_no", checked: false %>
+                  <%= f.radio_button :contacted_elected, false, class: "form-check-input", id: "contacted_no", checked: @survey_response.contacted_elected == false %>
                   <label class="form-check-label" for="contacted_no">Non</label>
                 </div>
               </div>
@@ -231,7 +353,7 @@
                 <div class="form-check">
                   <%= check_box_tag "survey_response[interests][]",
                                    option,
-                                   false,
+                                   @survey_response.interests&.include?(option),
                                    class: "form-check-input",
                                    id: "interest_#{index}" %>
                   <label class="form-check-label" for="interest_<%= index %>">
@@ -261,13 +383,22 @@
             <h2 class="h4 mb-4">Consentement</h2>
 
             <div class="form-check">
-              <%= f.check_box :consent, class: "form-check-input", required: true,
-                              'aria-required': 'true', id: "survey_consent" %>
+              <%= f.check_box :consent,
+                              class: "form-check-input #{@survey_response.errors[:consent].any? ? 'is-invalid' : ''}",
+                              required: true,
+                              'aria-required': 'true',
+                              'aria-describedby': @survey_response.errors[:consent].any? ? 'consent_error' : nil,
+                              id: "survey_consent" %>
               <%= f.label :consent, class: "form-check-label", for: "survey_consent" do %>
                 J'accepte que « La liste MoDem » utilise mes données dans le cadre de sa campagne électorale.
                 Mes données ne seront pas transmises à des tiers et je peux demander leur suppression à tout moment
                 en contactant <%= mail_to "contact@tous-bien-integres.be", "contact@tous-bien-integres.be" %>.
-                J'ai lu et j'accepte la <%= link_to "politique de confidentialité", privacy_path, target: "_blank" %>. *
+                J'ai lu et j'accepte la <%= link_to "politique de confidentialité", privacy_path, target: "_blank" %>. <abbr title="Champ requis" class="text-danger">*</abbr>
+              <% end %>
+              <% if @survey_response.errors[:consent].any? %>
+                <div class="invalid-feedback" id="consent_error">
+                  <%= @survey_response.errors[:consent].first %>
+                </div>
               <% end %>
             </div>
           </div>
@@ -279,7 +410,7 @@
           </div>
 
           <p class="mt-4 text-muted small">
-            * Champs obligatoires
+            <abbr title="Champ requis" class="text-danger">*</abbr> Champs obligatoires
           </p>
 
         <% end %>
@@ -289,7 +420,7 @@
   </div>
 </section>
 
-<!-- JavaScript pour affichage conditionnel -->
+<!-- JavaScript pour validation et affichage conditionnel -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   // Afficher/masquer type d'employeur
@@ -300,6 +431,13 @@ document.addEventListener('DOMContentLoaded', function() {
     professionalStatus.addEventListener('change', function() {
       employerTypeWrapper.style.display = this.value === 'Actif' ? 'block' : 'none';
     });
+  }
+
+  // Scroll vers les erreurs si présentes
+  const errorSummary = document.getElementById('error-summary');
+  if (errorSummary) {
+    errorSummary.focus();
+    errorSummary.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 });
 </script>

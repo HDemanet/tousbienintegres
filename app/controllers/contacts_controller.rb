@@ -3,27 +3,39 @@ class ContactsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:new, :create, :thank_you]
 
   def new
-    # Formulaire de contact
+    @contact = Contact.new
   end
 
   def create
-    # On gérera l'envoi d'email plus tard
-    # Pour l'instant, on redirige juste vers thank_you
+    Rails.logger.info "SMTP settings: #{ActionMailer::Base.smtp_settings.inspect}"
+    Rails.logger.info "Deliveries: #{ActionMailer::Base.deliveries.inspect}" if Rails.env.development?
 
-    @name = params[:name]
-    @email = params[:email]
-    @message = params[:message]
+    @contact = Contact.new(contact_params)
+    Rails.logger.info "Tentative d'envoi d'email à partir de #{@contact.email}"
 
-    if @name.present? && @email.present? && @message.present?
-      # TODO: Envoyer un email
-      redirect_to thank_you_contacts_path
+    if @contact.valid?
+      begin
+        ContactMailer.send_contact(@contact).deliver_now
+        Rails.logger.info "Email envoyé avec succès"
+        redirect_to thank_you_contacts_path, notice: "Votre message a été envoyé avec succès."
+      rescue => e
+        Rails.logger.error "Erreur lors de l'envoi de l'email: #{e.message}"
+        Rails.logger.error e.backtrace.join("\n")
+        flash.now[:alert] = "Une erreur s'est produite lors de l'envoi. Veuillez réessayer plus tard."
+        render :new, status: :unprocessable_entity
+      end
     else
-      flash.now[:alert] = "Veuillez remplir tous les champs"
+      Rails.logger.info "Validation échouée: #{@contact.errors.full_messages.join(', ')}"
       render :new, status: :unprocessable_entity
     end
   end
 
   def thank_you
-    # Page de remerciement
+  end
+
+  private
+
+  def contact_params
+    params.require(:contact).permit(:name, :email, :subject, :message, :consent)
   end
 end

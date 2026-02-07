@@ -1,0 +1,51 @@
+<%# app/views/admin/survey_responses/export.csv.erb %>
+<%= CSV.generate(headers: true, col_sep: ',', force_quotes: true, encoding: 'UTF-8') do |csv| -%>
+  <%= csv << [
+    'ID',
+    'Date',
+    'Prénom',
+    'Nom',
+    'Email',
+    'Genre',
+    'Pays',
+    'Ville',
+    'Code postal',
+    'Âge',
+    'Années en Belgique',
+    'Statut professionnel',
+    'Type employeur',
+    'Scolarité enfants',
+    'Admin française',
+    'Admin locale',
+    'Difficultés administratives',
+    'Inscrit liste électorale',
+    'A contacté un élu',
+    'Intérêts',
+    'Commentaires'
+  ] -%>
+  <% @responses.each do |r| -%>
+    <%= csv << [
+      r.id,
+      l(r.created_at, format: :short),
+      r.first_name,
+      r.last_name,
+      r.email,
+      r.gender || '',
+      r.country || '',
+      r.city || '',
+      r.postal_code || '',
+      r.age_range || '',
+      r.years_in_belgium || '',
+      r.professional_status || '',
+      r.employer_type || '',
+      r.children_schooling || '',
+      r.french_admin_rating || '',
+      r.belgian_admin_rating || '',
+      (JSON.parse(r.administrative_difficulties) rescue []).join(', '),
+      r.electoral_registration || '',
+      r.contacted_elected ? 'Oui' : 'Non',
+      (JSON.parse(r.interests) rescue []).join(', '),
+      r.comments || ''
+    ] -%>
+  <% end -%>
+<% end -%>

@@ -63,3 +63,5 @@ end
 group :development do
   gem "web-console"
 end
+
+gem "kaminari-bootstrap", "~> 3.0"

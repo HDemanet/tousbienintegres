@@ -102,4 +102,57 @@ class SurveyResponse < ApplicationRecord
   def self.stats_by_years_in_belgium
     group(:years_in_belgium).count
   end
+
+  def self.stats_by_country
+    group(:country).count
+  end
+
+  def self.stats_by_french_admin
+    group(:french_admin_rating).count
+  end
+
+  def self.stats_by_belgian_admin
+    group(:belgian_admin_rating).count
+  end
+
+  # Agrégation des difficultés administratives
+  def self.aggregate_difficulties
+    difficulties = Hash.new(0)
+
+    where.not(administrative_difficulties: [nil, '', '[]']).find_each do |response|
+      begin
+        parsed = JSON.parse(response.administrative_difficulties)
+        parsed.each { |d| difficulties[d] += 1 } if parsed.is_a?(Array)
+      rescue JSON::ParserError
+        # Ignore les erreurs de parsing
+      end
+    end
+
+    difficulties.sort_by { |_k, v| -v }.to_h
+  end
+
+  # Évolution sur 30 jours
+  def self.responses_last_30_days
+    start_date = 30.days.ago.to_date
+    end_date = Date.today
+
+    # Compter les réponses par jour
+    daily_counts = where(created_at: start_date.beginning_of_day..end_date.end_of_day)
+                    .group("DATE(created_at)")
+                    .count
+
+    # Créer un hash avec tous les jours (même ceux sans réponse)
+    (start_date..end_date).each_with_object({}) do |date, hash|
+      hash[date.strftime('%d/%m')] = daily_counts[date] || 0
+    end
+  end
+
+  # Statistiques globales
+  def self.total_registered
+    where(electoral_registration: 'Oui').count
+  end
+
+  def self.interested_in_newsletter
+    where("interests LIKE ?", "%Recevoir notre newsletter%").count
+  end
 end

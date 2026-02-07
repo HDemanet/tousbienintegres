@@ -1,0 +1,61 @@
+/* app/assets/stylesheets/admin_dashboard.scss */
+
+.admin-dashboard {
+  background: #f8f9fa;
+  min-height: 100vh;
+
+  .card {
+    transition: all 0.3s cubic-bezier(0.57, 0.21, 0.69, 1);
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1) !important;
+    }
+  }
+
+  .stat-card {
+    .stat-icon {
+      transition: transform 0.3s cubic-bezier(0.57, 0.21, 0.69, 1);
+    }
+
+    &:hover .stat-icon {
+      transform: scale(1.1);
+    }
+  }
+
+  .table {
+    tr {
+      transition: background-color 0.2s ease;
+    }
+
+    tbody tr:hover {
+      background-color: rgba(239, 83, 39, 0.05);
+    }
+  }
+
+  .btn {
+    transition: all 0.3s cubic-bezier(0.57, 0.21, 0.69, 1);
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .card,
+    .stat-card .stat-icon,
+    .btn {
+      transition: none;
+    }
+
+    .card:hover,
+    .btn:hover {
+      transform: none;
+    }
+
+    .stat-card:hover .stat-icon {
+      transform: none;
+    }
+  }
+}
