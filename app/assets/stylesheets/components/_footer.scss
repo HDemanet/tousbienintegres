@@ -58,6 +58,11 @@
     width: 131px;
   }
 
+  &--mdfe {
+    width: 131px;
+    max-height: 50px;
+  }
+
   &--jeunes {
     width: 127px;
   }
@@ -73,6 +78,10 @@
     &--modem {
       width: 100px;
     }
+
+    &--mdfe {
+    width: 100px;
+  }
 
     &--jeunes {
       width: 95px;
