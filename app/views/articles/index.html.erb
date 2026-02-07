@@ -2,14 +2,21 @@
 <% set_meta_tags title: 'Actualités',
                   description: 'Suivez l\'actualité de notre campagne et les publications de Pierre-Luc Vervandier.' %>
 
-<section class="page-header-simple">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-8 mx-auto text-center">
-        <h1>Nos actualités</h1>
-        <p class="lead mb-0">
-          Suivez notre campagne et les réflexions de Pierre-Luc
-        </p>
+<section class="hero-photo" style="padding: 0rem;">
+  <div class="hero-photo__image">
+    <%= image_tag "home/luxembourg.jpg",
+                  alt: "Équipe Tous bien intégrés au Benelux",
+                  class: "w-100" %>
+  </div>
+  <div class="hero-photo__content">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8">
+          <h1>Nos actualités</h1>
+          <p class="lead">
+            Suivez notre campagne
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -25,11 +32,6 @@
             <% @articles.each do |article| %>
               <div class="col-md-6 col-lg-4">
                 <article class="card h-100 border-0 shadow-sm">
-                  <% if article.image.attached? %>
-                    <%= link_to article_path(article) do %>
-                      <%= image_tag article.image, alt: article.title, class: "card-img-top", style: "height: 200px; object-fit: cover;" %>
-                    <% end %>
-                  <% end %>
 
                   <div class="card-body">
                     <% if article.published_at %>

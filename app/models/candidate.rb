@@ -1,5 +1,4 @@
 class Candidate < ApplicationRecord
-  has_one_attached :photo
 
   enum country: {
     belgique: 0,
@@ -9,9 +8,14 @@ class Candidate < ApplicationRecord
 
   validates :name, presence: true
   validates :country, presence: true
+  validates :photo_path, presence: true
 
   scope :ordered, -> { order(position: :asc, created_at: :asc) }
   scope :featured_first, -> { order(featured: :desc, position: :asc) }
+
+  def photo_url
+    photo_path.present? ? photo_path : "team/placeholder.jpg"
+  end
 
   def country_flag
     case country

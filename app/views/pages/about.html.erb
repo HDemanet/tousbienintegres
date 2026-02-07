@@ -277,8 +277,8 @@
               <div class="card h-100 shadow-sm border-0">
                 <div class="card-body p-4 text-center">
                   <!-- Photo -->
-                  <% if candidate.photo.attached? %>
-                    <%= image_tag candidate.photo,
+                  <% if candidate.photo_url.present? %>
+                    <%= image_tag candidate.photo_url,
                                   alt: candidate.name,
                                   class: "candidate-photo mb-3" %>
                   <% else %>
