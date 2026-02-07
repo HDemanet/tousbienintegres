@@ -1,30 +1,130 @@
 // app/assets/stylesheets/components/_footer.scss
 
-// === FOOTER ===
-
-footer[role="contentinfo"] {
-  background-color: $gray-100;
+.footer {
+  background-color: $white;
   border-top: 3px solid $modem-orange;
-  margin-top: auto; // Sticky footer
+  padding: 2rem 0 1.5rem;
+  margin-top: auto;
 
-  h2, h3 {
-    color: $modem-black;
-    font-size: $h5-font-size;
-    font-weight: $font-weight-bold;
-    margin-bottom: 1rem;
+  @media (max-width: 768px) {
+    padding: 2rem 0 1rem;
+  }
+}
+
+.footer-logos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+
+  @media (max-width: 768px) {
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.footer-logos-row {
+  display: flex;
+  gap: 7rem;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  @media (max-width: 768px) {
+    gap: 1rem;
+  }
+}
+
+.footer-logo-link {
+  display: block;
+  transition: $transition-base;
+
+  &:hover {
+    opacity: 0.7;
+    transform: translateY(-2px);
   }
 
-  p {
-    color: $gray-600;
-    font-size: $font-size-sm;
-    line-height: 1.6;
+  &:focus-visible {
+    outline: $focus-ring-width solid $focus-ring-color;
+    outline-offset: 4px;
+  }
+}
+
+.footer-logo {
+  height: auto;
+  max-height: 50px;
+
+  &--modem {
+    width: 131px;
+  }
+
+  &--jeunes {
+    width: 127px;
+  }
+
+  &--pde {
+    width: 140px;
+    max-height: 30px;
+  }
+
+  @media (max-width: 768px) {
+    max-height: 40px;
+
+    &--modem {
+      width: 100px;
+    }
+
+    &--jeunes {
+      width: 95px;
+    }
+
+    &--pde {
+      width: 110px;
+    }
+  }
+}
+
+.footer-separator {
+  height: 1px;
+  background: $gray-300;
+  margin: 1rem 0;
+
+  @media (max-width: 768px) {
+    margin: 0.5rem 0;
+  }
+}
+
+.footer-heading {
+  font-size: 1rem;
+  font-weight: $font-weight-bold;
+  color: $modem-black;
+  margin-bottom: 1rem;
+
+  @media (max-width: 768px) {
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
+  }
+}
+
+.footer-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    margin-bottom: 0.5rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 
   a {
     color: $gray-700;
     text-decoration: none;
+    font-size: 0.9rem;
     transition: $transition-base;
-    font-size: $font-size-sm;
+    display: inline-block;
 
     &:hover,
     &:focus {
@@ -32,34 +132,27 @@ footer[role="contentinfo"] {
       text-decoration: underline;
     }
 
-    // Focus accessible
     &:focus-visible {
       outline: $focus-ring-width solid $focus-ring-color;
       outline-offset: 2px;
     }
   }
+}
 
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+.footer-copyright {
+  text-align: center;
+  font-size: $font-size-sm;
+  color: $gray-600;
+  margin: 0;
+  padding-top: 1rem;
+  border-top: 1px solid $gray-200;
 
-    li {
-      margin-bottom: 0.5rem;
-
-      &:last-child {
-        margin-bottom: 0;
-      }
-    }
-  }
-
-  // Copyright
-  .text-center.small {
-    color: $gray-600;
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
+    padding-top: 0.5rem;
   }
 }
 
-// Sticky footer
 html, body {
   height: 100%;
 }
@@ -73,13 +166,18 @@ main[role="main"] {
   flex: 1 0 auto;
 }
 
-footer[role="contentinfo"] {
+.footer {
   flex-shrink: 0;
 }
 
-// Respect prefers-reduced-motion
 @media (prefers-reduced-motion: reduce) {
-  footer a {
+  .footer-logo-link:hover,
+  .footer-social-link:hover {
+    transform: none;
+  }
+
+  .footer-menu a,
+  .footer-social-link {
     transition: none;
   }
 }

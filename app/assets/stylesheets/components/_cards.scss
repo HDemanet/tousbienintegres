@@ -239,3 +239,104 @@
     }
   }
 }
+
+
+// FIX 1: Carte pilier responsive (éviter débordement texte)
+.card-pillar {
+  h3 {
+    // Ajuster taille sur tablette
+    @media (max-width: 992px) {
+      font-size: 1.25rem;
+      line-height: 1.3;
+    }
+
+    // Ajuster taille sur mobile
+    @media (max-width: 576px) {
+      font-size: 1.125rem;
+      line-height: 1.3;
+    }
+  }
+
+  p {
+    // Réduire légèrement sur mobile
+    @media (max-width: 576px) {
+      font-size: 0.9rem;
+    }
+  }
+
+  // Réduire padding sur tablette/mobile
+  @media (max-width: 992px) {
+    padding: 2rem 1.5rem;
+  }
+
+  @media (max-width: 576px) {
+    padding: 1.5rem 1rem;
+  }
+
+  // Réduire icône sur mobile
+  .pillar-icon {
+    @media (max-width: 576px) {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 1rem;
+
+      i, svg {
+        font-size: 1.5rem;
+      }
+    }
+  }
+}
+
+// FIX 2: Images propositions - hauteur uniforme et taille réduite
+.proposition-photo {
+  img {
+    width: 100%;
+    height: 280px; // Hauteur fixe uniforme (réduite de ~350px)
+    object-fit: cover; // Coupe l'image proprement
+    object-position: center; // Centre l'image
+    border-radius: $border-radius-lg;
+    box-shadow: 0 2px 8px rgba($modem-black, 0.08); // Ombre plus discrète
+
+    @media (max-width: 768px) {
+      height: 220px; // Encore plus petit sur mobile
+    }
+  }
+
+  .caption {
+    margin-top: 0.5rem;
+    font-size: $font-size-sm;
+    color: $gray-600;
+    font-style: italic;
+    text-align: center;
+  }
+}
+
+// FIX 3: Images dans sections alternées (photo + texte)
+.row.align-items-center {
+  img.img-fluid {
+    width: 100%;
+    height: 280px; // Même hauteur que les autres
+    object-fit: cover;
+    object-position: center;
+
+    @media (max-width: 768px) {
+      height: 220px;
+    }
+  }
+}
+
+// FIX 4: Section mobilité avec 2 photos - hauteur uniforme
+.row.g-4 {
+  .col-md-6 {
+    img.img-fluid {
+      width: 100%;
+      height: 280px; // Même hauteur
+      object-fit: cover;
+      object-position: center;
+
+      @media (max-width: 768px) {
+        height: 220px;
+      }
+    }
+  }
+}

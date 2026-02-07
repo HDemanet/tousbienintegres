@@ -6,7 +6,7 @@
 <section class="hero-photo" style="padding: 0rem;">
   <div class="hero-photo__image">
     <%= image_tag "proposals/lycee-vauban.jpg",
-                  alt: "Bâtiment Jean Monnet, Plateau du Kirchberg, Luxembourg",
+                  alt: "Lycée Vauban, Luxembourg",
                   class: "w-100" %>
   </div>
   <div class="hero-photo__content">
@@ -47,7 +47,7 @@
 
         <div class="text-center mb-5">
           <h2 class="mb-3">Nos propositions</h2>
-          <p class="text-muted">
+          <p>
             Nos propositions vous seront dévoilées dans les semaines à venir
           </p>
         </div>
@@ -91,21 +91,51 @@
           </div>
         </div>
 
-        <!-- Photo mobilité + texte -->
+        <!-- Photo vie étudiante + texte -->
         <div class="row align-items-center mb-5">
-          <div class="col-md-6 mb-4 mb-md-0">
-            <%= image_tag "proposals/rotterdam.jpg",
-                          alt: "Gare centrale de Rotterdam",
+          <div class="col-md-6 order-md-2 mb-4 mb-md-0">
+            <%= image_tag "proposals/vie-etudiante.jpg",
+                          alt: "Étudiants au Benelux",
                           class: "img-fluid rounded shadow" %>
             <p class="text-muted small text-center mt-2">
-              Gare centrale de Rotterdam
+              La vie étudiante, Louvain-la-Neuve, Belgique
             </p>
           </div>
-          <div class="col-md-6">
-            <h3 class="h4 mb-3">La mobilité transfrontalière</h3>
+          <div class="col-md-6 order-md-1">
+            <h3 class="h4 mb-3">La vie étudiante</h3>
             <p>
-              Faciliter les transports (trains, bus) vers la France et améliorer les liaisons transfrontalières.
+              Vous êtes de plus en plus nombreux à venir faire une partie de vos études dans l'un des trois pays.
             </p>
+          </div>
+        </div>
+
+        <!-- Mobilité transfrontalière - 2 photos -->
+        <div class="mb-5">
+          <h3 class="h4 mb-4 text-start text-sm-center">La mobilité transfrontalière</h3>
+          <p class="text-start text-sm-center mb-4">
+            Du quotidien et de longue distance
+          </p>
+
+          <div class="row g-4">
+            <!-- Photo Rotterdam -->
+            <div class="col-md-6">
+              <%= image_tag "proposals/rotterdam.jpg",
+                            alt: "Gare centrale de Rotterdam",
+                            class: "img-fluid rounded shadow" %>
+              <p class="text-muted small text-center mt-2">
+                Gare centrale de Rotterdam
+              </p>
+            </div>
+
+            <!-- Photo train Hauts-de-France -->
+            <div class="col-md-6">
+              <%= image_tag "proposals/train-hauts-de-france.jpg",
+                            alt: "Train Hauts-de-France",
+                            class: "img-fluid rounded shadow" %>
+              <p class="text-muted small text-center mt-2">
+                Train Hauts-de-France vers le Benelux
+              </p>
+            </div>
           </div>
         </div>
 
@@ -150,7 +180,7 @@
 
         <!-- Photo éducation + texte -->
         <div class="row align-items-center mb-5">
-          <div class="col-md-6 order-md-2 mb-4 mb-md-0">
+          <div class="col-md-6 mb-4 mb-md-0">
             <%= image_tag "proposals/jean-monet.jpg",
                           alt: "Lycée Jean Monet à Bruxelles",
                           class: "img-fluid rounded shadow" %>
@@ -158,7 +188,7 @@
               Lycée Jean Monnet, Bruxelles
             </p>
           </div>
-          <div class="col-md-6 order-md-1">
+          <div class="col-md-6">
             <h3 class="h4 mb-3">L'éducation française au cœur du Benelux</h3>
             <p>
               Nos établissements d'enseignement français sont des piliers essentiels de notre communauté.
@@ -169,7 +199,7 @@
 
         <!-- Retour en France avec photo -->
         <div class="row align-items-center mb-5">
-          <div class="col-md-6 mb-4 mb-md-0">
+          <div class="col-md-6 order-md-2 mb-4 mb-md-0">
             <%= image_tag "proposals/panneau.jpg",
                           alt: "Frontière franco-belge",
                           class: "img-fluid rounded shadow" %>
@@ -177,7 +207,7 @@
               Frontière franco-belge
             </p>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-6 order-md-1">
             <h3 class="h4 mb-3">Le retour en France</h3>
             <p class="mb-3">
               <strong>Pour une réintégration bien réussie !</strong>
@@ -260,13 +290,14 @@
         <div class="mb-4">
           <h3 class="h5 mb-2" style="color: #EF5327;">Le mandat de membre de l'Assemblée des Français de l'étranger (AFE)</h3>
           <p class="text-muted mb-2">
-            Les membres de l'AFE sont élus peu de temps après les élections des conseillers et
+            Les membres de l'<%= link_to "AFE", "https://www.assemblee-afe.fr/", target: "_blank", rel: "noopener" %> sont élus peu de temps après les élections des conseillers et
             délégués. Seuls les conseillers prennent part au vote. Les pays du Benelux disposent
             ensemble de 7 sièges à l'AFE sur un total de 90.
           </p>
           <p class="text-muted">
             L'AFE est une instance consultative qui produit des rapports, avis, propositions à
             destination du Gouvernement et du Parlement.
+            Vous pouvez les découvrir <%= link_to "ici", "https://www.assemblee-afe.fr/travaux-de-lassemblee/travaux-des-commissions/", target: "_blank", rel: "noopener" %>.
           </p>
         </div>
 
@@ -274,7 +305,7 @@
         <div class="mb-4">
           <h3 class="h5 mb-2" style="color: #EF5327;">Le mandat de sénateur des Français de l'étranger</h3>
           <p class="text-muted mb-2">
-            Le Sénat est composé de 348 sénateurs. Parmi eux, 12 représentent les Français hors
+            Le <%= link_to "Sénat", "https://www.senat.fr/", target: "_blank", rel: "noopener" %> est composé de 348 sénateurs. Parmi eux, 12 représentent les Français hors
             de France. Ils sont élus par les conseillers des Français de l'étranger et par les
             délégués consulaires. Le mandat est d'une durée de 6 ans.
           </p>
@@ -295,7 +326,7 @@
             du Benelux forment ensemble une seule circonscription.
           </p>
           <p class="text-muted">
-            Les 577 députés siègent à l'Assemblée nationale, la chambre basse du Parlement français.
+            Les 577 députés siègent à l'<%= link_to "Assemblée nationale", "https://www.assemblee-nationale.fr/", target: "_blank", rel: "noopener" %>, la chambre basse du Parlement français.
             L'Assemblée nationale vote la loi, le budget, peut voter la modification de la
             Constitution. Le Gouvernement est responsable devant l'Assemblée nationale.
           </p>

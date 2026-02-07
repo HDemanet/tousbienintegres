@@ -1,43 +1,64 @@
 <!-- app/views/shared/_footer.html.erb -->
-<footer class="bg-light py-4" role="contentinfo">
+<footer class="footer" role="contentinfo">
   <div class="container">
     <div class="row">
-      <div class="col-md-4 mb-3">
-        <h2 class="h5">Tous bien intégrés</h2>
-        <p class="small text-muted">
-          Listes du Mouvement démocrate<br>
-          Élections consulaires 2026<br>
-          Français du Benelux
+      <div class="col-lg-10 mx-auto">
+
+        <div class="footer-logos">
+          <div class="footer-logos-row">
+            <%= link_to "https://www.mouvementdemocrate.fr", target: "_blank", rel: "noopener", class: "footer-logo-link" do %>
+              <%= image_tag "logos/modem.svg", alt: "Mouvement démocrate", class: "footer-logo footer-logo--modem" %>
+            <% end %>
+            <%= link_to "https://www.mouvementdemocrate.fr/federations/modem-mdfe-5142", target: "_blank", rel: "noopener", class: "footer-logo-link" do %>
+              <%= image_tag "logos/mdfe.jpg", alt: "Mouvement démocrate des Français de l'étranger", class: "footer-logo footer-logo--mdfe" %>
+            <% end %>
+            <%= link_to "https://jeunes-democrates.org", target: "_blank", rel: "noopener", class: "footer-logo-link" do %>
+              <%= image_tag "logos/jeunes-democrates.svg", alt: "Jeunes Démocrates", class: "footer-logo footer-logo--jeunes" %>
+            <% end %>
+            <%= link_to "https://democrats.eu/fr/", target: "_blank", rel: "noopener", class: "footer-logo-link" do %>
+              <%= image_tag "logos/pde.svg", alt: "Parti démocrate européen", class: "footer-logo footer-logo--pde" %>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="footer-separator"></div>
+
+        <div class="footer-links">
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <h2 class="footer-heading">Navigation</h2>
+              <ul class="footer-menu">
+                <li><%= link_to "Qui sommes-nous", about_path %></li>
+                <li><%= link_to "Nos propositions", proposals_path %></li>
+                <li><%= link_to "Notre enquête", new_survey_response_path %></li>
+                <li><%= link_to "Contact", new_contact_path %></li>
+              </ul>
+            </div>
+
+            <div class="col-md-4 mb-3">
+              <h2 class="footer-heading">Informations légales</h2>
+              <ul class="footer-menu">
+                <li><%= link_to "Mentions légales", legal_path %></li>
+                <li><%= link_to "Politique de confidentialité", privacy_path %></li>
+                <li><%= link_to "Politique de cookies", cookies_path %></li>
+                <li><%= link_to "Accessibilité", accessibility_path %></li>
+              </ul>
+            </div>
+
+            <div class="col-md-4 mb-3">
+              <h2 class="footer-heading">MoDem Benelux</h2>
+              <ul class="footer-menu">
+                <li><%= link_to "Section Benelux", "https://benelux.mouvementdemocrate.fr/actualites", target: "_blank", rel: "noopener" %></li>
+                <li><%= link_to "Mouvement démocrate", "https://www.mouvementdemocrate.fr", target: "_blank", rel: "noopener" %></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <p class="footer-copyright">
+          © <%= Time.current.year %> Mouvement Démocrate - Tous bien intégrés
         </p>
-      </div>
 
-      <div class="col-md-4 mb-3">
-        <h2 class="h5">Liens utiles</h2>
-        <ul class="list-unstyled small">
-          <li><%= link_to "Qui sommes-nous", about_path, class: "text-muted" %></li>
-          <li><%= link_to "Nos propositions", proposals_path, class: "text-muted" %></li>
-          <li><%= link_to "Notre enquête", survey_responses_path, class: "text-muted" %></li>
-          <li><%= link_to "Contact", new_contact_path, class: "text-muted" %></li>
-        </ul>
-      </div>
-
-      <div class="col-md-4 mb-3">
-        <h2 class="h5">Informations légales</h2>
-        <ul class="list-unstyled small">
-          <li><%= link_to "Mentions légales", legal_path, class: "text-muted" %></li>
-          <li><%= link_to "Politique de confidentialité (RGPD)", privacy_path, class: "text-muted" %></li>
-          <li><%= link_to "Politique de cookies", cookies_path, class: "text-muted" %></li>
-          <li><%= link_to "Accessibilité : conformité RGAA", accessibility_path, class: "text-muted" %></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="row mt-3 pt-3 border-top">
-      <div class="col-12 text-center small text-muted">
-        <p class="mb-0">
-          © <%= Time.current.year %> Tous bien intégrés - Plateforme du Mouvement démocrate
-          pour les élections des représentants des Français de l'étranger
-        </p>
       </div>
     </div>
   </div>
