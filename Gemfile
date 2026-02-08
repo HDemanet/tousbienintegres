@@ -43,7 +43,6 @@ gem "devise"
 gem "simple_form", github: "heartcombo/simple_form"
 
 # Admin interface
-gem 'rails_admin', '~> 3.0'
 gem 'cancancan'
 
 # Upload images
@@ -65,3 +64,7 @@ group :development do
 end
 
 gem "kaminari-bootstrap", "~> 3.0"
+
+gem "activestorage-cloudinary-service", "~> 0.2.3"
+
+gem 'rails-i18n', '~> 7.0'

@@ -18,9 +18,6 @@ Rails.application.routes.draw do
     resources :articles, only: [:new, :create, :edit, :update, :destroy]
   end
 
-  # Rails Admin (interface de gestion avancée - optionnel)
-  mount RailsAdmin::Engine => '/admin/rails', as: 'rails_admin'
-
   # Front-office
   root to: 'pages#home'
 

@@ -1,9 +1,20 @@
 <!-- app/views/admin/articles/_form.html.erb -->
-<%= form_with model: [:admin, @article], local: true do |f| %>
+<form action="<%= @article.new_record? ? admin_articles_path : admin_article_path(@article.id) %>"
+      method="post"
+      enctype="multipart/form-data">
+
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <% unless @article.new_record? %>
+    <%= hidden_field_tag :_method, :patch %>
+  <% end %>
+
+  <!-- Messages d'erreur -->
   <% if @article.errors.any? %>
-    <div class="alert alert-danger">
-      <h4><%= pluralize(@article.errors.count, "erreur") %> :</h4>
-      <ul>
+    <div class="alert alert-danger" role="alert">
+      <h4 class="alert-heading">
+        <%= pluralize(@article.errors.count, "erreur") %> à corriger :
+      </h4>
+      <ul class="mb-0">
         <% @article.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
@@ -11,39 +22,223 @@
     </div>
   <% end %>
 
-  <div class="mb-4">
-    <%= f.label :title, "Titre", class: "form-label" %>
-    <%= f.text_field :title, class: "form-control form-control-lg", placeholder: "Titre de l'article" %>
+  <!-- Titre -->
+  <div class="mb-3">
+    <label for="article_title" class="form-label">Titre *</label>
+    <input type="text"
+           name="article[title]"
+           id="article_title"
+           class="form-control form-control-lg"
+           value="<%= @article.title %>"
+           required
+           placeholder="Ex: Retour sur notre réunion publique">
   </div>
 
-  <div class="mb-4">
-    <%= f.label :content, "Contenu", class: "form-label" %>
-    <%= f.text_area :content, class: "form-control", rows: 20,
-                     placeholder: "Rédigez votre article ici..." %>
-    <small class="form-text text-muted">
-      Vous pouvez utiliser du Markdown pour formater le texte.
-    </small>
-  </div>
-
-  <div class="mb-4">
-    <div class="form-check form-switch">
-      <%= f.check_box :published, class: "form-check-input", role: "switch" %>
-      <%= f.label :published, "Publier l'article", class: "form-check-label" %>
+  <!-- Slug -->
+  <div class="mb-3">
+    <label for="article_slug" class="form-label">URL (slug)</label>
+    <input type="text"
+           name="article[slug]"
+           id="article_slug"
+           class="form-control"
+           value="<%= @article.slug %>"
+           placeholder="Laissez vide pour générer automatiquement">
+    <div class="form-text">
+      URL finale : <%= request.base_url %>/articles/<span id="slug-preview"><%= @article.slug || 'titre-de-larticle' %></span>
     </div>
-    <small class="form-text text-muted">
-      Si coché, l'article sera visible sur le site immédiatement.
-    </small>
   </div>
 
-  <div class="d-flex gap-2">
-    <%= f.submit @article.new_record? ? "Créer l'article" : "Enregistrer", class: "btn btn-primary" %>
-    <%= link_to "Annuler", admin_root_path, class: "btn btn-outline-secondary" %>
+  <!-- Extrait -->
+  <div class="mb-3">
+    <label for="article_excerpt" class="form-label">Résumé / Chapô</label>
+    <textarea name="article[excerpt]"
+              id="article_excerpt"
+              class="form-control"
+              rows="3"
+              maxlength="500"
+              placeholder="Court résumé qui apparaîtra sur la page d'accueil (max 500 caractères)"><%= @article.excerpt %></textarea>
+    <div class="form-text">
+      <span id="excerpt-counter">0</span> / 500 caractères
+    </div>
+  </div>
 
-    <% unless @article.new_record? %>
-      <%= button_to "Supprimer", admin_article_path(@article),
-                    method: :delete,
-                    class: "btn btn-outline-danger ms-auto",
-                    data: { confirm: "Êtes-vous sûr de vouloir supprimer cet article ?" } %>
+  <!-- Contenu -->
+  <div class="mb-3">
+    <label for="article_content" class="form-label">Contenu *</label>
+    <textarea name="article[content]"
+              id="article_content"
+              class="form-control"
+              rows="20"
+              required
+              placeholder="Rédigez votre article ici..."><%= @article.content %></textarea>
+    <div class="form-text">
+      Markdown et HTML supportés
+    </div>
+  </div>
+
+  <hr class="my-4">
+
+  <!-- ✅ IMAGE UPLOAD - HTML PUR -->
+  <div class="mb-4" style="background: #f8f9fa; padding: 20px; border-radius: 8px;">
+    <h5 class="mb-3">
+      <i class="fas fa-image me-2"></i>
+      Image à la une
+    </h5>
+
+    <!-- Aperçu image actuelle -->
+    <% if @article.image.attached? %>
+      <div class="mb-3 text-center">
+        <%= image_tag @article.image,
+                      alt: "Aperçu actuel",
+                      class: "img-thumbnail",
+                      style: "max-width: 400px; max-height: 300px; object-fit: cover;" %>
+        <p class="text-success mt-2">
+          <i class="fas fa-check-circle me-1"></i>
+          Image actuelle : <%= @article.image.filename %>
+        </p>
+      </div>
+    <% end %>
+
+    <!-- Input file HTML PUR -->
+    <label for="article_image" class="form-label">Choisir une image</label>
+    <input type="file"
+           name="article[image]"
+           id="article_image"
+           class="form-control form-control-lg"
+           accept="image/png,image/jpeg,image/jpg,image/webp"
+           onchange="showFileName(this)">
+
+    <div id="file-name" class="mt-2 text-muted small"></div>
+
+    <div class="alert alert-info mt-3 mb-0">
+      <i class="fas fa-info-circle me-1"></i>
+      <strong>Formats acceptés :</strong> JPG, PNG, WEBP (max 5 Mo)
+    </div>
+  </div>
+
+  <!-- Auteur -->
+  <div class="mb-3">
+    <label for="article_author" class="form-label">Auteur</label>
+    <input type="text"
+           name="article[author]"
+           id="article_author"
+           class="form-control"
+           value="<%= @article.author.presence || current_user.full_name %>"
+           placeholder="Ex: Pierre-Luc Vervandier">
+  </div>
+
+  <hr class="my-4">
+
+  <!-- Options de publication -->
+  <div class="row">
+    <div class="col-md-6">
+      <div class="mb-3">
+        <div class="form-check form-switch">
+          <input type="checkbox"
+                 name="article[published]"
+                 id="article_published"
+                 class="form-check-input"
+                 value="1"
+                 <%= 'checked' if @article.published? %>>
+          <label for="article_published" class="form-check-label">
+            Publier l'article
+          </label>
+        </div>
+        <div class="form-text">
+          Si décoché, l'article sera en brouillon
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="mb-3">
+        <div class="form-check form-switch">
+          <input type="checkbox"
+                 name="article[featured]"
+                 id="article_featured"
+                 class="form-check-input"
+                 value="1"
+                 <%= 'checked' if @article.featured? %>>
+          <label for="article_featured" class="form-check-label">
+            Mettre à la une
+          </label>
+        </div>
+        <div class="form-text">
+          L'article apparaîtra en haut de la page Actualités
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Boutons d'action -->
+  <div class="d-flex gap-2 mt-4">
+    <button type="submit" class="btn btn-primary btn-lg">
+      <%= @article.new_record? ? "Créer l'article" : "Enregistrer" %>
+    </button>
+
+    <a href="<%= admin_root_path %>" class="btn btn-outline-secondary btn-lg">
+      Annuler
+    </a>
+
+    <% if @article.persisted? %>
+      <a href="<%= admin_article_path(@article.id) %>"
+         data-turbo-method="delete"
+         data-turbo-confirm="Supprimer cet article ?\n\n<%= @article.title %>"
+         class="btn btn-danger btn-lg ms-auto">
+        Supprimer
+      </a>
     <% end %>
   </div>
-<% end %>
+</form>
+
+<!-- JavaScript -->
+<script>
+// Affiche le nom du fichier sélectionné
+function showFileName(input) {
+  const fileName = input.files[0]?.name || '';
+  const fileNameDiv = document.getElementById('file-name');
+  if (fileName) {
+    fileNameDiv.innerHTML = '<i class="fas fa-check-circle text-success me-1"></i> Fichier sélectionné : <strong>' + fileName + '</strong>';
+  } else {
+    fileNameDiv.innerHTML = '';
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Compteur de caractères
+  const excerptField = document.getElementById('article_excerpt');
+  const counter = document.getElementById('excerpt-counter');
+
+  if (excerptField && counter) {
+    function updateCounter() {
+      counter.textContent = excerptField.value.length;
+    }
+    excerptField.addEventListener('input', updateCounter);
+    updateCounter();
+  }
+
+  // Auto-génération du slug
+  const titleField = document.getElementById('article_title');
+  const slugField = document.getElementById('article_slug');
+  const slugPreview = document.getElementById('slug-preview');
+
+  if (titleField && slugField && slugPreview) {
+    titleField.addEventListener('input', function() {
+      if (!slugField.value) {
+        const slug = titleField.value
+          .toLowerCase()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/^-+|-+$/g, '');
+
+        slugPreview.textContent = slug || 'titre-de-larticle';
+      }
+    });
+
+    slugField.addEventListener('input', function() {
+      slugPreview.textContent = slugField.value || 'titre-de-larticle';
+    });
+  }
+});
+</script>

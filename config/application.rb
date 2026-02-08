@@ -43,5 +43,8 @@ module Tousbienintegres
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    config.i18n.default_locale = :fr
+    config.time_zone = 'Brussels'
   end
 end

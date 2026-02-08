@@ -25,6 +25,18 @@
     color: $modem-orange;
     transition: $transition-base;
 
+    &:before {
+      content: '';
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      background-image: url('/Users/helenedemanet/Desktop/Programmation - Développement/tousbienintegres/app/assets/images/logos/S.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      margin-right: 0.5rem;
+      vertical-align: middle;
+    }
+
     &:hover {
       color: $modem-orange-dark;
       transform: scale(1.05);

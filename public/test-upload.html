@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Test Upload</title>
+</head>
+<body>
+  <h1>Test Upload Simple</h1>
+  <form action="/admin/articles" method="post" enctype="multipart/form-data">
+    <input type="file" name="test_file" id="test_file">
+    <p id="result"></p>
+  </form>
+  
+  <script>
+    document.getElementById('test_file').addEventListener('change', function(e) {
+      document.getElementById('result').textContent = 'Fichier sélectionné : ' + e.target.files[0].name;
+    });
+  </script>
+</body>
+</html>

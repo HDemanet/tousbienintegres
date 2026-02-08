@@ -1,10 +1,10 @@
 <!-- app/views/articles/show.html.erb -->
 <% set_meta_tags title: @article.title,
-                  description: @article.excerpt || truncate(@article.content, length: 160) %>
+                  description: @article.excerpt_or_auto %>
 
 <% if @article.image.attached? %>
   <!-- Hero avec image article -->
-  <section class="hero-photo">
+  <section class="hero-photo" style="padding: 0rem;">
     <div class="hero-photo__image">
       <%= image_tag @article.image, alt: @article.title, class: "w-100" %>
     </div>
@@ -12,9 +12,11 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-8">
+            <!-- ❌ Badge catégorie supprimé -->
             <h1><%= @article.title %></h1>
             <% if @article.published_at %>
-              <p class="lead">
+              <p class="lead mb-0">
+                <i class="far fa-calendar me-2" aria-hidden="true"></i>
                 <time datetime="<%= @article.published_at.iso8601 %>">
                   <%= l(@article.published_at, format: :long) %>
                 </time>
@@ -31,9 +33,11 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 mx-auto">
+          <!-- ❌ Badge catégorie supprimé -->
           <h1><%= @article.title %></h1>
           <% if @article.published_at %>
             <p class="lead mb-0">
+              <i class="far fa-calendar me-2" aria-hidden="true"></i>
               <time datetime="<%= @article.published_at.iso8601 %>">
                 <%= l(@article.published_at, format: :long) %>
               </time>
@@ -58,28 +62,76 @@
         <% end %>
 
         <div class="article-content">
-          <%= simple_format(@article.content) %>
+          <%= simple_format(@article.content, {}, sanitize: false) %>
         </div>
 
         <!-- Métadonnées -->
         <div class="mt-5 pt-4 border-top">
-          <p class="text-muted small mb-0">
-            Publié le <%= l(@article.published_at || @article.created_at, format: :long) %>
+          <div class="row">
+            <div class="col-md-6">
+              <p class="text-muted small mb-0">
+                <i class="far fa-calendar me-2" aria-hidden="true"></i>
+                Publié le <%= l(@article.published_at || @article.created_at, format: :long) %>
+              </p>
+            </div>
             <% if @article.author.present? %>
-              par <%= @article.author %>
+              <div class="col-md-6 text-md-end">
+                <p class="text-muted small mb-0">
+                  <i class="far fa-user me-2" aria-hidden="true"></i>
+                  <%= @article.author %>
+                </p>
+              </div>
             <% end %>
-          </p>
+          </div>
         </div>
 
         <!-- Navigation -->
         <div class="mt-5">
-          <%= link_to "← Retour aux actualités", articles_path, class: "btn btn-outline-primary" %>
+          <%= link_to articles_path, class: "btn btn-outline-primary" do %>
+            <i class="fas fa-arrow-left me-2" aria-hidden="true"></i>
+            Retour aux actualités
+          <% end %>
         </div>
 
       </div>
     </div>
   </div>
 </article>
+
+<!-- Articles similaires (sans filtrage par catégorie) -->
+<% if @related_articles.any? %>
+  <section class="py-5 bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 mx-auto">
+          <h2 class="h4 mb-4">Articles récents</h2>
+          <div class="row g-4">
+            <% @related_articles.each do |article| %>
+              <div class="col-md-4">
+                <%= link_to article_path(article), class: "text-decoration-none" do %>
+                  <article class="card h-100 border-0 shadow-sm">
+                    <% if article.image.attached? %>
+                      <%= image_tag article.image,
+                                    alt: article.title,
+                                    class: "card-img-top",
+                                    style: "height: 150px; object-fit: cover;" %>
+                    <% end %>
+                    <div class="card-body">
+                      <h3 class="h6 card-title text-dark"><%= article.title %></h3>
+                      <p class="text-muted small mb-0">
+                        <%= l(article.published_at, format: :long) %>
+                      </p>
+                    </div>
+                  </article>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<% end %>
 
 <!-- CTA pour participer -->
 <section class="section-cta">
@@ -91,8 +143,14 @@
           Votre avis compte ! Aidez-nous à construire un programme adapté à vos besoins.
         </p>
         <div class="d-flex gap-3 justify-content-center flex-wrap">
-          <%= link_to "Répondre à l'enquête", new_survey_response_path, class: "btn btn-light btn-lg" %>
-          <%= link_to "Nous contacter", new_contact_path, class: "btn btn-outline-light btn-lg" %>
+          <%= link_to new_survey_response_path, class: "btn btn-light btn-lg" do %>
+            <i class="fas fa-clipboard-list me-2" aria-hidden="true"></i>
+            Répondre à l'enquête
+          <% end %>
+          <%= link_to new_contact_path, class: "btn btn-outline-light btn-lg" do %>
+            <i class="fas fa-envelope me-2" aria-hidden="true"></i>
+            Nous contacter
+          <% end %>
         </div>
       </div>
     </div>

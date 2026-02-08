@@ -17,9 +17,7 @@
         <li class="nav-item">
           <%= link_to "Nos propositions", proposals_path, class: "nav-link #{'active' if current_page?(proposals_path)}" %>
         </li>
-        <li class="nav-item">
-          <%= link_to "Actualités", articles_path, class: "nav-link #{'active' if current_page?(articles_path)}" %>
-        </li>
+        <li class="nav-item"> <%= link_to "Actualités", articles_path, class: "nav-link #{'active' if current_page?(articles_path)}" %> </li>
         <li class="nav-item">
           <%= link_to "Comment voter", how_to_vote_path, class: "nav-link #{'active' if current_page?(how_to_vote_path)}" %>
         </li>
