@@ -49,7 +49,7 @@ class SurveyResponse < ApplicationRecord
     'Non',
     'Oui, en École européenne',
     'Oui, au Lycée français',
-    'Oui, en école belge',
+    'Oui, en école du système local',
     'Oui, autre'
   ].freeze
 
