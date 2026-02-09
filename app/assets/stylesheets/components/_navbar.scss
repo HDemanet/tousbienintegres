@@ -9,7 +9,6 @@
   transition: all 0.3s ease-in-out;
   border: none;
 
-  // Navbar sticky avec effet
   &.navbar-scrolled {
     box-shadow: 0 4px 12px rgba($modem-black, 0.15);
   }
@@ -20,29 +19,45 @@
   }
 
   .navbar-brand {
+    position: relative;
     font-size: 1.5rem;
     font-weight: $font-weight-bold;
     color: $modem-orange;
     transition: $transition-base;
+    padding: 0.25rem 1rem; // Espace autour du texte
+    display: inline-block;
 
     &:before {
       content: '';
-      display: inline-block;
-      width: 24px;
-      height: 24px;
-      background-image: url('/Users/helenedemanet/Desktop/Programmation - Développement/tousbienintegres/app/assets/images/logos/S.png');
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 150%;
+      height: 150%;
+      background-image: image-url('logos/S.png');
       background-size: contain;
       background-repeat: no-repeat;
-      margin-right: 0.5rem;
-      vertical-align: middle;
+      background-position: center;
+      opacity: 1;
+      z-index: -1;
+      transition: $transition-base;
+    }
+
+    span {
+      position: relative;
+      z-index: 1;
     }
 
     &:hover {
       color: $modem-orange-dark;
-      transform: scale(1.05);
+
+      &:before {
+        opacity: 0.75;
+        transform: translate(-50%, -50%) scale(1.05);
+      }
     }
 
-    // Focus accessible
     &:focus-visible {
       outline: $focus-ring-width solid $focus-ring-color;
       outline-offset: 4px;
@@ -61,7 +76,6 @@
       transition: $transition-base;
       position: relative;
 
-      // Underline animé
       &::after {
         content: '';
         position: absolute;
@@ -83,7 +97,6 @@
         }
       }
 
-      // Focus accessible
       &:focus-visible {
         outline: $focus-ring-width solid $focus-ring-color;
         outline-offset: 2px;
@@ -92,7 +105,6 @@
     }
   }
 
-  // Toggler mobile
   .navbar-toggler {
     border: 2px solid $modem-orange;
     padding: 0.5rem 0.75rem;
@@ -108,7 +120,6 @@
   }
 }
 
-// Respect prefers-reduced-motion
 @media (prefers-reduced-motion: reduce) {
   .navbar-lewagon {
     transition: none;
@@ -128,7 +139,6 @@
   }
 }
 
-// Mobile
 @media (max-width: 992px) {
   .navbar-lewagon {
     .navbar-collapse {
@@ -144,6 +154,14 @@
         &::after {
           display: none;
         }
+      }
+    }
+
+    .navbar-brand {
+      font-size: 1.25rem;
+
+      &:before {
+        opacity: 0.50;
       }
     }
   }
