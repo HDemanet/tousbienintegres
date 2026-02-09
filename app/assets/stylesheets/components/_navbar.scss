@@ -1,6 +1,7 @@
 // app/assets/stylesheets/components/_navbar.scss
 
 .navbar-lewagon {
+  position: -webkit-sticky;
   position: sticky;
   top: 0;
   z-index: 1030;
@@ -8,6 +9,7 @@
   box-shadow: 0 2px 8px rgba($modem-black, 0.1);
   transition: all 0.3s ease-in-out;
   border: none;
+  width: 100%;
 
   &.navbar-scrolled {
     box-shadow: 0 4px 12px rgba($modem-black, 0.15);
@@ -162,6 +164,80 @@
 
       &:before {
         opacity: 0.50;
+      }
+    }
+  }
+}
+
+// Dropdown menu styling
+.navbar-lewagon {
+  .dropdown-menu {
+    border: none;
+    box-shadow: 0 4px 12px rgba($modem-black, 0.15);
+    border-radius: $border-radius;
+    margin-top: 0.5rem;
+    padding: 0.5rem 0;
+
+    .dropdown-item {
+      color: $modem-black;
+      font-weight: $font-weight-medium;
+      padding: 0.6rem 1.5rem;
+      transition: $transition-base;
+
+      &:hover,
+      &:focus {
+        background-color: rgba($modem-orange, 0.1);
+        color: $modem-orange;
+      }
+
+      &:active {
+        background-color: rgba($modem-orange, 0.2);
+      }
+    }
+
+    .dropdown-divider {
+      margin: 0.5rem 0;
+      border-color: rgba($modem-black, 0.1);
+    }
+  }
+
+  .nav-item.dropdown {
+    .nav-link.dropdown-toggle {
+      // ❌ Cache le chevron Bootstrap par défaut
+      &::after {
+        display: none;
+      }
+
+      // ✅ Style pour notre icône Font Awesome
+      i.fa-chevron-down {
+        transition: transform 0.3s ease;
+        opacity: 0.7;
+      }
+
+      &[aria-expanded="true"] i.fa-chevron-down {
+        transform: rotate(180deg);
+        opacity: 1;
+      }
+
+      &:hover i.fa-chevron-down {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+// Mobile dropdown
+@media (max-width: 992px) {
+  .navbar-lewagon {
+    .dropdown-menu {
+      border: none;
+      box-shadow: none;
+      background-color: rgba($modem-orange, 0.05);
+      margin-top: 0;
+      border-radius: 0;
+
+      .dropdown-item {
+        padding-left: 2rem;
       }
     }
   }
