@@ -1,3 +1,4 @@
+# app/models/candidate.rb
 class Candidate < ApplicationRecord
 
   enum country: {
@@ -36,5 +37,9 @@ class Candidate < ApplicationRecord
   def short_bio(length = 200)
     return bio if bio.blank? || bio.length <= length
     "#{bio[0..length]}..."
+  end
+
+  def has_linkedin?
+    linkedin_url.present?
   end
 end

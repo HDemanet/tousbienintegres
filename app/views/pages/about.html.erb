@@ -111,7 +111,7 @@
             <div class="accent-line">
               <h3 class="h5 mb-3">
                 <i class="fas fa-handshake text-primary me-2" aria-hidden="true"></i>
-                Relations binationales
+                Approfondir les relations binationales
               </h3>
               <p class="text-muted mb-0">
                 Travailler avec les élus belges, néerlandais, luxembourgeois que nous connaissons dans nos pays
@@ -136,7 +136,7 @@
             <div class="accent-line">
               <h3 class="h5 mb-3">
                 <i class="fas fa-file-alt text-primary me-2" aria-hidden="true"></i>
-                Aide administrative
+                Débroussailler l'aide administrative
               </h3>
               <p class="text-muted mb-0">
                 Aider dans les méandres administratifs propres à notre vie à cheval sur deux systèmes ou plus.
@@ -171,8 +171,8 @@
         <p class="mb-4">
           Le <%= link_to "Mouvement démocrate", "https://www.mouvementdemocrate.fr/qui-sommes-nous-7915", target: "_blank", rel: "noopener" %>
           est membre fondateur du <%= link_to "Parti démocrate européen (PDE)", "https://democrats.eu/fr/", target: "_blank", rel: "noopener" %>.
-          En Belgique, <%= link_to "Les Engagés", "https://www.lesengages.be/", target: "_blank", rel: "noopener" %>,
-          aux Pays-Bas <%= link_to "50 plus", "https://www.50pluspartij.nl/", target: "_blank", rel: "noopener" %>
+          <%= link_to "Les Engagés", "https://www.lesengages.be/", target: "_blank", rel: "noopener" %>,en Belgique et
+          <%= link_to "50 plus", "https://www.50pluspartij.nl/", target: "_blank", rel: "noopener" %> aux Pays-Bas
           sont également membres du PDE.
         </p>
 
@@ -223,8 +223,7 @@
         </div>
 
         <p class="text-center mb-0">
-          Car il y a trois conseils consulaires, un pour la Belgique, un pour les Pays-Bas et un pour le Luxembourg,
-          nous sommes en train de constituer <strong>trois listes</strong>.
+          La 4e circonscription législative correspondant au Bénélux contient trois circonscriptions consulaires. Nous présentons donc <strong>trois listes</strong>.
         </p>
       </div>
     </div>
@@ -271,8 +270,8 @@
         <div class="row g-4" data-candidates-filter-target="grid">
           <% @candidates.each do |candidate| %>
             <div class="col-12 col-md-6 col-lg-4 candidate-card"
-                 data-candidates-filter-target="card"
-                 data-country="<%= candidate.country %>">
+                data-candidates-filter-target="card"
+                data-country="<%= candidate.country %>">
               <div class="card h-100 shadow-sm border-0">
                 <div class="card-body p-4 text-center">
                   <!-- Photo -->
@@ -294,7 +293,21 @@
 
                   <!-- Ville -->
                   <% if candidate.city.present? %>
-                    <p class="text-muted small mb-3"><%= candidate.city %></p>
+                    <p class="text-muted small mb-2"><%= candidate.city %></p>
+                  <% end %>
+
+                  <!-- LINKEDIN -->
+                  <% if candidate.has_linkedin? %>
+                    <div class="mb-3">
+                      <%= link_to candidate.linkedin_url,
+                                  target: "_blank",
+                                  rel: "noopener noreferrer",
+                                  class: "btn btn-sm btn-outline-primary",
+                                  title: "Profil LinkedIn de #{candidate.name}" do %>
+                        <i class="fab fa-linkedin me-1"></i>
+                        LinkedIn
+                      <% end %>
+                    </div>
                   <% end %>
 
                   <!-- Bio avec "Lire la suite" -->
@@ -341,7 +354,7 @@
         <h2 class="mb-4">Rejoignez-nous !</h2>
         <p class="mb-4">
           Vous êtes animés par des convictions centristes et démocrates ? Nous sommes encore à la recherche
-          d'hommes et de femmes, de nationalité française obligatoirement, qui vivent dans les trois pays
+          d'hommes et de femmes, de nationalité française obligatoirement - mais pas exclusivement, qui vivent dans l'un des trois pays
           pour compléter nos listes. Intéressés à mieux nous connaître, contactez-nous !
         </p>
 
