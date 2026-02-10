@@ -390,7 +390,7 @@
                               'aria-describedby': @survey_response.errors[:consent].any? ? 'consent_error' : nil,
                               id: "survey_consent" %>
               <%= f.label :consent, class: "form-check-label", for: "survey_consent" do %>
-                J'accepte que « La liste MoDem » utilise mes données dans le cadre de sa campagne électorale.
+                J'accepte que la liste « Tous bien intégrés » utilise mes données dans le cadre de sa campagne électorale.
                 Mes données ne seront pas transmises à des tiers et je peux demander leur suppression à tout moment
                 en contactant <%= mail_to "contact@tous-bien-integres.be", "contact@tous-bien-integres.be" %>.
                 J'ai lu et j'accepte la <%= link_to "politique de confidentialité", privacy_path, target: "_blank" %>. <abbr title="Champ requis" class="text-danger">*</abbr>
