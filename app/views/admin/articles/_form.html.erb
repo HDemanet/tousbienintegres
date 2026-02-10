@@ -133,6 +133,7 @@
     <select name="article[country]"
             id="article_country"
             class="form-select">
+      <option value="general" <%= 'selected' if @article.country == 'general' %>>🌍 Général (tous les pays)</option>
       <option value="belgique" <%= 'selected' if @article.country == 'belgique' %>>🇧🇪 Belgique</option>
       <option value="pays_bas" <%= 'selected' if @article.country == 'pays_bas' %>>🇳🇱 Pays-Bas</option>
       <option value="luxembourg" <%= 'selected' if @article.country == 'luxembourg' %>>🇱🇺 Luxembourg</option>

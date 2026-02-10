@@ -21,14 +21,16 @@ class Article < ApplicationRecord
 
   # ✅ ENUM SIMPLIFIÉ - SEULEMENT 3 PAYS
   enum :country, {
-    belgique: 0,
-    pays_bas: 1,
-    luxembourg: 2
+    general: 0,  # Valeur par défaut pour les articles sans pays spécifique
+    belgique: 1,
+    pays_bas: 2,
+    luxembourg: 3
   }, prefix: true
 
   # ✅ Drapeaux
   def country_flag
     case country&.to_sym
+    when :general then "🌍"
     when :belgique then "🇧🇪"
     when :pays_bas then "🇳🇱"
     when :luxembourg then "🇱🇺"
