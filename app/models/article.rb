@@ -1,8 +1,6 @@
 # app/models/article.rb
 class Article < ApplicationRecord
   belongs_to :user
-
-  # ✅ Active Storage pour upload Cloudinary
   has_one_attached :image
 
   # Callbacks
@@ -15,28 +13,29 @@ class Article < ApplicationRecord
   validates :content, presence: true
   validates :excerpt, length: { maximum: 500 }, allow_blank: true
 
-  # Validation image (optionnel)
-  # validates :image, content_type: ['image/png', 'image/jpg', 'image/jpeg', 'image/webp'],
-  #                   size: { less_than: 5.megabytes },
-  #                   if: -> { image.attached? }
-
   # Scopes
   scope :published, -> { where(published: true).order(published_at: :desc) }
   scope :drafts, -> { where(published: false).order(updated_at: :desc) }
   scope :featured, -> { where(featured: true, published: true).order(published_at: :desc) }
-  scope :by_category, ->(category) { where(category: category) if category.present? }
   scope :recent, ->(limit = 5) { published.limit(limit) }
 
-  # Catégories disponibles
-  CATEGORIES = [
-    "Actualités",
-    "Événements",
-    "Communiqués",
-    "Tribunes",
-    "Interviews"
-  ].freeze
+  # ✅ ENUM SIMPLIFIÉ - SEULEMENT 3 PAYS
+  enum :country, {
+    belgique: 0,
+    pays_bas: 1,
+    luxembourg: 2
+  }, prefix: true
 
-  # ✅ Méthode intelligente : priorité à l'image uploadée
+  # ✅ Drapeaux
+  def country_flag
+    case country&.to_sym
+    when :belgique then "🇧🇪"
+    when :pays_bas then "🇳🇱"
+    when :luxembourg then "🇱🇺"
+    else ""
+    end
+  end
+
   def image_url
     if image.attached?
       image
@@ -47,12 +46,10 @@ class Article < ApplicationRecord
     end
   end
 
-  # Méthode pour l'URL canonique
   def to_param
     slug
   end
 
-  # Extrait automatique si non fourni
   def excerpt_or_auto
     excerpt.presence || content.truncate(200, separator: ' ', omission: '...')
   end
@@ -65,7 +62,6 @@ class Article < ApplicationRecord
     base_slug = title.parameterize
     self.slug = base_slug
 
-    # Gère les doublons
     counter = 1
     while Article.exists?(slug: slug)
       self.slug = "#{base_slug}-#{counter}"

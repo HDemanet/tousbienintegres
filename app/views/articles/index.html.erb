@@ -3,11 +3,11 @@
                   description: 'Suivez l\'actualité de notre campagne et les publications de l\'équipe.' %>
 
 <section class="hero-photo" style="padding: 0rem;">
-  <div class="hero-photo__image" >
+  <div class="hero-photo__image">
     <%= image_tag "home/breton.jpg",
-      alt: "",
-      class: "w-100",
-      style: "height:100%; object-fit:cover; object-position:50% 70%;" %>
+                  alt: "",
+                  class: "w-100",
+                  style: "height:100%; object-fit:cover; object-position:50% 70%;" %>
   </div>
   <div class="hero-photo__content">
     <div class="container">
@@ -23,55 +23,47 @@
   </div>
 </section>
 
-<section class="py-5">
+<section class="py-5" data-controller="articles-filter">
   <div class="container">
 
-    <!-- Articles à la une (si présents) -->
-    <% if @featured_articles.any? %>
-      <div class="mb-5">
-        <h2 class="h4 mb-4">À la une</h2>
-        <div class="row g-4">
-          <% @featured_articles.each do |article| %>
-            <div class="col-md-4">
-              <%= link_to article_path(article), class: "text-decoration-none" do %>
-                <article class="card h-100 border-0 shadow-sm featured-article">
-                  <% if article.image.attached? %>
-                    <%= image_tag article.image,
-                                  alt: article.title,
-                                  class: "card-img-top",
-                                  style: "height: 200px; object-fit: cover;" %>
-                  <% end %>
-                  <div class="card-body">
-                    <h3 class="h5 card-title text-dark"><%= article.title %></h3>
-                    <% if article.excerpt.present? %>
-                      <p class="card-text text-muted small">
-                        <%= truncate(article.excerpt, length: 100) %>
-                      </p>
-                    <% end %>
-                    <% if article.published_at %>
-                      <p class="text-muted small mb-0">
-                        <i class="far fa-calendar me-1" aria-hidden="true"></i>
-                        <%= l(article.published_at, format: :long) %>
-                      </p>
-                    <% end %>
-                  </div>
-                </article>
-              <% end %>
-            </div>
-          <% end %>
-        </div>
+    <!-- ✅ FILTRES SIMPLIFIÉS -->
+    <div class="articles-filters mb-5">
+      <div class="d-flex justify-content-center flex-wrap gap-2">
+        <button class="btn btn-outline-primary active"
+                data-articles-filter-target="filterBtn"
+                data-action="click->articles-filter#filterAll">
+          Tous
+        </button>
+        <button class="btn btn-outline-primary"
+                data-articles-filter-target="filterBtn"
+                data-action="click->articles-filter#filter"
+                data-country="belgique">
+          Belgique 🇧🇪
+        </button>
+        <button class="btn btn-outline-primary"
+                data-articles-filter-target="filterBtn"
+                data-action="click->articles-filter#filter"
+                data-country="pays_bas">
+          Pays-Bas 🇳🇱
+        </button>
+        <button class="btn btn-outline-primary"
+                data-articles-filter-target="filterBtn"
+                data-action="click->articles-filter#filter"
+                data-country="luxembourg">
+          Luxembourg 🇱🇺
+        </button>
       </div>
-    <% end %>
-
-    <!-- ❌ FILTRES CATÉGORIES SUPPRIMÉS -->
+    </div>
 
     <!-- Liste des articles -->
     <% if @articles.any? %>
-      <div class="row g-4">
+      <div class="row g-4" data-articles-filter-target="grid">
         <% @articles.each do |article| %>
-          <div class="col-md-6 col-lg-4">
+          <div class="col-md-6 col-lg-4 article-card"
+               data-articles-filter-target="card"
+               data-country="<%= article.country %>">
             <%= link_to article_path(article), class: "text-decoration-none" do %>
-              <article class="card h-100 border-0 shadow-sm article-card">
+              <article class="card h-100 border-0 shadow-sm">
                 <% if article.image.attached? %>
                   <%= image_tag article.image,
                                 alt: article.title,
@@ -83,6 +75,9 @@
                     <p class="text-muted small mb-2">
                       <i class="far fa-calendar me-1" aria-hidden="true"></i>
                       <%= l(article.published_at, format: :long) %>
+                      <% if article.country.present? %>
+                        <span class="ms-2"><%= article.country_flag %></span>
+                      <% end %>
                     </p>
                   <% end %>
 
@@ -106,6 +101,11 @@
         <% end %>
       </div>
 
+      <!-- Message si pas de résultats -->
+      <div class="text-center mt-5 d-none" data-articles-filter-target="noResults">
+        <p class="text-muted">Aucun article pour ce pays.</p>
+      </div>
+
       <!-- Pagination -->
       <% if @articles.total_pages > 1 %>
         <nav class="mt-5" aria-label="Navigation articles">
@@ -127,27 +127,3 @@
 
   </div>
 </section>
-
-<!-- CSS pour les effets hover -->
-<style>
-.article-card,
-.featured-article {
-  transition: all 0.3s cubic-bezier(0.57, 0.21, 0.69, 1);
-}
-
-.article-card:hover,
-.featured-article:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.15) !important;
-}
-
-.article-card .card-title,
-.featured-article .card-title {
-  transition: color 0.3s ease;
-}
-
-.article-card:hover .card-title,
-.featured-article:hover .card-title {
-  color: #EF5327 !important;
-}
-</style>

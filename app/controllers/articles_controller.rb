@@ -5,10 +5,8 @@ class ArticlesController < ApplicationController
   def index
     @articles = Article.published
 
-    # ❌ Filtrage par catégorie SUPPRIMÉ
-
-    # Articles à la une (3 premiers)
-    @featured_articles = Article.featured.limit(3)
+    # Filtrage par pays (optionnel, via Stimulus côté client)
+    # Pas besoin de filtrer côté serveur, Stimulus s'en charge
 
     # Pagination (9 articles par page)
     @articles = @articles.page(params[:page]).per(9)
@@ -20,7 +18,7 @@ class ArticlesController < ApplicationController
     if @article.nil? || !@article.published?
       redirect_to articles_path, alert: "Article non trouvé"
     else
-      # Articles récents (pas de filtrage par catégorie)
+      # Articles récents
       @related_articles = Article.published
                                  .where.not(id: @article.id)
                                  .limit(3)

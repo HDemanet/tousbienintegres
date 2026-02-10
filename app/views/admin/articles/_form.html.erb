@@ -127,6 +127,21 @@
            placeholder="Ex: Pierre-Luc Vervandier">
   </div>
 
+  <!-- Pays -->
+  <div class="mb-3">
+    <label for="article_country" class="form-label">Pays concerné</label>
+    <select name="article[country]"
+            id="article_country"
+            class="form-select">
+      <option value="belgique" <%= 'selected' if @article.country == 'belgique' %>>🇧🇪 Belgique</option>
+      <option value="pays_bas" <%= 'selected' if @article.country == 'pays_bas' %>>🇳🇱 Pays-Bas</option>
+      <option value="luxembourg" <%= 'selected' if @article.country == 'luxembourg' %>>🇱🇺 Luxembourg</option>
+    </select>
+    <div class="form-text">
+      Sélectionnez le pays auquel cet article est lié
+    </div>
+  </div>
+
   <hr class="my-4">
 
   <!-- Options de publication -->

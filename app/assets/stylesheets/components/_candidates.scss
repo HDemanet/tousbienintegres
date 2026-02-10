@@ -101,3 +101,44 @@
     }
   }
 }
+
+// ✅ MÊME STYLE POUR LES FILTRES ARTICLES
+.articles-filters {
+  .btn {
+    font-size: 0.95rem;
+    padding: 0.5rem 1.5rem;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+
+    &.active {
+      background-color: $modem-blue;
+      color: white;
+      border-color: $modem-blue;
+    }
+
+    &:hover:not(.active) {
+      background-color: rgba($modem-blue, 0.1);
+      border-color: $modem-blue;
+      color: $modem-orange;
+    }
+  }
+}
+
+// Cards articles (même transition que candidats)
+.article-card {
+  transition: opacity 0.3s ease;
+
+  &.d-none {
+    display: none !important;
+  }
+}
+
+// Responsive articles
+@media (max-width: 768px) {
+  .articles-filters {
+    .btn {
+      font-size: 0.85rem;
+      padding: 0.4rem 1rem;
+    }
+  }
+}
