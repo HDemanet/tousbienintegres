@@ -54,12 +54,29 @@ lionel = Candidate.create!(
 )
 puts "✅ Created: #{lionel.name}"
 
+# Mathias
+mathias = Candidate.create!(
+  name: "Mathias Angonin",
+  country: :luxembourg,
+  city: "Luxembourg",
+  position: 2,
+  featured: true,
+  photo_path: "team/mathias.jpg",
+  # linkedin_url laissé vide pour l'instant
+  bio: <<~HTML
+    <p>Au Luxembourg depuis 5 ans, j’ai choisi de m’établir au Grand-Duché après avoir résidé de nombreuses années à Londres et Dubaï, des expériences riches en rencontres et en (més)aventures d’expatriation. Au Luxembourg, je me suis engagé dans diverses associations locales, et j’ai à cœur d’aider mes compatriotes dans leur intégration. Employé par une institution européenne, je soutiens le développement économique de notre Union et je vis l’Europe au quotidien avec ma famille franco-polonaise.</p>
+
+    <p>Pour les Françaises et Français de l'étranger, je souhaite contribuer à un dialogue constructif avec notre pays d’accueil, faciliter l’accès à la langue et à la culture françaises, soutenir nos institutions éducatives et promouvoir nos échanges commerciaux.</p>
+  HTML
+)
+puts "✅ Created: #{mathias.name}"
+
 # Alice
 alice = Candidate.create!(
   name: "Alice Bernard-Montini",
   country: :belgique,
   city: "Bruxelles",
-  position: 2,
+  position: 3,
   featured: true,
   photo_path: "team/alice.jpg",
   # linkedin_url laissé vide pour l'instant
@@ -78,7 +95,7 @@ michel = Candidate.create!(
   name: "Michel Grund",
   country: :pays_bas,
   city: "La Haye",
-  position: 3,
+  position: 4,
   featured: true,
   photo_path: "team/michel-grund.jpg",
   # linkedin_url laissé vide pour l'instant
