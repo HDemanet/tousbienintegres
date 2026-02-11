@@ -111,4 +111,18 @@ Rails.application.configure do
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
 
   config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present?
+
+  # Autorise tous les domaines
+  config.hosts << "www.tousbienintegres.be"
+  config.hosts << "www.tousbienintegres.nl"
+  config.hosts << "www.tousbienintegres.lu"
+  config.hosts << "www.tousbienintegres.eu"
+  config.hosts << "tousbienintegres.be"
+  config.hosts << "tousbienintegres.nl"
+  config.hosts << "tousbienintegres.lu"
+  config.hosts << "tousbienintegres.eu"
+  config.hosts << "tousbienintegres-eu-827a8c8d1d4c.herokuapp.com"
+
+  # Force HTTPS
+  config.force_ssl = true
 end
