@@ -1,5 +1,12 @@
 # config/routes.rb
 Rails.application.routes.draw do
+    # Redirect all non-.eu domains to .eu
+  constraints(host: /www\.tousbienintegres\.(be|nl|lu)/) do
+    match '(*path)', to: redirect { |params, request|
+      "https://www.tousbienintegres.eu/#{params[:path]}"
+    }, via: [:get, :post]
+  end
+
   # Admin
   devise_for :users
 
@@ -48,4 +55,6 @@ Rails.application.routes.draw do
   get 'politique-de-confidentialite', to: 'pages#privacy', as: :privacy
   get 'politique-de-cookies', to: 'pages#cookies', as: :cookies
   get 'declaration-accessibilite', to: 'pages#accessibility', as: :accessibility
+
+
 end

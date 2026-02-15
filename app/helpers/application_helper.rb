@@ -8,7 +8,7 @@ module ApplicationHelper
       separator: '|',
       description: 'Liste Tous bien intégrés - MoDem pour les élections consulaires. Représenter et défendre les intérêts des Français résidant en Belgique.',
       keywords: 'élections consulaires, Français Belgique, MoDem, expatriés, consulat',
-      canonical: request.original_url,
+      canonical: request.original_url.gsub(/www\.tousbienintegres\.(be|nl|lu)/, 'www.tousbienintegres.eu'),
       og: {
         title: 'Tous bien intégrés',
         description: 'Liste pour les élections consulaires - Français de Belgique',
