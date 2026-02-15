@@ -7,6 +7,12 @@ Rails.application.routes.draw do
     }, via: [:get, :post]
   end
 
+  constraints(host: 'tousbienintegres.eu') do
+    match '(*path)', to: redirect { |params, request|
+      "https://www.tousbienintegres.eu/#{params[:path]}"
+    }, via: [:get, :post]
+  end
+
   # Admin
   devise_for :users
 
