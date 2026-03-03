@@ -109,4 +109,44 @@ michel = Candidate.create!(
 )
 puts "✅ Created: #{michel.name}"
 
+# Géraldine
+geraldine = Candidate.create!(
+  name: "Géraldine Geay",
+  country: :belgique,
+  city: "Bruxelles",
+  position: 6,
+  featured: true,
+  photo_path: "team/Geraldine.jpg",
+  bio: <<~HTML
+    <p>Géraldine Geay travaille au Parlement européen aux côtés de Sandro Gozi (Renew Europe) depuis 2020. Elle a auparavant travaillé à l'Assemblée nationale entre 2017 et 2020, après une première expérience au Parlement européen aux côtés de Philippe Juvin.</p>
+
+    <p>Elle a étudié les lettres à l'Institut Catholique de Paris puis à Milan, avant d'obtenir un master en relations internationales à Milan et un Master 2 en affaires européennes à la Sorbonne. Installée en Belgique depuis début 2020, elle suit pour Sandro Gozi les relations UE–Royaume-Uni ainsi que le suivi politique des dossiers sur lesquels il travaille.</p>
+
+    <p>Mère de deux enfants et bientôt trois, elle est également active au sein de l'association LIGER, engagée pour la sauvegarde et la valorisation de l'architecture des fermes traditionnelles couvertes de genêts et de lauzes et des paysages du Pays des sources de la Loire.</p>
+  HTML
+)
+puts "✅ Created: #{geraldine.name}"
+
+# Vincent
+vincent = Candidate.create!(
+  name: "Vincent Lisiak",
+  country: :belgique,
+  city: "Liège",
+  position: 5,
+  featured: true,
+  photo_path: "team/placeholder.jpg",
+  bio: <<~HTML
+    <p>Français du Nord de naissance, la Belgique a toujours occupé une place particulière dans son cœur. Ces escapades familiales de son enfance, vécues avec une joie impatiente, ont tracé le chemin vers sa vie d'aujourd'hui.</p>
+
+    <p>À 49 ans, il est désormais installé en province de Liège depuis 5 ans. Il y a trouvé une terre d'accueil où il se sent pleinement apprécié et intégré. C'est cette expérience sereine de l'expatriation qu'il souhaite partager et garantir à chacun d'entre vous.</p>
+
+    <p>Parce que l'intégration est un chemin que l'on parcourt mieux à plusieurs, il souhaite mettre son expérience et son écoute au service de ses compatriotes.</p>
+
+    <blockquote>
+      <p>« Mon ambition est simple : vous apporter soutien et aide concrète pour que votre vie en Belgique soit aussi riche et épanouie que la mienne. Ensemble, faisons de notre présence dans ce beau pays une force commune. »</p>
+    </blockquote>
+  HTML
+)
+puts "✅ Created: #{vincent.name}"
+
 puts "\n✨ Seed completed! Created #{Candidate.count} candidates."
