@@ -134,7 +134,7 @@ vincent = Candidate.create!(
   city: "Liège",
   position: 6,
   featured: true,
-  photo_path: "team/placeholder.jpg",
+  photo_path: "team/Vincent.jpg",
   bio: <<~HTML
     <p>Français du Nord de naissance, la Belgique a toujours occupé une place particulière dans son cœur. Ces escapades familiales de son enfance, vécues avec une joie impatiente, ont tracé le chemin vers sa vie d'aujourd'hui.</p>
 
