@@ -118,11 +118,11 @@ geraldine = Candidate.create!(
   featured: true,
   photo_path: "team/Geraldine.jpg",
   bio: <<~HTML
-    <p>Géraldine Geay travaille au Parlement européen aux côtés de Sandro Gozi (Renew Europe) depuis 2020. Elle a auparavant travaillé à l'Assemblée nationale entre 2017 et 2020, après une première expérience au Parlement européen aux côtés de Philippe Juvin.</p>
+    <p>Je travaille au Parlement européen aux côtés de Sandro Gozi (Renew Europe) depuis 2020. J’ai auparavant travaillé à l’Assemblée nationale entre 2017 et 2020, après une première expérience au Parlement européen aux côtés de Philippe Juvin.</p>
 
-    <p>Elle a étudié les lettres à l'Institut Catholique de Paris puis à Milan, avant d'obtenir un master en relations internationales à Milan et un Master 2 en affaires européennes à la Sorbonne. Installée en Belgique depuis début 2020, elle suit pour Sandro Gozi les relations UE–Royaume-Uni ainsi que le suivi politique des dossiers sur lesquels il travaille.</p>
+    <p>J’ai étudié les lettres à l’Institut Catholique de Paris puis à Milan, avant d’obtenir un master en relations internationales à Milan et un Master 2 en affaires européennes à la Sorbonne. Installée en Belgique depuis début 2020, je suis pour Sandro Gozi les relations UE–Royaume-Uni ainsi que le suivi politique des dossiers sur lesquels il travaille.</p>
 
-    <p>Mère de deux enfants et bientôt trois, elle est également active au sein de l'association LIGER, engagée pour la sauvegarde et la valorisation de l'architecture des fermes traditionnelles couvertes de genêts et de lauzes et des paysages du Pays des sources de la Loire.</p>
+    <p>Mère de deux enfants et bientôt trois, je suis également active au sein de l’association LIGER, engagée pour la sauvegarde et la valorisation de l’architecture des fermes traditionnelles couvertes de genêts et de lauzes et des paysages du Pays des sources de la Loire.</p>
   HTML
 )
 puts "✅ Created: #{geraldine.name}"
@@ -136,11 +136,11 @@ vincent = Candidate.create!(
   featured: true,
   photo_path: "team/Vincent.jpg",
   bio: <<~HTML
-    <p>Français du Nord de naissance, la Belgique a toujours occupé une place particulière dans son cœur. Ces escapades familiales de son enfance, vécues avec une joie impatiente, ont tracé le chemin vers sa vie d'aujourd'hui.</p>
+    <p>Français du Nord de naissance, la Belgique a toujours occupé une place particulière dans mon cœur. Ces escapades familiales de mon enfance, vécues avec une joie impatiente, ont tracé le chemin vers ma vie d'aujourd'hui.</p>
 
-    <p>À 49 ans, il est désormais installé en province de Liège depuis 5 ans. Il y a trouvé une terre d'accueil où il se sent pleinement apprécié et intégré. C'est cette expérience sereine de l'expatriation qu'il souhaite partager et garantir à chacun d'entre vous.</p>
+    <p>À 49 ans, je suis désormais installé en province de Liège depuis 5 ans. J'y ai trouvé une terre d'accueil où je me sens pleinement apprécié et intégré. C'est cette expérience sereine de l'expatriation que je souhaite partager et garantir à chacun d'entre vous.</p>
 
-    <p>Parce que l'intégration est un chemin que l'on parcourt mieux à plusieurs, il souhaite mettre son expérience et son écoute au service de ses compatriotes.</p>
+    <p>Parce que l'intégration est un chemin que l'on parcourt mieux à plusieurs, je souhaite mettre mon expérience et mon écoute au service de mes compatriotes.</p>
 
     <blockquote>
       <p>« Mon ambition est simple : vous apporter soutien et aide concrète pour que votre vie en Belgique soit aussi riche et épanouie que la mienne. Ensemble, faisons de notre présence dans ce beau pays une force commune. »</p>
@@ -148,5 +148,41 @@ vincent = Candidate.create!(
   HTML
 )
 puts "✅ Created: #{vincent.name}"
+
+# Fanny
+fanny = Candidate.create!(
+  name: "Fanny Lambert",
+  country: :belgique,
+  city: "Uccle",
+  position: 7,
+  featured: true,
+  photo_path: "team/fanny.jpg",
+  bio: <<~HTML
+    <p>Je suis en Belgique depuis 10 ans, mère de deux enfants.</p>
+
+    <p>Avec cinq compagnons de route, nous avons fondé une maison médicale à Uccle en 2021.</p>
+
+    <p>Nous y accueillons une potentielle très variées, de proximité. Nous avons des missions de santé communautaire : pas seulement le soin mais bien au delà.</p>
+
+    <p>Comme l'OMS, nous concevons la santé comme un état de complet de bien être physique mental et social.</p>
+
+    <p>Nous participons à la vie de quartier.</p>
+
+    <p>Notre patientèle forme une grand groupe mixte où les origines, les langues du monde entier, les niveaux de vie et les métiers se mélangent.</p>
+
+    <p>Nous proposons notamment des temps de repas partagé (format auberge espagnole), des activités physiques (marche en forêt, gymnastique, aquagym), intellectuelles (cafés papotes), culturelles (visites de musées).</p>
+
+    <p>Nous avons aussi une assistante sociale qui aide nos patients dans leurs parcours de réintégration professionnelle et des psychologues pour le suivi de santé mentale.</p>
+
+    <p>Notre maison médicale participe très activement à la vie de quartier.</p>
+
+    <p>Nous sommes fiers d'être acteurs de la bonne intégration de chacun dans la commune.</p>
+
+    <p>Selon moi, etre bien intégré dans son lieu de vie, est primordial pour vivre en bonne santé.</p>
+
+    <p>Je me retrouve donc complètement dans la démarche Tous bien intégrés en Belgique portée par Pierre-Luc.</p>
+  HTML
+)
+puts "✅ Created: #{fanny.name}"
 
 puts "\n✨ Seed completed! Created #{Candidate.count} candidates."
