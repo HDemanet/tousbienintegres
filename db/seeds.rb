@@ -149,40 +149,4 @@ vincent = Candidate.create!(
 )
 puts "✅ Created: #{vincent.name}"
 
-# Fanny
-fanny = Candidate.create!(
-  name: "Fanny Lambert",
-  country: :belgique,
-  city: "Uccle",
-  position: 7,
-  featured: true,
-  photo_path: "team/fanny.jpg",
-  bio: <<~HTML
-    <p>Je suis en Belgique depuis 10 ans, mère de deux enfants.</p>
-
-    <p>Avec cinq compagnons de route, nous avons fondé une maison médicale à Uccle en 2021.</p>
-
-    <p>Nous y accueillons une potentielle très variées, de proximité. Nous avons des missions de santé communautaire : pas seulement le soin mais bien au delà.</p>
-
-    <p>Comme l'OMS, nous concevons la santé comme un état de complet de bien être physique mental et social.</p>
-
-    <p>Nous participons à la vie de quartier.</p>
-
-    <p>Notre patientèle forme une grand groupe mixte où les origines, les langues du monde entier, les niveaux de vie et les métiers se mélangent.</p>
-
-    <p>Nous proposons notamment des temps de repas partagé (format auberge espagnole), des activités physiques (marche en forêt, gymnastique, aquagym), intellectuelles (cafés papotes), culturelles (visites de musées).</p>
-
-    <p>Nous avons aussi une assistante sociale qui aide nos patients dans leurs parcours de réintégration professionnelle et des psychologues pour le suivi de santé mentale.</p>
-
-    <p>Notre maison médicale participe très activement à la vie de quartier.</p>
-
-    <p>Nous sommes fiers d'être acteurs de la bonne intégration de chacun dans la commune.</p>
-
-    <p>Selon moi, etre bien intégré dans son lieu de vie, est primordial pour vivre en bonne santé.</p>
-
-    <p>Je me retrouve donc complètement dans la démarche Tous bien intégrés en Belgique portée par Pierre-Luc.</p>
-  HTML
-)
-puts "✅ Created: #{fanny.name}"
-
 puts "\n✨ Seed completed! Created #{Candidate.count} candidates."
