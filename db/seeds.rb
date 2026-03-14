@@ -75,7 +75,7 @@ puts "✅ Created: #{mathias.name}"
 alice = Candidate.create!(
   name: "Alice Bernard-Montini",
   country: :belgique,
-  city: "Ixelles",
+  city: "Ixelles, région bruxelloise",
   position: 3,
   featured: true,
   photo_path: "team/alice.jpg",
@@ -153,7 +153,7 @@ puts "✅ Created: #{vincent.name}"
 lou = Candidate.create!(
   name: "Lou Héraudeau",
   country: :belgique,
-  city: "Ixelles",
+  city: "Ixelles, région bruxelloise",
   position: 7,
   featured: true,
   photo_path: "team/lou.jpg",
@@ -171,7 +171,7 @@ puts "✅ Created: #{lou.name}"
 francois = Candidate.create!(
   name: "François-Xavier Hen",
   country: :belgique,
-  city: "Malines",
+  city: "Malines, province d'Anvers",
   position: 8,
   featured: true,
   photo_path: "team/francois_xavier.jpg",
@@ -193,7 +193,7 @@ puts "✅ Created: #{francois.name}"
 pierre = Candidate.create!(
   name: "Pierre Cotte",
   country: :belgique,
-  city: "Hoeilaart",
+  city: "Hoeilaart, province du Brabant flamand",
   position: 9,
   featured: true,
   photo_path: "team/pierre.jpg",
@@ -223,7 +223,7 @@ puts "✅ Created: #{pierre.name}"
 loic = Candidate.create!(
   name: "Loïc Delorme",
   country: :belgique,
-  city: "Etterbeek",
+  city: "Etterbeek, région bruxelloise",
   position: 10,
   featured: true,
   photo_path: "team/loic.jpg",
