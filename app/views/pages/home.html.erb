@@ -26,12 +26,12 @@
           Plateforme du Mouvement démocrate pour les élections des Français de l'étranger du 31 mai 2026<br class="d-none d-md-block">
           Belgique • Pays-Bas • Luxembourg
         </p>
-        <%= link_to new_survey_response_path,
-                    class: "btn btn-primary btn-lg mt-2",
-                    'aria-label': 'Participer à notre enquête' do %>
-          <i class="fas fa-clipboard-list me-2 d-none d-sm-inline" aria-hidden="true"></i>
-          <span class="d-none d-sm-inline">Participez à notre enquête</span>
-          <span class="d-inline d-sm-none">Notre enquête</span>
+        <%= link_to about_path(anchor: "candidats"),
+            class: "btn btn-primary btn-lg mt-2",
+            'aria-label': "Nos candidats" do %>
+          <i class="fas fa-users me-2 d-none d-sm-inline" aria-hidden="true"></i>
+          <span class="d-none d-sm-inline">Nos candidats</span>
+          <span class="d-inline d-sm-none">Candidats</span>
         <% end %>
       </div>
     </div>
