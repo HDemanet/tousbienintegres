@@ -315,7 +315,7 @@ thibaut = Candidate.create!(
   city: "Mouscron, province du Hainaut",
   position: 15,
   featured: true,
-  photo_path: "team/placeholder.jpg",
+  photo_path: "team/thibaut.jpg",
   bio: <<~HTML
     <p>Franco-belge, je suis né à Roubaix en France et j’ai grandi à Mouscron en Belgique, où mes parents se sont installés lorsque j’avais six ans. J’ai donc grandi entre ces deux cultures qui font aujourd’hui pleinement partie de mon identité.</p>
     <p>Diplômé en droit et en sciences politiques, j’ai développé mon expérience professionnelle dans le secteur public et associatif, notamment comme conseiller à l’emploi, coordinateur de projets et attaché politique. Ces fonctions m’ont permis de travailler au plus près des citoyens et de collaborer avec de nombreux acteurs institutionnels.</p>
@@ -324,5 +324,21 @@ thibaut = Candidate.create!(
   HTML
 )
 puts "✅ Created: #{thibaut.name}"
+
+# Marie Barani
+marie = Candidate.create!(
+  name: "Marie Barani",
+  country: :belgique,
+  city: "Zaventem, province du Brabant flamand",
+  position: 16,
+  featured: true,
+  photo_path: "team/marie.jpg",
+  bio: <<~HTML
+    <p>Française née aux Pays-Bas, j’ai grandi au Bénélux (Pays-Bas puis Belgique), travaillé en France, Suède puis Angleterre avant de retourner en Belgique.</p>
+    <p>Mon parcours professionnel international dans le milieu juridique m’a permis d’apprécier les opportunités offertes par l’Europe mais aussi de faire face à des difficultés administratives propres aux Français de l’étranger, allant du mariage à la couverture des frais de santé ou la reconnaissance des années professionnelles acquises hors de Belgique. </p>
+    <p>Je souhaiterais oeuvrer pour une facilitation de ces démarches administratives et une transparence de l’information et des formulaires nécessaires</p>
+  HTML
+)
+puts "✅ Created: #{marie.name}"
 
 puts "\n✨ Seed completed! Created #{Candidate.count} candidates."
