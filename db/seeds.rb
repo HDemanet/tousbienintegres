@@ -239,4 +239,90 @@ loic = Candidate.create!(
 )
 puts "✅ Created: #{loic.name}"
 
+# Mathilde Adjutor
+mathilde = Candidate.create!(
+  name: "Mathilde Adjutor",
+  country: :belgique,
+  city: "Ixelles, région bruxelloise",
+  position: 11,
+  featured: true,
+  photo_path: "team/mathilde.jpg",
+  bio: <<~HTML
+    <p>Née à Paris, je vis à Bruxelles depuis une dizaine d’années, au cœur de la vie européenne. Je suis venue pour le travail, d’abord comme stagiaire, avant de m’y installer durablement.</p>
+    <p>Je travaille dans les affaires européennes, où j’ai toujours évolué dans le secteur privé, en représentant des entreprises sur des enjeux qui touchent notamment au numérique et à la mobilité. Ce parcours me permet d’observer au quotidien comment les décisions européennes se construisent et l’impact concret qu’elles peuvent avoir sur notre vie économique et sociale.</p>
+    <p>Ayant moi-même vécu presque quinze ans en dehors de la France dans mon enfance, je connais bien les réalités de la vie à l’étranger : l’adaptation à un nouvel environnement, le maintien des liens avec son pays d’origine tout en s’intégrant dans la vie locale, et la richesse des échanges entre différentes cultures.</p>
+    <p>Diplômée de Sciences Po Paris, je m’implique également dans l’animation du réseau d’alumni de mon école en Belgique, convaincue que les Français établis à l’étranger ont un rôle particulier à jouer pour faire vivre les échanges, les solidarités et les dynamiques européennes.</p>
+  HTML
+)
+puts "✅ Created: #{mathilde.name}"
+
+# Alexandre Coulon
+alexandre = Candidate.create!(
+  name: "Alexandre Coulon",
+  country: :belgique,
+  city: "Liège",
+  position: 12,
+  featured: true,
+  photo_path: "team/alexandre.jpg",
+  bio: <<~HTML
+    <p>Franco-Belge, j’ai vécu toute ma vie en Belgique.</p>
+    <p>Je suis membre du parti des Engagés et de Génération Engagés.  Je suis trésorier de Génération Engagés pour la ville de Liège. </p>
+    <p>Les Engagés et le MoDem ont beaucoup d'idées communes que l'on retrouve au niveau local. C'est pour cela que j'ai souhaité m'impliquer dans cette campagne.</p>
+    <p>Je suis Area Sales Expert dans l’industrie responsable de toute la Wallonie, GD Luxembourg et Bruxelles. Je connais bien les particularités de ces différentes régions.</p>
+  HTML
+)
+puts "✅ Created: #{alexandre.name}"
+
+# Elisa Cabrera-Clerget
+elisa = Candidate.create!(
+  name: "Elisa Cabrera-Clerget",
+  country: :belgique,
+  city: "Auderghem, région bruxelloise",
+  position: 13,
+  featured: true,
+  photo_path: "team/elisa.jpg",
+  bio: <<~HTML
+    <p>Je suis étudiante en dernière année d’Affaires Internationales à la VUB. Installée à Bruxelles depuis presque trois ans, je m’y plaît beaucoup avec cet atmosphère très internationale.</p>
+    <p>Binationale franco-allemande (un fruit de l’Union européenne) et ayant grandi dans plusieurs pays en tant qu’enfant d’expatriés, il était naturel pour moi de poursuivre un parcours tourné vers l’international. Cet engagement se montre dans ma volonté de m’impliquer politiquement.</p>
+    <p>Je suis née en Belgique, avant de vivre successivement en Jordanie, au Burundi, en France, au Danemark et à Madagascar, pour finalement revenir en Belgique. Ce parcours m’a permis de connaître de près la réalité de la vie à l’étranger, avec ses défis mais aussi les opportunités hors norme qu’elle offre.</p>
+    <p>Ayant toujours été scolarisée dans des lycées français à l’étranger, je comprends particulièrement bien les démarches administratives, les enjeux éducatifs et les préoccupations quotidiennes des Français à l’étranger.</p>
+  HTML
+)
+puts "✅ Created: #{elisa.name}"
+
+# Véronique Daussy
+veronique = Candidate.create!(
+  name: "Véronique Daussy",
+  country: :belgique,
+  city: "Bruxelles",
+  position: 14,
+  featured: true,
+  photo_path: "team/veronique.jpg",
+  bio: <<~HTML
+    <p>Originaire d'Aix en Provence, de parents Champenois et Lorrain, j'ai passé une partie de mon enfance en Asie et dans les Caraïbes, parcours de vie qui m'a doté d'une ouverture culturelle internationale.</p>
+    <p>Européenne convaincue, après avoir terminé mes études de droit européen et international et un an aux États-Unis, je suis arrivée à Bruxelles en 1988 pour un contrat de 2 ans comme expert externe à la Commission européenne.</p>
+    <p>Tombée amoureuse de Bruxelles, j'ai décidé d'y poser mes valises. Après maintes expériences professionnelles dans le secteur privé et semi-public, j'ai finalement rejoint l’Agence européenne pour l'Éducation et la Culture qui met en œuvre une partie des programmes de l'Union européenne.</p>
+    <p>Ma vie de famille m'a amenée à vivre 13 ans en Flandre et le reste majoritairement à Bruxelles. Ayant vécu presque deux-tiers de ma vie ici, je considère la Belgique comme mon deuxième pays.</p>
+    <p>Je me suis très bien intégrée en Belgique, ce, en partie grâce à d'autres expatriés, qui, installés depuis plus longtemps que moi, m'ont apporté un soutien important. Je voudrais aujourd'hui pouvoir rendre un peu de ce qui m'a été alors donné.</p>
+  HTML
+)
+puts "✅ Created: #{veronique.name}"
+
+# Thibaut Lemahieu
+thibaut = Candidate.create!(
+  name: "Thibaut Lemahieu",
+  country: :belgique,
+  city: "Mouscron, province du Hainaut",
+  position: 15,
+  featured: true,
+  photo_path: "team/placeholder.jpg",
+  bio: <<~HTML
+    <p>Franco-belge, je suis né à Roubaix en France et j’ai grandi à Mouscron en Belgique, où mes parents se sont installés lorsque j’avais six ans. J’ai donc grandi entre ces deux cultures qui font aujourd’hui pleinement partie de mon identité.</p>
+    <p>Diplômé en droit et en sciences politiques, j’ai développé mon expérience professionnelle dans le secteur public et associatif, notamment comme conseiller à l’emploi, coordinateur de projets et attaché politique. Ces fonctions m’ont permis de travailler au plus près des citoyens et de collaborer avec de nombreux acteurs institutionnels.</p>
+    <p>Engagé politiquement, je suis aujourd’hui coordinateur de l’organisation de jeunesse politique Génération Engagée, partenaire belge de notre famille politique au niveau européen. </p>
+    <p>Installé à Mouscron, ville frontalière de Tourcoing, Wattrelos et Roubaix, je suis particulièrement attentif aux enjeux rencontrés par les Français établis en Belgique ainsi qu’aux réalités vécues par les nombreux travailleurs et familles frontalières. La qualité de leur représentation et le rôle qu’ils jouent dans le rayonnement et l’image de la France à l’étranger sont, à mes yeux, essentiels.</p>
+  HTML
+)
+puts "✅ Created: #{thibaut.name}"
+
 puts "\n✨ Seed completed! Created #{Candidate.count} candidates."
