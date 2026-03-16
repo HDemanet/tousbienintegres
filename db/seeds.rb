@@ -341,4 +341,71 @@ marie = Candidate.create!(
 )
 puts "✅ Created: #{marie.name}"
 
+# Julien Ciesielski
+julien = Candidate.create!(
+  name: "Julien Ciesielski",
+  country: :belgique,
+  city: "Jurbise, province de Hainaut",
+  position: 17,
+  featured: true,
+  photo_path: "team/julien_c.jpg",
+  bio: <<~HTML
+    <p>Originaire de Douai, je suis installé en Belgique depuis 9 ans. Je suis père d'une petite fille de cinq ans. Installé dans le Hainaut, mes activités professionnelles sont complètement franco-belges et touchent à la fois le secteur de la construction et celui des énergies renouvelables. Je suis très impliqué dans la construction de logements économes en énergie pour les étudiants.</p>
+    <p>Côté sport, je pratique l'aviron régulièrement. Que l'on soit seul ou en équipe sur l'aviron, la navigation nécessite un maintien d'équilibre constant. Ramer à deux ou à quatre, c'est un véritable travail de cohésion. On peut y voir des parallèles avec l'engagement politique au centre. Toujours chercher le point d'équilibre, et avancer dans la même direction. Aussi, composer habilement avec les forces des uns et des autres.</p>
+    <p>En 9 ans, mon expérience la plus improbable en Belgique est incontestablement d'avoir navigué en aviron sur le pan incliné de Ronquières !</p>
+    <p>Sensible à la problématique du sans-abrisme, j'ai été administrateur délégué durant trois ans d'une grande association belge en première ligne pour le soutien des plus précaires.</p>
+    <p>La bonne intégration n'est pas l'affaire de quelques-uns mais l'affaire de tous. J'en suis sûr, chacun peut contribuer au bon vivre ensemble en fonction de son temps et de ses moyens. </p>
+  HTML
+)
+puts "✅ Created: #{julien.name}"
+
+# Thomas Ramiarinarivo
+thomas = Candidate.create!(
+  name: "Thomas Ramiarinarivo",
+  country: :belgique,
+  city: "Woluwe-Saint-Pierre, Bruxelles",
+  position: 18,
+  featured: true,
+  photo_path: "team/thomas.jpg",
+  bio: <<~HTML
+    <p>Je suis consultant dans les services financiers à Bruxelles. Je vis depuis 9 ans en Belgique, actuellement à Woluwe Saint Pierre. J’ai fait une partie de mes études supérieures en Allemagne dans le cadre du parcours franco-allemand de Sciences Po Aix-en-Provence. Pour des raisons professionnelles, j’ai également été amené à vivre dans d’autres pays européens, tels que le Luxembourg ou l’Autriche.</p>
+    <p>J’ai connu Pierre-Luc par des cercles d’amis communs. J’ai pu le soutenir lors de ses nombreuses campagnes électorales à la fois en France et en Belgique. Au fil de nos discussions ainsi que de nos pérégrinations nocturnes, nous nous sommes découverts des valeurs communes, aussi bien européennes que culturelles.</p>
+    <p>Être inscrit sur cette liste représente pour moi une manière concrète de soutenir, Pierre-Luc dans ses projets en faveur des français de Belgique afin de maintenir un lien de qualité entre les résidents expatriés et la représentation consulaire.</p>
+  HTML
+)
+puts "✅ Created: #{thomas.name}"
+
+# Nilsy Desaint
+nilsy = Candidate.create!(
+  name: "Nilsy Desaint",
+  country: :belgique,
+  city: "Kraainem, Brabant flamand",
+  position: 19,
+  featured: true,
+  photo_path: "team/nilsy.jpg",
+  bio: <<~HTML
+    <p>En Belgique depuis 2015 pour un stage de master dans les affaires européennes, je travaille dans le secteur de la santé. J’ai choisi de m’investir localement d’abord au sein de l’antenne crainhemoise de la Ligue des Familles puis récemment au mouvement politique les Engagés. Mère de deux enfants franco-belgo-grecs, je partage la réalité de nombreux parents qui jonglent entre responsabilités professionnelles et familiales, sans pouvoir compter sur la proximité des grands-parents, d’où l’importance d’un réseau social apportant soutien et solidarité notamment via l’école. </p>
+    <p>yant fait l’expérience d’une expatriation hors Europe (dont trois ans à Montréal), j’ai vécu la complexité des relations entre administrations notamment autour des questions fiscales, immobilières et de sécurité sociale. J’ai aussi accompagné un parent âgé d’abord soigné en France puis en maison de repos en Belgique, et géré – parfois avec difficultés – l’ensemble des papiers administratifs sans avoir moi-même de résidence fiscale ou compte bancaire sur le territoire national. Alors que la santé reste une priorité des citoyens lors des élections, qu’elles soient nationales ou européennes, l’Europe de la santé est loin d’être une réalité. </p>
+    <p>Passionnée par les grands enjeux de société dont le développement et l’usage des nouvelles technologies et plus largement du rôle de l’innovation comme moteur de progrès, j’aimerais pouvoir contribuer à rendre les démarches administratives ou recherches de financement plus faciles d’accès pour les entrepreneurs qui démarrent en Belgique avec la France comme objectif de croissance, avant un déploiement européen voire mondial.</p>
+  HTML
+)
+puts "✅ Created: #{nilsy.name}"
+
+# Julien Dupont
+julien_d = Candidate.create!(
+  name: "Julien Dupont",
+  country: :belgique,
+  city: "Molenbeek-Saint-Jean, Bruxelles",
+  position: 20,
+  featured: true,
+  photo_path: "team/julien_d.jpg",
+  bio: <<~HTML
+    <p>Français installé en Belgique depuis 18 ans, je suis fonctionnaire fédéral engagé au service de l’intérêt général et pleinement intégré dans la vie locale.</p>
+    <p>Coureur régulier, je participe chaque année aux 20 km de Bruxelles, un rendez-vous emblématique qui illustre mon attachement à cette ville et à sa communauté.</p>
+    <p>Originaire de la banlieue parisienne et ayant également vécu à Lyon, je conserve des liens étroits avec la France, sa culture et ses enjeux pour les Français de l’étranger.</p>
+    <p>Père de trois enfants binationaux, je suis particulièrement attentif aux questions d’éducation, de transmission et d’avenir pour nos familles expatriées.</p>
+  HTML
+)
+puts "✅ Created: #{julien_d.name}"
+
 puts "\n✨ Seed completed! Created #{Candidate.count} candidates."
