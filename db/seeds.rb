@@ -363,7 +363,7 @@ puts "✅ Created: #{julien.name}"
 thomas = Candidate.create!(
   name: "Thomas Ramiarinarivo",
   country: :belgique,
-  city: "Woluwe-Saint-Pierre, Bruxelles",
+  city: "Woluwe-Saint-Pierre, région bruxelloise",
   position: 18,
   featured: true,
   photo_path: "team/thomas.jpg",
@@ -395,7 +395,7 @@ puts "✅ Created: #{nilsy.name}"
 julien_d = Candidate.create!(
   name: "Julien Dupont",
   country: :belgique,
-  city: "Molenbeek-Saint-Jean, Bruxelles",
+  city: "Molenbeek-Saint-Jean, région bruxelloise",
   position: 20,
   featured: true,
   photo_path: "team/julien_d.jpg",
