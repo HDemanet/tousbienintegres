@@ -408,4 +408,27 @@ julien_d = Candidate.create!(
 )
 puts "✅ Created: #{julien_d.name}"
 
+# Catherine Tyliacos
+catherine = Candidate.create!(
+  name: "Catherine Tyliacos",
+  country: :belgique,
+  city: "Woluwe-Saint-Pierre, région bruxelloise",
+  position: 21,
+  featured: true,
+  photo_path: "team/catherine.jpg",
+  bio: <<~HTML
+    <p>Basée à Bruxelles depuis 30 ans, on peut dire que j’y suis plutôt bien intégrée. J’apprécie la qualité de vie qu’offre un pays de riche culture, carrefour européen entre la France latine et l’Europe du Nord anglo-saxonne et germanique, et celle d’une ville capable de porter en son sein et d’accueillir des cultures très diverses, et principal berceau de la construction européenne. J’y apprécie aussi la proximité rassurante avec la France, et les Ch’tis.</p>
+    <p>Être tous bien intégrés dans la société dont nous faisons partie, c’est la promesse d’être plus épanouis et plus heureux dans nos vies. Et cela, quelque soit l’âge ou le parcours personnel ou professionnel de chacun. Mais une bonne intégration ne va pas de soi, n’est pas acquise une fois pour toutes, et nécessite des efforts renouvelés. </p>
+    <p>Et dans ce contexte, rester bien connectés avec notre patrie et bien préparer sa réintégration éventuelle en France représente également un enjeu pour les Français expatriés, notamment pour ceux d’entre eux qui se préparent à la retraite, ou partagent leur temps entre la France et la Belgique, voire même avec un troisième ou quatrième point d’ancrage.</p>
+    <p>Quelques-uns des enjeux qui nous concernent plus largement : les questions d’éducation et d’enseignement, d’équivalence de diplômes, de santé, de validation des parcours professionnels, de successions, de fiscalité et de double imposition, voire d’une vieillesse heureuse bien préparée et au plus proche des siens. Pour identifier les questions qui se posent sur tous ces sujets au quotidien et proposer des solutions pragmatiques dans un monde qui change très vite, notamment au rythme de mutations technologiques effrénées, nous voulons apporter notre modeste pierre à l’édifice. </p>
+    <p>Pour ma part, j’ai exercé la profession d’interprète de conférence dans les institutions européennes durant 5 à 6 ans, avant d’entamer une carrière diversifiée de plus de vingt ans au Conseil de l’UE. Membre du Conseil d’administration de l’Union des Français de l’étranger (UFE) et adhérente de l’association des Gascons de Belgique de longue date, ainsi que d’autres associations, je suis engagée sur le plan associatif mais également dans la représentation du personnel de mon institution (Comité du personnel et présidente sortante de la Fédération de la Fonction publique européenne, apolitique).</p>
+    <p>Ce qui me motive : l’engagement citoyen et la création de liens de solidarité et d’échange entre nous, Français (et plus largement, Européens) expatriés, y compris comme rempart aux ferments antidémocratiques qui travaillent nos sociétés, particulièrement depuis la période de Covid et la guerre en Ukraine. </p>
+    <p>Ce qui m’anime : la volonté de faire, d’être utile, de faire société et de créer du lien, avec l’idée que même les initiatives modestes peuvent faire la différence dans la vie des gens, et que nous pouvons changer les choses en commençant par nous-mêmes et notre relation aux autres. </p>
+    <p>Ce en quoi je crois : ce dicton italien qui dit tout, “il mondo è bello perché è vario”. “Le monde est beau parce qu’il est varié”. Il y a de fait autant de parcours qu’il y a de Français en Belgique. Nos différences sont notre richesse, et nous pouvons être unis dans notre diversité.</p>
+    <p>Pour mieux me connaître : j’ai vécu mon enfance à Athènes puis l’adolescence à Rabat (Maroc), et fréquenté le lycée français, tant à Athènes qu’à Rabat.  Diplômée de l’université (renommée Jean Jaurès) et de l’IEP de Toulouse, et titulaire d’un master en administration des entreprises ainsi que d’un DEA d’Histoire et civilisation grecques de l’université de Montpellier, j’ai poursuivi avec succès mes études en sciences politiques à l’IEP de Paris et de droit européen à l’université Panthéon-Sorbonne, et obtenu également un master d’interprétation de conférence tout en travaillant à Inter-Mutuelles-Assistance (Niort) pour les financer.</p>
+    <p>Après le soleil grec, le Maroc chamarré aux milles merveilles, le pays de cocagne toulousain, Londres, Passau l’Alsace et Paname, je suis arrivée endeuillée et par train un soir d’automne à Bruxelles sans y connaître personne pour un stage à la Commission européenne, et n’imaginais pas, en cherchant mon chemin vers une triste auberge de jeunesse sous une pluie fine et persistante d’octobre dans la grisaille des rues pavées et désertées, m’établir à Bruxelles pour le plus clair de ma vie.</p>
+  HTML
+)
+puts "✅ Created: #{catherine.name}"
+
 puts "\n✨ Seed completed! Created #{Candidate.count} candidates."
