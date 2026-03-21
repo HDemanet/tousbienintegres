@@ -114,7 +114,7 @@ geraldine = Candidate.create!(
   name: "Géraldine Geay",
   country: :belgique,
   city: "Bruxelles",
-  position: 5,
+  position: 21,
   featured: true,
   photo_path: "team/Geraldine.jpg",
   bio: <<~HTML
@@ -413,7 +413,7 @@ catherine = Candidate.create!(
   name: "Catherine Tyliacos",
   country: :belgique,
   city: "Woluwe-Saint-Pierre, région bruxelloise",
-  position: 21,
+  position: 5,
   featured: true,
   photo_path: "team/catherine.jpg",
   bio: <<~HTML
