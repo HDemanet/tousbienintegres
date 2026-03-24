@@ -32,7 +32,7 @@ puts "✅ Created: #{pierre_luc.name}"
 lionel = Candidate.create!(
   name: "Lionel Autret",
   country: :pays_bas,
-  city: "Leiden",
+  city: "Leiden, Pays-Bas",
   position: 1,
   featured: true,
   photo_path: "team/lionel-autret.jpg",
@@ -432,5 +432,61 @@ olivier = Candidate.create!(
   HTML
 )
 puts "✅ Created: #{olivier.name}"
+
+# Maud Fichet
+maud = Candidate.create!(
+  name: "Maud Fichet",
+  country: :belgique,
+  city: "Ganshoren, région bruxelloise",
+  position: 23,
+  featured: true,
+  photo_path: "team/maud.jpg",
+  bio: <<~HTML
+    <p>Originaire de Lyon, voici déjà 13 ans que j’ai posé mes valises en Belgique.</p>
+    <p>Mon parcours professionnel m’a permis d’évoluer dans plusieurs milieux, tels qu’académique, associatif, privé et aujourd’hui dans la fonction publique européenne.</p>
+    <p>Mes deux enfants sont nés à Bruxelles, et évoluent dans une famille très européenne, où espagnol et français se côtoient à la maison.</p>
+    <p>M’étant ainsi frottée aux diverses administrations belges, ainsi qu’à plusieurs parcours d’intégration pour le travail ou l’éducation des enfants, je souhaite partager cette expérience avec mes compatriotes, nouveaux arrivants ou anciennement installés.</p>
+    <p>Démocrate de conviction depuis toujours, je crois très profondément à l’importance du dialogue en politique et à la défense des valeurs démocratiques. Celles-ci doivent être au cœur du mandat des conseillers et conseillère des Français de l’étranger !</p>
+  HTML
+)
+puts "✅ Created: #{maud.name}"
+
+# Maud Aupetit
+maud_a = Candidate.create!(
+  name: "Maud Aupetit",
+  country: :belgique,
+  city: "Auderghem, région bruxelloise",
+  position: 24,
+  featured: true,
+  photo_path: "team/maud_a.jpg",
+  bio: <<~HTML
+    <p>Bretonne d’origine, je vis à Bruxelles depuis plus de 8 ans avec mon mari et nos deux enfants.</p>
+    <p>Européenne convaincue, je suis partie vivre un an aux États-Unis après le lycée pour perfectionner mon anglais et découvrir une nouvelle culture. Je suis ensuite revenue en France pour étudier le droit européen et international, avec une année Erasmus en Espagne, suivie d’un stage au Consulat de France à Bilbao.</p>
+    <p>Après un début de carrière en droit de l’immigration à Paris, j’ai rejoint Londres avec ma famille, où j’ai découvert le domaine de la mobilité internationale au sein d’un cabinet d’avocats spécialisé. Une opportunité nous a ensuite conduits à Bruxelles, où nous avons choisi de nous installer durablement. Ce pays est devenu, au fil des années, une véritable seconde patrie dans laquelle nous nous sentons profondément bien.</p>
+    <p>Je travaille aujourd’hui depuis plus de 15 ans dans la mobilité internationale et l’immigration professionnelle, un métier qui me passionne et dans lequel j’accompagne au quotidien des expatriés et leurs familles.</p>
+    <p>Ayant moi-même vécu ces expériences, je suis particulièrement attentive aux enjeux d’intégration, notamment pour les conjoints qui accompagnent un projet d’expatriation et pour lesquels l’accès à l’emploi peut représenter un défi important.</p>
+    <p>J’ai souhaité rejoindre cette liste dans une démarche citoyenne, en tant que personnalité de la société civile, avec l’envie de contribuer, à mon échelle, à une meilleure prise en compte de ces réalités.</p>
+    <p></p>
+  HTML
+)
+puts "✅ Created: #{maud_a.name}"
+
+# Jean Malik Dumas
+jean = Candidate.create!(
+  name: "Jean Malik Dumas",
+  country: :pays_bas,
+  city: "Tilburg, Pays-Bas",
+  position: 25,
+  featured: true,
+  photo_path: "team/jean.jpg",
+  bio: <<~HTML
+    <p>Je suis maître de conférences à l’Université de Tilburg, où j'enseigne l’innovation, la stratégie et le management des organisations. Élu représentant du personnel au conseil de l’université, je m'implique activement dans la vie institutionnelle.</p>
+    <p>Ancien officier marinier de la Marine nationale, j'ai rejoint la Marine en 1990 comme responsable informatique et assistant en études ergonomiques, avant de travailler en Ukraine comme directeur technique dans la production télévisuelle et de développer ma propre activité de conseil.</p>
+    <p>Installé aux Pays Bas depuis plus de vingt et un ans, je mobilise une riche expérience internationale et opérationnelle pour nourrir l'enseignement que je dispense et mes recherches.</p>
+    <p>J'enseigne régulièrement en Italie, au Maroc, en Ukraine, en Russie, en Belgique et aux Pays Bas, et interviens aussi dans des écoles de commerce en France, auprès de publics de licence, de master et de professionnels en entreprise. Parallèlement à mes activités académiques, je suis entrepreneur et cofondateur de plusieurs startups.</p>
+    <p>Je réside à Tilburg avec mon épouse Natacha, psychothérapeute de nationalité ukrainienne. Père de trois enfants scolarisés et diplômés aux Pays Bas, je me tiens volontiers à disposition pour renseigner les familles sur le système éducatif néerlandais et ses particularités, de l’école primaire jusqu’au niveau universitaire.</p>
+  HTML
+)
+puts "✅ Created: #{jean.name}"
 
 puts "\n✨ Seed completed! Created #{Candidate.count} candidates."
